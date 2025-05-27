@@ -7,7 +7,8 @@ CXX = g++
 
 SRC = main.cpp \
 		phonebook.cpp \
-		contact.cpp
+		contact.cpp \
+		color.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

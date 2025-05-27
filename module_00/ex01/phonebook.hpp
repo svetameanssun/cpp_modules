@@ -7,6 +7,28 @@
 #include <exception>
 #include <iomanip>
 
+
+
+class Color{
+  private:
+    std::string colorWarm;
+    std::string colorCalm;
+    std::string colorPale;
+    std::string colorVibr;
+    std::string errorRed;
+    std::string bold;
+    std::string reset;
+  public:
+    void set_theme(std::string thm);
+    std::string getWarm();
+    std::string getCalm();
+    std::string getPale();
+    std::string getVibr();
+    std::string getRed();
+    std::string getBold();
+    std::string getReset();
+};
+
 class Contact {
   private:
     int index;
@@ -15,9 +37,10 @@ class Contact {
     std::string nickname;
     std::string phone_number;
     std::string secret;
+    Color thm;
   public:
     ~Contact();
-    void createContact(int i);
+    void createContact(int i, Color theme);
     void showShortContact();
     void showLongContact();
     std::string formatField(const std::string& field);
@@ -26,12 +49,13 @@ class Contact {
 
 class PhoneBook {
   private:
+    Color theme;
     int ind;
     int count_n;
     static const int maxCont = 4;
     Contact contacts[maxCont];
   public:
-    void setPhoneBook(int i, int c);
+    void initialize(Color thm);
     void addContact();
     int check_index(std::string input);
     void displayPhoneBook();
@@ -42,15 +66,15 @@ class PhoneBook {
 class EmptyInputException: public std::exception {
   public:
     const char* what() const throw() {
-        return "The wrong input!\n";
+        return ("The wrong phonebook input!");
     }
 };
 
-/*class WrongInputException: public std::exception {
+class WrongArgException: public std::exception {
   public:
     const char* what() const throw() {
-        return "The wrong input! Introduce a digit that matches the indexes\n";
+        return ("The wrong input!");
     }
-};*/
+};
 
 #endif
