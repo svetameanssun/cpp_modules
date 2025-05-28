@@ -66,14 +66,14 @@ class PhoneBook {
 class EmptyInputException: public std::exception {
   public:
     const char* what() const throw() {
-        return ("The wrong phonebook input!");
+        return ("\nThe wrong phonebook input!");
     }
 };
 
 class WrongArgException: public std::exception {
   public:
     const char* what() const throw() {
-        return ("The wrong input!");
+        return ("\nThe wrong input!");
     }
 };
 

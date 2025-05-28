@@ -13,6 +13,7 @@ int main(int argc, char **argv) {
             thm.set_theme((std::string)argv[1]);
         } catch(const WrongArgException &err){
             std::cerr << "\033[1;31m" << "Error: " << err.what() << "\033[0m" << std::endl;
+            return (1);
         }
     }
     else if (argc > 2)

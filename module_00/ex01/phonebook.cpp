@@ -47,7 +47,7 @@ int PhoneBook::check_index(std::string input_str){
     input_c_str = input_str.c_str();
     int i = 0;
     long int input_long;
-    
+
     if (input_str.empty())
         return (-1);
     while(input_c_str[i])
@@ -68,7 +68,7 @@ int PhoneBook::check_index(std::string input_str){
 void PhoneBook::displayPhoneBook() {
     int i = 0;
     std::string input_str;
-    std::cout << "\n"<< theme.getWarm() << "|"
+    std::cout << "\n"<< theme.getCalm() << "|"
           << std::setw(10) << "Index" << "|"
           << std::setw(10) << "First Name" << "|"
           << std::setw(10) << "Last Name" << "|"
@@ -80,11 +80,14 @@ void PhoneBook::displayPhoneBook() {
         contacts[i].showShortContact();
         i++;
     }
-	std::cout << theme.getCalm() <<"Choose the index to see the contact\n" << theme.getReset();
+	std::cout << theme.getBold() << theme.getVibr()  <<"\nChoose index to see a contact\n" << theme.getReset();
+    std::cout << theme.getPale();
     getline(std::cin, input_str);
+    std::cout << theme.getReset();
     res = check_index(input_str);
 	if (res == -1)
     {
+        std::cout << "\n";
         std::cout << theme.getRed() << "The wrong input! Introduce a digit that matches the indexes" << theme.getRed() << std::endl;
         displayPhoneBook();
         return;   
@@ -147,7 +150,7 @@ void PhoneBook::phoneBookIntro()
     std::cout << theme.getBold() << theme.getCalm() << "\n\tWelcome!\n"
         << "\tYou are going to use the best\n"
         <<  "\tphonebook in the world\n"
-        << theme.getVibr() << "\tby Svetlana Titovskaia\n"
+        <<  "\tby " << theme.getVibr() <<"Svetlana Titovskaia\n"
         << "\n\n\t\t" << girlArt
         << theme.getReset() << std::endl;
 }
@@ -156,7 +159,9 @@ void PhoneBook::run() {
     std::string choice;
     std::cout << theme.getCalm() << "\n\n\tChoose what you want to do:\n"
         << "\tADD    SEARCH    EXIT\n" << theme.getReset();
+    std::cout << theme.getPale();
     getline(std::cin, choice);
+    std::cout << theme.getReset();
     if(choice == "EXIT") {
         exit(0);
     } else if(choice == "SEARCH") {
