@@ -19,23 +19,23 @@ class Color{
     std::string bold;
     std::string reset;
   public:
-    void set_theme(std::string thm);
-    std::string getWarm();
-    std::string getCalm();
-    std::string getPale();
-    std::string getVibr();
-    std::string getRed();
-    std::string getBold();
-    std::string getReset();
+    void setTheme(std::string thm);
+    std::string getWarm() const; // made all of them const 
+    std::string getCalm() const;
+    std::string getPale() const;
+    std::string getVibr() const;
+    std::string getRed() const;
+    std::string getBold() const;
+    std::string getReset() const;
 };
 
 class Contact {
   private:
     int index;
-    std::string first_name;
-    std::string last_name;
+    std::string firstName;
+    std::string lastName;
     std::string nickname;
-    std::string phone_number;
+    std::string phoneNumber;
     std::string secret;
     Color thm;
   public:
@@ -46,18 +46,20 @@ class Contact {
     std::string formatField(const std::string& field);
 };
 
-
 class PhoneBook {
   private:
+    int introTimes;
     Color theme;
-    int ind;
-    int count_n;
-    static const int maxCont = 4;
-    Contact contacts[maxCont];
+    int ind; 
+    int count;
+    static const int maxNum = 8;
+    Contact contacts[maxNum];
   public:
-    void initialize(Color thm);
+    PhoneBook(int a, int b, int c);
+    void initTheme(Color thm);
+    void resetIntroTimes();
     void addContact();
-    int check_index(std::string input);
+    int checkIndex(std::string input);
     void displayPhoneBook();
     void phoneBookIntro();
     void run();

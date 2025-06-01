@@ -19,6 +19,7 @@ all: $(TARGET)
 
 $(TARGET): $(OBJ)
 	$(CXX) $(CPPFLAGS) $(OBJ) -o $(TARGET)
+	rm -f $(OBJ)
 	
 #-include $(DEP)
 

@@ -1,7 +1,7 @@
 #include "phonebook.hpp"
 
 
-void Color::set_theme(std::string theme)
+void Color::setTheme(std::string theme)
 {
     reset = "\033[0m";
     bold = "\033[1m";
@@ -46,31 +46,31 @@ void Color::set_theme(std::string theme)
 }
 
 
-std::string Color::getWarm()
+std::string Color::getWarm() const
 {
     return (colorWarm);
 }
 
-std::string Color::getCalm(){
+std::string Color::getCalm() const{
     return (colorCalm);
 }
 
-std::string Color::getPale(){
+std::string Color::getPale() const{ 
     return (colorPale);
 }
 
-std::string Color::getVibr(){
+std::string Color::getVibr() const{
     return (colorVibr);
 }
 
-std::string Color::getRed(){
+std::string Color::getRed() const{
     return (errorRed);
 }
 
-std::string Color::getBold(){
+std::string Color::getBold() const{
     return (bold);
 }
 
-std::string Color::getReset(){
+std::string Color::getReset() const{
     return (reset);
 }

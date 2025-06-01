@@ -5,16 +5,16 @@ void Contact::createContact(int i, Color theme) {
     std::string answer;
     std::cout << theme.getWarm() << "Introduce name:\n";
     std::cout << theme.getPale();
-    getline(std::cin, first_name);
+    getline(std::cin, firstName);
     std::cout << theme.getReset();
-    if(first_name.empty()) {
+    if(firstName.empty()) {
         throw EmptyInputException();
     }
     std::cout << theme.getWarm() << "Introduce last name:\n";
     std::cout << theme.getPale();
-    getline(std::cin, last_name);
+    getline(std::cin, lastName);
     std::cout << theme.getReset();
-    if(last_name.empty()) {
+    if(lastName.empty()) {
         throw EmptyInputException();
     }
     std::cout << theme.getWarm() << "Introduce nickname:\n";
@@ -26,9 +26,9 @@ void Contact::createContact(int i, Color theme) {
     }
     std::cout << theme.getWarm() << "Introduce phone number:\n";
     std::cout << theme.getPale();
-    getline(std::cin, phone_number);
+    getline(std::cin, phoneNumber);
     std::cout << theme.getReset();
-    if(phone_number.empty()) {
+    if(phoneNumber.empty()) {
         throw EmptyInputException();
     }
     std::cout << theme.getWarm() << "Introduce your darkest secret:\n";
@@ -38,7 +38,7 @@ void Contact::createContact(int i, Color theme) {
     if(secret.empty()) {
         throw EmptyInputException();
     }
-    std::cout << theme.getBold() << theme.getVibr() << "The contact saved\n";
+    std::cout << theme.getBold() << theme.getVibr() << "The contact saved!\n";
     index = i;
     thm = theme;
 }
@@ -53,10 +53,10 @@ std::string Contact::formatField(const std::string& field) {
 
 void Contact::showLongContact() {
     std::cout << "\n";
-    std::cout << thm.getCalm() << "First name: " << thm.getPale() << first_name << thm.getReset() << "\n";
-    std::cout << thm.getCalm() << "Last name:  " << thm.getPale() << last_name << thm.getReset() << "\n";
+    std::cout << thm.getCalm() << "First name: " << thm.getPale() << firstName << thm.getReset() << "\n";
+    std::cout << thm.getCalm() << "Last name:  " << thm.getPale() << lastName << thm.getReset() << "\n";
     std::cout << thm.getCalm() << "Nickname:   " << thm.getPale() << nickname << thm.getReset() << "\n";
-    std::cout << thm.getCalm() << "Phone:      " << thm.getPale() << phone_number << thm.getReset() << "\n";
+    std::cout << thm.getCalm() << "Phone:      " << thm.getPale() << phoneNumber << thm.getReset() << "\n";
     std::cout << thm.getCalm() << "Secret:     " << thm.getPale()  << secret << thm.getReset() << "\n";
 }
 
@@ -64,8 +64,8 @@ void Contact::showShortContact() {
 
     std::cout << thm.getPale() << "|"
          << std::setw(10) << index << "|"
-         << std::setw(10) << formatField(first_name) << "|"
-         << std::setw(10) << formatField(last_name) << "|"
+         << std::setw(10) << formatField(firstName) << "|"
+         << std::setw(10) << formatField(lastName) << "|"
          << std::setw(10) << formatField(nickname) << "|"
          << thm.getReset() <<std::endl;
 }

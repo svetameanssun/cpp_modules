@@ -1,16 +1,19 @@
 #include "phonebook.hpp"
 
-void PhoneBook::initialize(Color thm){
-	ind = 0;
-	count_n = 0;
+void PhoneBook::initTheme(Color thm){
     theme = thm;
+}
+
+void PhoneBook::resetIntroTimes(){
+    introTimes = 0;
 }
 
 void PhoneBook::addContact() {
 
-    if((count_n) >= maxCont) {
-        if(ind == maxCont) {
-            std::cout << "You reached the maximum number of contacts!\n The oldest contact will be rewritten\n";
+    if((count) >= maxNum) {
+        if(ind == maxNum) {
+            std::cout << theme.getVibr() << "You reached the maximum number of contacts!\n"
+                << "The oldest contact will be rewritten\n" << theme.getReset();
             ind = 0;
             try {
                 contacts[ind].createContact(ind, theme);
@@ -33,15 +36,15 @@ void PhoneBook::addContact() {
             
         } catch(const EmptyInputException& err) {
             std::cerr << theme.getRed() << "Error: " << err.what() << theme.getReset() << std::endl;
-            count_n--;
+            count--;
             ind--;
         }
     }
-    count_n++;
+    count++;
     ind++;
 }
 
-int PhoneBook::check_index(std::string input_str){
+int PhoneBook::checkIndex(std::string input_str){
     
     const char * input_c_str;
     input_c_str = input_str.c_str();
@@ -58,7 +61,11 @@ int PhoneBook::check_index(std::string input_str){
         i++;
     }
 	input_long = atol(input_c_str);
-    if (input_long < 0 || input_long >= maxCont)
+    if (input_long < maxNum && input_long >= count) // check this cond
+    {
+        return (-1);
+    }
+    if (input_long < 0 || input_long >= maxNum)
     {
         return (-1);
     }
@@ -68,6 +75,11 @@ int PhoneBook::check_index(std::string input_str){
 void PhoneBook::displayPhoneBook() {
     int i = 0;
     std::string input_str;
+    if (ind == 0)
+    {
+        std::cout << theme.getVibr() << "The phone book is empty!\n" << theme.getReset();
+        return ;
+    }
     std::cout << "\n"<< theme.getCalm() << "|"
           << std::setw(10) << "Index" << "|"
           << std::setw(10) << "First Name" << "|"
@@ -75,16 +87,16 @@ void PhoneBook::displayPhoneBook() {
           << std::setw(10) << "Nickname" << "|"
           << std::endl;
     std::cout << std::string(45, '-') << theme.getReset() << std::endl;
-    int res = (count_n < maxCont) ? count_n : maxCont;
+    int res = (count < maxNum) ? count : maxNum;
 	while(i < res) {
         contacts[i].showShortContact();
         i++;
     }
-	std::cout << theme.getBold() << theme.getVibr()  <<"\nChoose index to see a contact\n" << theme.getReset();
+	std::cout << theme.getBold() << theme.getVibr()  <<"\n\nChoose index to see a contact:\n" << theme.getReset();
     std::cout << theme.getPale();
     getline(std::cin, input_str);
     std::cout << theme.getReset();
-    res = check_index(input_str);
+    res = checkIndex(input_str);
 	if (res == -1)
     {
         std::cout << "\n";
@@ -157,8 +169,11 @@ void PhoneBook::phoneBookIntro()
 
 void PhoneBook::run() {
     std::string choice;
-    std::cout << theme.getCalm() << "\n\n\tChoose what you want to do:\n"
+    if (introTimes == 0)
+    {
+        std::cout << theme.getCalm() << "\n\n\tChoose what you want to do:\n"
         << "\tADD    SEARCH    EXIT\n" << theme.getReset();
+    }
     std::cout << theme.getPale();
     getline(std::cin, choice);
     std::cout << theme.getReset();
@@ -166,8 +181,18 @@ void PhoneBook::run() {
         exit(0);
     } else if(choice == "SEARCH") {
         displayPhoneBook();
+        introTimes = 0;
     } else if(choice == "ADD") {
         addContact();
-    } else
+        introTimes = 0;
+    } else {
         choice = "CONTINUE";
+        introTimes++;
+    }
+}
+
+PhoneBook::PhoneBook(int a, int b, int c){
+    ind  = a;
+    count = b;
+    introTimes = c;
 }
