@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stitovsk <stitovsk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/19 00:47:02 by stitovsk          #+#    #+#             */
+/*   Updated: 2025/06/19 00:48:47 by stitovsk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include <string>
 
-int main()
-{
+int main() {
     std::string variable = "HI THIS IS BRAIN";
     std::string * stringPTR = &variable;
     std::string &stringREF = variable;
@@ -15,7 +26,6 @@ int main()
     std::cout << std::endl;
     std::cout << "The value of the string variable: " << variable << std::endl;
     std::cout << "The value pointed to by stringPTR: " << *stringPTR << std::endl;
-    std::cout << "The value pointed to by stringREF: "<< stringREF << std::endl;
-
+    std::cout << "The value pointed to by stringREF: " << stringREF << std::endl;
     return (0);
 }

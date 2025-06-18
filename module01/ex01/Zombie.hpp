@@ -3,21 +3,19 @@
 
 #include <string>
 #include <iostream>
+#include <sstream>
 
-class Zombie{
-    private:
-        std::string name;
-    public:
-        Zombie();
-        Zombie(std::string name);
-        void announce( void );
-        void setName(std::string newName);
-        ~Zombie();
+class Zombie {
+  private:
+    std::string name;
+  public:
+    Zombie(void);
+    Zombie(std::string name);
+    void announce(void);
+    void setName(std::string newName);
+    ~Zombie();
 };
 
-Zombie* zombieHorde( int N, std::string name );
-std::string itoa(int num);
-
-
+Zombie* zombieHorde(int N, std::string name);
 
 #endif
