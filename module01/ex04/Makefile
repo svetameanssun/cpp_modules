@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: stitovsk <stitovsk@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/06/19 13:09:24 by stitovsk          #+#    #+#              #
+#    Updated: 2025/06/19 13:25:43 by stitovsk         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 TARGET = replace
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 CXX = g++
@@ -9,7 +21,6 @@ OBJ = $(SRC:.cpp=.o)
 all: $(TARGET)
 $(TARGET): $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(TARGET)
-	rm -f $(OBJ)
 
 %.o:%.c
 	$(CXX) $(CXXFLAGS) -c $< -o $@
