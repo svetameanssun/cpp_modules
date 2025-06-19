@@ -6,12 +6,11 @@
 /*   By: stitovsk <stitovsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 20:11:31 by stitovsk          #+#    #+#             */
-/*   Updated: 2025/06/19 22:57:22 by stitovsk         ###   ########.fr       */
+/*   Updated: 2025/06/19 22:59:55 by stitovsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
-#include <iostream>
 
 void Harl::debug(void) {
     std::cout << "\033[1m\033[1;36m[ DEBUG ]:\033[0m\n";

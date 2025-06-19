@@ -6,11 +6,12 @@
 /*   By: stitovsk <stitovsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 20:11:37 by stitovsk          #+#    #+#             */
-/*   Updated: 2025/06/19 22:58:01 by stitovsk         ###   ########.fr       */
+/*   Updated: 2025/06/19 22:59:24 by stitovsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
+
 int main() {
     Harl myHarl;
 
