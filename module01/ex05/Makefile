@@ -9,7 +9,6 @@ OBJ = $(SRC:.cpp=.o)
 all: $(TARGET)
 $(TARGET): $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(TARGET)
-	rm -f $(OBJ)
 
 %.o:%.c
 	$(CXX) $(CXXFLAGS) -c $< -o $@

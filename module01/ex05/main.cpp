@@ -1,25 +1,35 @@
-#include "Harl.hpp" // Включаем заголовочный файл класса Harl
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stitovsk <stitovsk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/19 20:11:37 by stitovsk          #+#    #+#             */
+/*   Updated: 2025/06/19 22:58:01 by stitovsk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "Harl.hpp"
 int main() {
-    Harl myHarl; // Создаем объект класса Harl
+    Harl myHarl;
 
-    std::cout << "--- Harl жалуется на DEBUG ---" << std::endl;
+    std::cout << "--- Harl is complaining about DEBUG ---" << std::endl;
     myHarl.complain("DEBUG");
 
-    std::cout << "--- Harl жалуется на INFO ---" << std::endl;
+    std::cout << "--- Harl is complaining about INFO ---" << std::endl;
     myHarl.complain("INFO");
 
-    std::cout << "--- Harl жалуется на WARNING ---" << std::endl;
+    std::cout << "--- Harl is complaining about WARNING ---" << std::endl;
     myHarl.complain("WARNING");
 
-    std::cout << "--- Harl жалуется на ERROR ---" << std::endl;
+    std::cout << "--- Harl is complaining about ERROR ---" << std::endl;
     myHarl.complain("ERROR");
 
-    std::cout << "--- Harl жалуется на неизвестный уровень ---" << std::endl;
+    std::cout << "--- Harl is complaining about UNKNOWN ---" << std::endl;
     myHarl.complain("UNKNOWN");
 
-    // Также можно протестировать уровни, которые не существуют
-    std::cout << "--- Harl жалуется на 'INVALID' ---" << std::endl;
+    std::cout << "--- Harl is complaining about 'INVALID' ---" << std::endl;
     myHarl.complain("INVALID");
 
     return 0;
