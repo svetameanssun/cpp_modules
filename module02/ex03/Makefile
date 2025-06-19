@@ -6,15 +6,17 @@
 #    By: stitovsk <stitovsk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/19 23:01:55 by stitovsk          #+#    #+#              #
-#    Updated: 2025/06/19 23:12:14 by stitovsk         ###   ########.fr        #
+#    Updated: 2025/06/19 23:27:03 by stitovsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-TARGET = fixed
+TARGET = bsp
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 CXX = g++
 SRC = main.cpp \
-	Fixed.cpp
+	Fixed.cpp \
+	bsp.cpp \
+	Point.cpp
 
 OBJ = $(SRC:.cpp=.o)
 all: $(TARGET)
