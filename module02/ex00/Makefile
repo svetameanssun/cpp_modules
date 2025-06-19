@@ -1,15 +1,25 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: stitovsk <stitovsk@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/06/19 23:01:55 by stitovsk          #+#    #+#              #
+#    Updated: 2025/06/19 23:09:32 by stitovsk         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 TARGET = fixed
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 CXX = g++
 SRC = main.cpp \
 	Fixed.cpp
 
-
 OBJ = $(SRC:.cpp=.o)
 all: $(TARGET)
 $(TARGET): $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(TARGET)
-	rm -f $(OBJ)
 
 %.o:%.c
 	$(CXX) $(CXXFLAGS) -c $< -o $@
