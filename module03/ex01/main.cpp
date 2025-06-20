@@ -1,16 +1,18 @@
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
-int main(){
-    ClapTrap robot01("robot");
-    std::string target = "a box";
+int main() {
+    std::cout << "=== Creating ScavTrap ===\n";
+    ScavTrap s1("Serena");
 
-    robot01.attack(target);
-    std::cout << robot01.getName() << " has " << robot01.getHitPoints() << " hit points" << "\n";
-    
-    robot01.takeDamage(5);
-    robot01.takeDamage(10);
+    std::cout << "\n=== Performing actions ===\n";
+    s1.attack("Bandit");
+    s1.takeDamage(30);
+    s1.beRepaired(20);
+    s1.guardGate();
 
-    robot01.beRepaired(1);
-    robot01.attack(target);
-    robot01.takeDamage(5);
+    std::cout << "\n=== Copy test ===\n";
+    ScavTrap s2 = s1;
+
+    std::cout << "\n=== End of main ===\n";
+    return 0;
 }

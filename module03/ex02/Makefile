@@ -1,9 +1,10 @@
-TARGET = scavtrap
+TARGET = fragtrap
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 CXX = g++
 SRC = main.cpp \
 	ClapTrap.cpp \
-	ScavTrap.cpp
+	ScavTrap.cpp \
+	FragTrap.cpp
 
 
 OBJ = $(SRC:.cpp=.o)
