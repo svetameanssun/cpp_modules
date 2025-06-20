@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ClapTrap.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stitovsk <stitovsk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/19 23:30:33 by stitovsk          #+#    #+#             */
+/*   Updated: 2025/06/20 09:28:40 by stitovsk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap()
@@ -51,7 +63,7 @@ void ClapTrap::takeDamage(unsigned int amount) {
         return;
     }
     hitPoints -= amount;
-    if (hitPoints < 0) hitPoints = 0;
+    //if (hitPoints < 0) hitPoints = 0;
     std::cout << "ClapTrap " << name << " takes " << amount << " points of damage!"
               << " (HP left: " << hitPoints << ")" << std::endl;
 }
@@ -67,7 +79,7 @@ void ClapTrap::beRepaired(unsigned int amount) {
     }
     hitPoints += amount;
     energyPoints--;
-    std::cout << "ClapTrap " << name << " repairs itself, recovering " << amount << " hit points!"
+    std::cout << "ClapTrap " << name << " recovers " << amount << " hit points!"
               << " (HP: " << hitPoints << ", EP: " << energyPoints << ")" << std::endl;
 }
 
