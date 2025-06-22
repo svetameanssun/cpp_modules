@@ -6,7 +6,7 @@
 /*   By: stitovsk <stitovsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 21:22:23 by stitovsk          #+#    #+#             */
-/*   Updated: 2025/06/22 23:37:51 by stitovsk         ###   ########.fr       */
+/*   Updated: 2025/06/22 23:35:33 by stitovsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ Animal::~Animal(void) {
     std::cout << "Animal " << type << " destroyed\n";
 }
 
-void Animal::makeSound(void) const {
-    std::cout << "I cannot make a sound, I am an abstract class\n";
-}
 
 const std::string Animal::getType(void) const {
     return (type);
