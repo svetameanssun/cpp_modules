@@ -6,7 +6,7 @@
 #    By: stitovsk <stitovsk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/22 21:21:36 by stitovsk          #+#    #+#              #
-#    Updated: 2025/06/22 21:21:37 by stitovsk         ###   ########.fr        #
+#    Updated: 2025/06/26 09:54:29 by stitovsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ OBJ = $(SRC:.cpp=.o)
 all: $(TARGET)
 $(TARGET): $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(TARGET)
-	rm -f $(OBJ)
 
 %.o:%.c
 	$(CXX) $(CXXFLAGS) -c $< -o $@
