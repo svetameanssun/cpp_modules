@@ -24,8 +24,6 @@ class Bureaucrat {
     void GradeTooHighException(void);
     void GradeTooLowException(void);
 
-    
-
   private:
     const std::string _name;
     int _grade;
