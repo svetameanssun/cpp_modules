@@ -1,0 +1,6 @@
+1. Create exeption class file  (instead of canonical)
+2. Mark setGrade as commented
+3. Change the exception output
+4. Readable code
+5. Check leaks ?
+6. Should exeption class belong to the Bureaucrat class? Why? 
