@@ -5,18 +5,28 @@
 #include <iostream>
 #include <string>
 #include <exception>
+#include "Exception.hpp"
+
 
 class Bureaucrat {
   public:
     Bureaucrat(): _name("DefaultName"), _grade(150) {};
-    Bureaucrat(const std::string name, int grade): _name(name), _grade(grade) {};
+    Bureaucrat(const std::string name, int grade): _name(name), _grade(grade) {
+      try{
+        if (_grade > 150){
+          throw CustomExcept("Bureaucrat::GradeTooLowException\n");
+        }
+      } catch(const CustomExcept &e){
+        std::cout << getName() << ": " << e.what();
+      }
+    };
     Bureaucrat(const Bureaucrat& other);
     Bureaucrat&operator=(const Bureaucrat& other);
     ~Bureaucrat();
 
     const std::string getName(void) const;
     int getGrade(void) const;
-    void setGrade(int grade);
+    //void setGrade(int grade);
 
     void incrGrade(void);
     void decrGrade(void);
@@ -27,19 +37,6 @@ class Bureaucrat {
   private:
     const std::string _name;
     int _grade;
-};
-
-class CustomExcept {
-  public:
-    CustomExcept(const std::string& msg) : message(msg) {}
-
-    // Handle custom exception using what() method.
-    const char* what() const {
-        return message.c_str();
-    }
-
-  private:
-    std::string message;
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& burocrat);

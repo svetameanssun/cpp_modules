@@ -1,5 +1,22 @@
 #include "Bureaucrat.hpp"
 
+Bureaucrat::Bureaucrat(const Bureaucrat& other): _name(other._name), _grade(other._grade){
+    std::cout << "Bureaucrat Copy Constructor Called!" << std::endl;
+}
+
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other){
+    if (this != &other)
+    {
+        //_name = other.getName();
+        _grade = other.getGrade();
+    }
+    std::cout << "Bureaucrat " << getName() << " assigned\n";
+    return (*this);
+}
+
+Bureaucrat::~Bureaucrat(){
+    std::cout << "Bureaucrat " << getName() << " deleted\n";
+}
 
 const std::string Bureaucrat::getName(void) const {
     return(_name);
@@ -9,9 +26,9 @@ int Bureaucrat::getGrade(void) const {
     return(_grade);
 }
 
-void Bureaucrat::setGrade(int grade){
+/*void Bureaucrat::setGrade(int grade){
     _grade = grade;
-}
+}*/
 
 
 void Bureaucrat::incrGrade(void) {
@@ -34,7 +51,7 @@ void Bureaucrat::GradeTooHighException(void) {
             );
         }
     } catch(const CustomExcept& e) {
-        std::cout << "Caught an exception: " << e.what();
+        std::cout << getName() << ": "<< e.what();
     }
 
 }
@@ -47,7 +64,7 @@ void Bureaucrat::GradeTooLowException(void) {
             );
         }
     } catch(const CustomExcept& e) {
-        std::cout << "Caught an exception: " << e.what();
+        std::cout << getName() << ": "<< e.what();
     }
 
 }

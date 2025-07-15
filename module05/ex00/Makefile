@@ -6,7 +6,7 @@
 #    By: stitovsk <stitovsk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/22 21:22:45 by stitovsk          #+#    #+#              #
-#    Updated: 2025/07/14 22:51:11 by stitovsk         ###   ########.fr        #
+#    Updated: 2025/07/15 16:25:28 by stitovsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,6 @@ TARGET = bureaucrat
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 CXX = g++
 SRC = Bureaucrat.cpp \
-	Canonical.cpp \
 	main.cpp
 
 
