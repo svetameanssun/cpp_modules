@@ -49,7 +49,7 @@ void Bureaucrat::incrGrade(void) {
 }
 
 void Bureaucrat::decrGrade(void) {
-    if (_grade >=150){
+    if (_grade + 1>=150){
         throw GradeTooLowException();
     }
     _grade++;
