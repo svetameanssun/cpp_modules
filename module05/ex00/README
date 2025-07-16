@@ -1,9 +1,10 @@
 1.  + Create exeption class file  (instead of canonical)
 2.  + Mark setGrade as commented
 3. Check Exception work NOW
-    A question: in the current code, if I try to intit an object
-    like that : 
-    У меня не должны инициалиироваться объекты??? <-------
-4. Readable code
-5. Check leaks ?
-6. Should exeption class belong to the Bureaucrat class? Why? 
+4. A question: if I try to intit an object like that : Bureaucrat buro("any", 1555),
+    it will throw an exception.
+    ---> But will it initialize the object? I think Yes, it will,
+    but I am NOT SURE. CHECK! <-------
+5. Readable code
+6. Check leaks ?
+7. Should exeption class belong to the Bureaucrat class? Why? 
