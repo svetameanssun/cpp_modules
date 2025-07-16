@@ -12,12 +12,11 @@ class Bureaucrat {
   public:
     Bureaucrat(): _name("DefaultName"), _grade(150) {};
     Bureaucrat(const std::string name, int grade): _name(name), _grade(grade) {
-      try{
-        if (_grade > 150){
-          throw CustomExcept("Bureaucrat::GradeTooLowException\n");
-        }
-      } catch(const CustomExcept &e){
-        std::cout << getName() << ": " << e.what();
+      if (_grade > 150){
+        throw GradeTooLowException();
+      }
+      if (_grade < 1){
+        throw GradeTooHighException();
       }
     };
     Bureaucrat(const Bureaucrat& other);
@@ -31,8 +30,19 @@ class Bureaucrat {
     void incrGrade(void);
     void decrGrade(void);
 
-    void GradeTooHighException(void);
-    void GradeTooLowException(void);
+      class GradeTooHighException: public std::exception{
+        public:
+          const char *what() const throw(){
+            return ("Grade is too high!");
+          }
+      };
+      
+      class GradeTooLowException: public std::exception{
+        public:
+          const char * what() const throw(){
+            return ("Grade is too low!")
+          }
+      };
 
   private:
     const std::string _name;
