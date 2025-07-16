@@ -30,20 +30,15 @@ class Bureaucrat {
     void incrGrade(void);
     void decrGrade(void);
 
-      class GradeTooHighException: public std::exception{
-        public:
-          const char *what() const throw(){
-            return ("Grade is too high!");
-          }
-      };
+    class GradeTooHighException: public std::exception{
+      public:
+        const char *what() const throw();
+    };
       
-      class GradeTooLowException: public std::exception{
-        public:
-          const char * what() const throw(){
-            return ("Grade is too low!")
-          }
-      };
-
+    class GradeTooLowException: public std::exception{
+      public:
+        const char *what() const throw();
+    };
   private:
     const std::string _name;
     int _grade;
