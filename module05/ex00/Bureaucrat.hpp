@@ -11,15 +11,7 @@
 class Bureaucrat {
   public:
     Bureaucrat(): _name("DefaultName"), _grade(150) {};
-    Bureaucrat(const std::string name, int grade): _name(name), _grade(grade) {
-      try{
-        if (_grade > 150){
-          throw CustomExcept("Bureaucrat::GradeTooLowException\n");
-        }
-      } catch(const CustomExcept &e){
-        std::cout << getName() << ": " << e.what();
-      }
-    };
+    Bureaucrat(const std::string name, int grade);
     Bureaucrat(const Bureaucrat& other);
     Bureaucrat&operator=(const Bureaucrat& other);
     ~Bureaucrat();
@@ -31,9 +23,15 @@ class Bureaucrat {
     void incrGrade(void);
     void decrGrade(void);
 
-    void GradeTooHighException(void);
-    void GradeTooLowException(void);
-
+    class GradeTooHighException: public std::exception{
+      public:
+        const char *what() const throw();
+    };
+      
+    class GradeTooLowException: public std::exception{
+      public:
+        const char *what() const throw();
+    };
   private:
     const std::string _name;
     int _grade;

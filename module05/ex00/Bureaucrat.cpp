@@ -1,5 +1,15 @@
 #include "Bureaucrat.hpp"
 
+Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name) {
+    if (grade > 150){
+        throw GradeTooLowException();
+    }
+    if (grade < 0){
+        throw GradeTooHighException();
+    }
+    _grade = grade;
+}
+
 Bureaucrat::Bureaucrat(const Bureaucrat& other): _name(other._name), _grade(other._grade){
     std::cout << "Bureaucrat Copy Constructor Called!" << std::endl;
 }
@@ -32,41 +42,17 @@ int Bureaucrat::getGrade(void) const {
 
 
 void Bureaucrat::incrGrade(void) {
+    if (_grade - 1 <= 0){
+        throw GradeTooHighException();
+    }
     _grade--;
-    GradeTooHighException();
-
 }
 
 void Bureaucrat::decrGrade(void) {
+    if (_grade >=150){
+        throw GradeTooLowException();
+    }
     _grade++;
-    GradeTooLowException();
-
-}
-
-void Bureaucrat::GradeTooHighException(void) {
-    try {
-        if(_grade < 1) {
-            throw CustomExcept(
-                "Bureaucrat::GradeTooHighException\n"
-            );
-        }
-    } catch(const CustomExcept& e) {
-        std::cout << getName() << ": "<< e.what();
-    }
-
-}
-
-void Bureaucrat::GradeTooLowException(void) {
-    try {
-        if(_grade > 150) {
-            throw CustomExcept(
-                "Bureaucrat::GradeTooLowException\n"
-            );
-        }
-    } catch(const CustomExcept& e) {
-        std::cout << getName() << ": "<< e.what();
-    }
-
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& burocrat) {
