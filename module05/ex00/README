@@ -1,7 +1,8 @@
 1.  + Create exeption class file  (instead of canonical)
 2.  + Mark setGrade as commented
-3. ----> EXCEPTION doesn't work in this case: Bureaucrat buroBrad("Brad", 155);
-    Кажется, я не так применил класс исключений.
+3. Check Exception work NOW
+    A question: in the current code, if I try to intit an object
+    like that : 
     У меня не должны инициалиироваться объекты??? <-------
 4. Readable code
 5. Check leaks ?
