@@ -5,7 +5,6 @@
 #include <iostream>
 #include <string>
 #include <exception>
-#include "Exception.hpp"
 
 
 class Bureaucrat {

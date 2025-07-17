@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+
 // this is a custom exception, I will not use it this time.
 /*class CustomExcept {
   public:
@@ -17,6 +18,6 @@ const char * Bureaucrat::GradeTooHighException:: what() const throw(){
   return ("Grade is too high!");
 }
 
-const char *Bureaucrat::GeadeTooLowException:: what() const throw(){
+const char *Bureaucrat::GradeTooLowException:: what() const throw(){
   return ("Grade is too low!");
 }
