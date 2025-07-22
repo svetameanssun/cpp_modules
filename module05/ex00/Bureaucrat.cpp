@@ -42,14 +42,14 @@ int Bureaucrat::getGrade(void) const {
 
 
 void Bureaucrat::incrGrade(void) {
-    if (_grade - 1 <= 0){
+    if (_grade - 1 == 0){
         throw GradeTooHighException();
     }
     _grade--;
 }
 
 void Bureaucrat::decrGrade(void) {
-    if (_grade + 1>=150){
+    if (_grade + 1 == 151){
         throw GradeTooLowException();
     }
     _grade++;

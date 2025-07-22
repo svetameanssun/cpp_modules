@@ -8,7 +8,7 @@ int main() {
         std::cout << a;
         a.incrGrade(); // throws GradeTooHighException
         std::cout << a;
-        std::cout<< "DDDD";
+        std::cout<< "THIS WILL NOT BE PRINTED";
     } catch (const std::exception& e) {
         std::cerr << "Exception caught: " << e.what() << std::endl;
     }
