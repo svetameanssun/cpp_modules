@@ -1,10 +1,12 @@
 1.  + Create exeption class file  (instead of canonical)
 2.  + Mark setGrade as commented
-3. Check Exception work NOW
-4. A question: if I try to intit an object like that : Bureaucrat buro("any", 1555),
+3. + Check Exception work NOW
+4. + A question: if I try to intit an object like that : Bureaucrat buro("any", 1555),
     it will throw an exception.
     ---> But will it initialize the object? I think Yes, it will,
     but I am NOT SURE. CHECK! <-------
+    P.S. - checked, it deletes the object
 5. Readable code
 6. Check leaks ?
-7. Should exeption class belong to the Bureaucrat class? Why? 
+7. Should exeption class belong to the Bureaucrat class? Why?
+8. HOW does the code understand that It has to use the destructor???
