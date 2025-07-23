@@ -57,7 +57,12 @@ void Bureaucrat::decrGrade(void){
 }
 
 void Bereaucrat::signForm(Form& form){
-    form.beSigned(*this);
+    try{
+        form.beSigned(*this);
+        std::cout << "bureaucrat " << getName() <<" signed form " << form.getName();
+    } catch (const std:exception &e){
+        std:: cerr << "bureaucrat " << getName() <<" couldn’t sign form " << form.getName() << ", because " << e.what;
+    }
 }
 /*Then, modify the signForm() member function in the Bureaucrat class. This function must call Form::beSigned() to attempt to sign the form. If the form is signed
 successfully, it will print something like:
