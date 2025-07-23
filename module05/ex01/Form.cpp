@@ -75,7 +75,7 @@ void Form::beSigned(Bureaucrat& buro){
     if (buro.getGrade() > getGradeForSign()){
         throw GradeTooLowException();
     }
-    buro._signature = true;
+    _signature = true;
 
 }
 
