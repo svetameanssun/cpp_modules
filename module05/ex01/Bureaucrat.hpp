@@ -15,7 +15,7 @@ class Bureaucrat {
     ~Bureaucrat();
 
     const &std::string getName(void) const;
-    int &getGrade(void) const;
+    int getGrade(void) const;
     
     void incrGrade(void);
     void decrGrade(void);
