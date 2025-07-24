@@ -1,6 +1,12 @@
 #include "Form.hpp"
 
-Form::Form(name, gradeForSign, gradeForExec): _name(name), _signature(false), _gradeForSing(getGradeForSing), _gradeForExec(getGradeForExec) {
+Form::Form(std::string name, bool signature, int gradeForSign, int gradeForExec): _name(name), _gradeForSing(getGradeForSing), _gradeForExec(getGradeForExec) {
+    if (signature)
+    {
+        std::cout << "At construction teh form cannot be signed.\n Alas! I have to set the _signature to false!\n";
+        signature = false;
+    }
+    _signature = signature;
     if(_gradeForSing < 1) {
         throw GradeTooHighException();
     }
