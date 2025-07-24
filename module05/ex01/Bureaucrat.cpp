@@ -28,7 +28,7 @@ Bureaucrat::~Bureaucrat(){
     std::cout << "Bureaucrat " << getName() << " deleted\n";
 }
 
-const std::string Bureaucrat::getName(void) const{
+const std::string& Bureaucrat::getName(void) const{
     return (_name);
 }
 
@@ -49,18 +49,18 @@ void Bureaucrat::incrGrade(void){
 void Bureaucrat::decrGrade(void){
     int grade;
     grade = getGrade();
-    if (grade++ == 151){
+    if (grade + 1 == 151){
         throw GradeTooLowException();
     }
     grade++;
     _grade = grade;
 }
 
-void Bereaucrat::signForm(Form& form){
+void Bureaucrat::signForm(Form& form){
     try{
         form.beSigned(*this);
         std::cout << "bureaucrat " << getName() <<" signed form " << form.getName();
-    } catch (const std:exception &e){
+    } catch (const std::exception &e){
         std:: cerr << "bureaucrat " << getName() <<" couldn’t sign form " << form.getName() << ", because " << e.what;
     }
 }
