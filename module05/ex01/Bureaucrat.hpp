@@ -1,6 +1,5 @@
 #ifndef BUREAUCRAT_HPP
-#define BYREAUCRAT_HPP
-#pragma once
+#define BUREAUCRAT_HPP
 
 #include <iostream>
 #include <string>
@@ -15,8 +14,8 @@ class Bureaucrat {
     Bureaucrat&operator=(const Bureaucrat &other);
     ~Bureaucrat();
 
-    const std::string getName(void) const;
-    int getGrade(void) const;
+    const &std::string getName(void) const;
+    int &getGrade(void) const;
     
     void incrGrade(void);
     void decrGrade(void);
