@@ -1,10 +1,10 @@
 #ifndef BUREAUCRAT_HPP
-#define BYREAUCRAT_HPP
-#pragma once
+#define BUREAUCRAT_HPP
 
 #include <iostream>
 #include <string>
 #include <stdexcept>
+#include "Form.hpp"
 
 class Bureaucrat {
   public:
@@ -14,7 +14,7 @@ class Bureaucrat {
     Bureaucrat&operator=(const Bureaucrat &other);
     ~Bureaucrat();
 
-    const std::string getName(void) const;
+    const &std::string getName(void) const;
     int getGrade(void) const;
     
     void incrGrade(void);

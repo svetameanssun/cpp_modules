@@ -14,8 +14,11 @@ TARGET = bureaucrat
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 CXX = g++
 SRC = Bureaucrat.cpp \
-	main.cpp \
-	Exception.cpp
+	ExceptionBuro.cpp \
+	Form.cpp \
+	ExceptionForm.cpp \
+	main.cpp
+	
 
 
 OBJ = $(SRC:.cpp=.o)
