@@ -5,6 +5,7 @@
 #include <string>
 #include <stdexcept>
 #include "Form.hpp"
+#include "ExceptionBuro.hpp"
 
 class Bureaucrat {
   public:
