@@ -14,9 +14,8 @@ TARGET = bureaucrat
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 CXX = g++
 SRC = Bureaucrat.cpp \
-	ExceptionBuro.cpp \
+	CustomExceptions.cpp \
 	Form.cpp \
-	ExceptionForm.cpp \
 	main.cpp
 	
 
