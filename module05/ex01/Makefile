@@ -6,7 +6,7 @@
 #    By: stitovsk <stitovsk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/22 21:22:45 by stitovsk          #+#    #+#              #
-#    Updated: 2025/07/17 12:24:52 by stitovsk         ###   ########.fr        #
+#    Updated: 2025/07/28 16:15:27 by stitovsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ all: $(TARGET)
 $(TARGET): $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(TARGET)
 
-%.o:%.c
+%.o:%.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:

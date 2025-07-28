@@ -1,4 +1,4 @@
-#include "Bureaucrat.hpp"
+#include "Common.hpp"
 
 Bureaucrat::Bureaucrat(const std::string name, int grade): _name(name){
     if (grade < 1){
@@ -61,7 +61,7 @@ void Bureaucrat::signForm(Form& form){
         form.beSigned(*this);
         std::cout << "bureaucrat " << getName() <<" signed form " << form.getName();
     } catch (const std::exception &e){
-        std:: cerr << "bureaucrat " << getName() <<" couldn’t sign form " << form.getName() << ", because " << e.what;
+        std:: cerr << "bureaucrat " << getName() <<" couldn’t sign form " << form.getName() << ", because " << e.what();
     }
 }
 /*Then, modify the signForm() member function in the Bureaucrat class. This function must call Form::beSigned() to attempt to sign the form. If the form is signed

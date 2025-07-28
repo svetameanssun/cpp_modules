@@ -1,4 +1,4 @@
-#include "Form.hpp"
+#include "Common.hpp"
 
 Form::Form(std::string name, bool signature, int gradeForSign, int gradeForExec): _name(name), _gradeForSign(gradeForSign), _gradeForExec(gradeForExec) {
     if(signature) {
@@ -63,9 +63,9 @@ std::ostream& operator<<(std::ostream &os, const Form &formy) {
         << "The form is unsigned\n";
     }*/
     os << formy.getName() << ":\n"
-       << "grade required to sign it: " << formy.getGradeForSign_gradeForSign() << "\n"
+       << "grade required to sign it: " << formy.getGradeForSign() << "\n"
        << "grade required to execute it: " << formy.getGradeForExec() <<  "\n";
-    if(formy.getSignature) {
+    if(formy.getSignature()) {
         os << "The form is signed\n";
     } else {
         os << "The form is unsigned\n";
