@@ -1,19 +1,14 @@
 #include "Common.hpp"
 
-Form::Form(std::string name, bool signature, int gradeForSign, int gradeForExec): _name(name), _gradeForSign(gradeForSign), _gradeForExec(gradeForExec) {
-    if(signature) {
-        std::cout << "At construction teh form cannot be signed.\n Alas! I have to set the _signature to false!\n";
-        signature = false;
-    }
-    _signature = signature;
-    if(_gradeForSign < 1 || _gradeForExec < 1) {
+Form::Form(std::string name, int gradeForSign, int gradeForExec)
+    : _name(name), _gradeForSign(gradeForSign), _gradeForExec(gradeForExec), _signature(false) {
+    if (_gradeForSign < 1 || _gradeForExec < 1)
         throw GradeTooHighException();
-    }
-    if(_gradeForSign > 150 || _gradeForExec > 150) {
+    if (_gradeForSign > 150 || _gradeForExec > 150)
         throw GradeTooLowException();
-    }
-    std::cout << getName() << " created\n";
+    std::cout << _name << " created\n";
 }
+
 
 Form::Form(const Form &other)
     : _name(other._name),

@@ -8,7 +8,7 @@ class Bureaucrat;// forward declaration
 class Form {
   public:
     Form(): _name("DefaultName"), _signature(false), _gradeForSign(1), _gradeForExec(2){};
-    Form(std::string name, bool signature, int gradeForSign, int gradeForExec);
+    Form(std::string name, int gradeForSign, int gradeForExec);
     Form(const Form &other);
     Form &operator=(const Form &other);
     ~Form();
