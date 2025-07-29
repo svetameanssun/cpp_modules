@@ -1,7 +1,7 @@
 #include "Common.hpp"
 
 Form::Form(std::string name, int gradeForSign, int gradeForExec)
-    : _name(name), _gradeForSign(gradeForSign), _gradeForExec(gradeForExec), _signature(false) {
+    : _name(name), _signature(false), _gradeForSign(gradeForSign), _gradeForExec(gradeForExec) {
     if (_gradeForSign < 1 || _gradeForExec < 1)
         throw GradeTooHighException();
     if (_gradeForSign > 150 || _gradeForExec > 150)

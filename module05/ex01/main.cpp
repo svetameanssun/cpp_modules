@@ -4,11 +4,11 @@ int main(){
     try{
         Bureaucrat a("Alice", 1);
         Bureaucrat b("Bob", 2);
-        Bureaucrat defaultBuro();
+        Bureaucrat defaultBuro;
         Bureaucrat errorBuro("Danila", 151); // will not be created
         std::cout << a;
         std::cout << b;
-        std::cout << c;
+        std::cout << defaultBuro;
         std::cout << errorBuro;
     }
     catch (const std::exception& e) {
@@ -17,11 +17,11 @@ int main(){
     try{
         Form formA("formA", 149, 2);
         Form formB("formB", 2, 150);
-        Form defaultForm();
-        Form errorForm1("errorForm1", 0, 150);
+        Form defaultForm;
+        /*Form errorForm1("errorForm1", 0, 150);
         Form errorForm2("errorForm2", 1, 151);
         Form errorForm3("errorForm3", 1, 151);
-        Form errorForm4("errorForm4", -1, -151);
+        Form errorForm4("errorForm4", -1, -151);*/
     }
     catch (const std::exception &e){
         std::cerr << "Form exception caught: " << e.what() << std::endl;
