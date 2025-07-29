@@ -64,13 +64,7 @@ void Bureaucrat::signForm(Form& form){
         std:: cerr << "bureaucrat " << getName() <<" couldn’t sign form " << form.getName() << ", because " << e.what();
     }
 }
-/*Then, modify the signForm() member function in the Bureaucrat class. This function must call Form::beSigned() to attempt to sign the form. If the form is signed
-successfully, it will print something like:
-<bureaucrat> signed <form>
-Otherwise, it will print something like:
-<bureaucrat> couldn’t sign <form> because <reason>.
-Implement and submit some tests to ensure everything works as expected.
-*/
+
 std::ostream& operator<<(std::ostream &os, const Bureaucrat&burocrat){
     os << burocrat.getName() << ", bureaucrat grade " << burocrat.getGrade() << "." << "\n";
     return (os);

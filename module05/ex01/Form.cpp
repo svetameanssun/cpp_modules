@@ -45,18 +45,6 @@ const int &Form::getGradeForExec(void) const {
 }
 
 std::ostream& operator<<(std::ostream &os, const Form &formy) {
-    /*if (formy.getSignature){
-        os << formy.getName() ":\n"
-        << "grade required to sign it: " << formy.getGradeForSign_gradeForSign() << "\n"
-        << "grade required to execute it: " << formy.getGradeForExec() <<  "\n"
-        << "The form is signed\n";
-    }
-    else{
-        os << formy.getName() ":\n"
-        << "grade required to sign it: " << formy.getGradeForSign_gradeForSign() << "\n"
-        << "grade required to execute it: " << formy.getGradeForExec() <<  "\n"
-        << "The form is unsigned\n";
-    }*/
     os << formy.getName() << ":\n"
        << "grade required to sign it: " << formy.getGradeForSign() << "\n"
        << "grade required to execute it: " << formy.getGradeForExec() <<  "\n";
@@ -73,11 +61,5 @@ void Form::beSigned(Bureaucrat& buro) {
         throw GradeTooLowException();
     }
     _signature = true;
-
 }
 
-/*Also, add a beSigned() member function to the Form that takes a Bureaucrat as a
-parameter. It changes the form’s status to signed if the bureaucrat’s grade is high enough
-(greater than or equal to the required one). Remember, grade 1 is higher than grade 2.
-If the grade is too low, throw a Form::GradeTooLowException.
-*/

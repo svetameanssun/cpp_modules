@@ -1,38 +1,40 @@
 #include "Common.hpp"
 
-int main(){
-    try{
-        Bureaucrat b("Bob", 2);
-        Bureaucrat defaultBuro;
-        //Bureaucrat errorBuro("Danila", 151); // will not be created
-        //std::cout << a;
+int main() {
+    try {
+        Bureaucrat a("Alice", 5);
+        Bureaucrat b("Bob", 5);
+
+        Form formA("formA", 4, 20);
+        Form formB("formB", 120, 130);
+
+        std::cout << "\n--- INITIAL STATE ---\n";
+        std::cout << a;
         std::cout << b;
-        std::cout << defaultBuro;
-        //std::cout << errorBuro;
+        std::cout << formA;
+        std::cout << formB;
+
+        std::cout << "\n--- SIGNING FORMS ---\n";
+        a.signForm(formA);
+        a.incrGrade();
+        a.signForm(formA);
+        b.signForm(formA);
+        b.incrGrade();
+        b.signForm(formA);
+        b.signForm(formB);
+
+        std::cout << "\n--- FINAL STATE ---\n";
+        std::cout << formA;
+        std::cout << formB;
+
+        std::cout << "\n--- EXCEPTION TESTS ---\n";
+        Form badForm1("TooHighForm", 0, 50);
+        Form badForm2("TooLowForm", 151, 50);
     }
     catch (const std::exception& e) {
-        std:: cerr << "Bureaucrat exception caught: " << e.what() << std::endl;
-    }
-    try{
-        Form formB("formB", 2, 150);
-        Form defaultForm;
-        /*Form errorForm1("errorForm1", 0, 150);
-        Form errorForm2("errorForm2", 1, 151);
-        Form errorForm3("errorForm3", 1, 151);
-        Form errorForm4("errorForm4", -1, -151);*/
-    }
-    catch (const std::exception &e){
-        std::cerr << "Form exception caught: " << e.what() << "\n";
-    }
-    try {
-    Bureaucrat a("Alice", 2);
-    Form formA("formA", 1, 2);
-    a.signForm(formA);
-    }
-    catch (const std::exception &e){
-        std::cerr << "Form exception caught: " << e.what() << "\n";
+        std::cerr << "Exception caught: " << e.what() << "\n";
     }
 
-    
-    return (0);
+    return 0;
 }
+
