@@ -23,19 +23,19 @@ class AForm {
 
     // -- FORM FUNCTIONS --
     virtual void beSigned(Bureaucrat const  &buro) = 0;
-    virtual void execute(Bureaucrat const & executor) const= 0;
+    virtual void execute(Bureaucrat const & executor) const = 0;
 
     // -- EXCEPTION CLASSES --
-    class GradeTooLowException : public std::exception{
+    class GradeTooLowException : public std::exception {
       public:
         const char* what() const throw();
     };
-    class GradeTooHighException: public std::exception{
+    class GradeTooHighException: public std::exception {
       public:
         const char* what() const throw();
     };
 
-    class PermissionDenied: public std::exception{
+    class PermissionDenied: public std::exception {
       public:
         const char* what const throw();
     }
