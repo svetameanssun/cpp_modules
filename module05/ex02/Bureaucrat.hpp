@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include <stdexcept>
-class Form;
+class AForm;
 
 class Bureaucrat {
   public:
