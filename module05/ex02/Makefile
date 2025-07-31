@@ -29,6 +29,8 @@ SRCFILES = AForm.cpp \
 SRC = $(addprefix $(SRCDIR), $(SRCFILES))
 OBJ = $(addprefix $(OBJDIR), $(SRCFILES:.cpp=.o))
 
+TRYBLOCK_FLAGS = -DUSE_CONSTRUCTOR_TRY_BLOCK
+
 all: $(TARGET)
 
 $(TARGET): $(OBJ)
@@ -46,4 +48,13 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+TRYBLOCK: CXXFLAGS += $(TRYBLOCK_FLAGS)
+TRYBLOCK:
+	@echo "Cleaning log..."
+	@$(RM) log.txt
+	@$(MAKE) re CXXFLAGS="$(CXXFLAGS)"
+	@echo "Compiled with USE_CONSTRUCTOR_TRY_BLOCK"
+TRYBLOCK: re
+	@echo "Compiled with USE_CONSTRUCTOR_TRY_BLOCK"
+
+.PHONY: all clean fclean re TRYBLOCK
