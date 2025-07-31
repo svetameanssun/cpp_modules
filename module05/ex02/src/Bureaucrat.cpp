@@ -3,7 +3,28 @@
 Bureaucrat::Bureaucrat(): _name("Name"), _grade(150) {
     std::cout << "Bureaucrat " << getName() << " constructed by default\n";
 }
+#ifdef USE_CONSTRUCTOR_TRY_BLOCK
+void logError(const std::string & message){
+    std::ofstream log("log.txt", std::ios::app); // WHY THIS???
+    log << message << std::endl;
+}
 
+Bureaucrat::Bureaucrat(const std::string &name, int grade)
+try: _name(name), _grade(grade){
+    if (grade < 1){
+        throw GradeTooHighException();
+    }
+    if (grade > 150){
+        throw GradeTooLowException();
+    }
+    std::cout << "Bureaucrat " << getName() << " constructed\n";
+}
+catch (const std::exception &e) {
+    logError("Error in Bureaucrat: " + std::string(e.what()));
+    throw;
+}
+
+#else
 Bureaucrat::Bureaucrat(const std::string &name, int grade): _name(name){
     if (grade < 1){
         throw GradeTooHighException();
@@ -14,6 +35,7 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade): _name(name){
     _grade = grade;
     std::cout << "Bureaucrat " << getName() << " constructed\n";
 }
+#endif
 
 Bureaucrat::Bureaucrat(const Bureaucrat & other){
     _grade = other._grade;

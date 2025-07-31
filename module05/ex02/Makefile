@@ -11,31 +11,50 @@
 # **************************************************************************** #
 
 TARGET = bureaucrat
-CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 CXX = g++
-SRC = Bureaucrat.cpp \
-	CustomExceptions.cpp \
-	Form.cpp \
+CXXFLAGS = -Wall -Werror -Wextra -std=c++98
+RM = rm -f
+
+#SRC = $(shell find . -name "*.cpp") I might have used this, but I think it is against the norm
+SRCDIR = src/
+OBJDIR = obj/
+SRCFILES = AForm.cpp \
+	Bureaucrat.cpp \
+	ExceptionsFile.cpp \
+	PresidentialPardonForm.cpp \
+	RobotomyRequestForm.cpp \
+	ShrubberyCreationForm.cpp \
 	main.cpp
-	
 
+SRC = $(addprefix $(SRCDIR), $(SRCFILES))
+OBJ = $(addprefix $(OBJDIR), $(SRCFILES:.cpp=.o))
 
-OBJ = $(SRC:.cpp=.o)
+TRYBLOCK_FLAGS = -DUSE_CONSTRUCTOR_TRY_BLOCK
 
 all: $(TARGET)
 
 $(TARGET): $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(TARGET)
 
-%.o:%.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+$(OBJDIR)%.o: $(SRCDIR)%.cpp
+	@mkdir -p $(OBJDIR)
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	$(RM) $(OBJ)
 
 fclean: clean
-	rm -f $(TARGET)
+	$(RM) $(TARGET)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+TRYBLOCK: CXXFLAGS += $(TRYBLOCK_FLAGS)
+TRYBLOCK:
+	@echo "Cleaning log..."
+	@$(RM) log.txt
+	@$(MAKE) re CXXFLAGS="$(CXXFLAGS)"
+	@echo "Compiled with USE_CONSTRUCTOR_TRY_BLOCK"
+TRYBLOCK: re
+	@echo "Compiled with USE_CONSTRUCTOR_TRY_BLOCK"
+
+.PHONY: all clean fclean re TRYBLOCK
