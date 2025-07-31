@@ -3,13 +3,14 @@
 
 #include <iostream>
 #include <string>
+#include "Bureaucrat.hpp"
 
 class Bureaucrat; // forward declaration
 
 class AForm {
   public:
     // -- CANONICAL FORM --
-    AForm(const std::string &name, int gradeSign, int gradeExec, const std::string &target);
+    AForm(const std::string &name, int gradeSign, int gradeExec);
     AForm(const AForm& other);
     AForm&operator=(const AForm& other);
     virtual ~AForm();
@@ -19,7 +20,6 @@ class AForm {
     bool isSigned(void) const;
     const int getGradeSign(void) const;
     const int getGradeExec(void) const;
-    const std::string &getTarget(void) const;
 
     // -- FORM FUNCTIONS --
     virtual void beSigned(Bureaucrat const  &buro) = 0;
@@ -44,7 +44,6 @@ class AForm {
     bool _signature;
     const int _gradeSign;
     const int _gradeExec;
-    const std::string _target;
 };
 
 std::ostream & operator<<(std::ostream &os, const AForm &formy);

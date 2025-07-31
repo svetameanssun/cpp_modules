@@ -1,8 +1,31 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-AForm::AForm(const std::string &name, int gradeSign, int gradeExec, const std::string &target):
-    _name(name), _gradeSign(gradeSign), _gradeExec(gradeExec), _target(target) {
+#ifdef USE_CONSTRUCTOR_TRY_BLOCK
+
+void logError(const std::string & message){
+    std::
+}
+
+AForm::AForm(const std::string &name, int gradeSign, int gradeExec)
+    try: _name(name), _gradeSign(gradeSign), _gradeExec(gradeExec), _signature(false){
+    if (gradeSign < 1 || gradeExec < 1){
+        throw GradeTooHighException();
+    }
+    if (gradeSign > 150 || gradeExec > 150){
+        throw GradeTooLowException();
+    }
+    std::cout << "AForm " << getName() << " constructed\n";
+}
+catch (const std::exception &e) {
+    logError("Error in Bureaucrat: " + std::string(e.what()));
+    throw;
+}
+
+#else
+
+AForm::AForm(const std::string &name, int gradeSign, int gradeExec):
+    _name(name), _gradeSign(gradeSign), _gradeExec(gradeExec) {
     if (gradeSign < 1 || gradeExec < 1){
         throw GradeTooHighException();
     }
@@ -12,6 +35,7 @@ AForm::AForm(const std::string &name, int gradeSign, int gradeExec, const std::s
     _signature = false;
 }
 
+#endif
 AForm::AForm(const AForm& other) {
     _signature = other._signature;
 }
@@ -39,10 +63,6 @@ const int AForm::getGradeSign(void) const {
 
 const int AForm::getGradeExec(void) const {
     return (_gradeExec);
-}
-
-const std::string& AForm::getTarget(void) const {
-    return (_target);
 }
 
 std::ostream &operator<<(std::ostream &os, const AForm &formy) {
