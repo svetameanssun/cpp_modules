@@ -48,6 +48,10 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat&other){
     return (*this);
 }
 
+Bureaucrat::~Bureaucrat(){
+    std::cout << "Bureaucrat " << getName() << " deleted\n";
+}
+
 const std::string& Bureaucrat::getName(void) const{
     return(_name);
 }
