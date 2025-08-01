@@ -38,15 +38,23 @@ void RobotomyRequestForm::beSigned(const Bureaucrat &buro){
     std::cout << "bureaucrat " << buro.getName() <<" signed form " << this->getName() << "\n";
 }
 
+static int RobotomyRequestForm::getSerialNum(void) const{
+    return (this->_serialNum); 
+}
+
+void incrSerialNum(void){
+    this->_serialNum++
+}
+
 void RobotomyRequestForm::execute(const Bureaucrat & executor) const {
     if (this->_gradeExec < buro._grade){
         throw PermissionDenied();
     }
-    if (this->_serialNum % 2 == 0){
+    if (this->getSerialNum() % 2 == 0){
       std::cout << this->getName << " has been robotomized\n";
     }
     else{
       std::cout << "Unfortunatly, robotomy failed\n";
     }
-    this->_serialNum++;
+    this->incrSerialNum++;
 }
