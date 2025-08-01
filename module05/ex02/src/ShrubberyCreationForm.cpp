@@ -17,14 +17,13 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
     if (this != &other){
         _signature = other._signature;
     }
-    return (*this);
     std::cout << "ShrubberyCreationForm " << getName() << " assigned\n";
+    return (*this);
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm(){
     std::cout << "ShrubberyCreationForm "<< getName() << " deleted\n";
 }
-
 
 const std::string& ShrubberyCreationForm::getName(void) const{
     return (_target);
