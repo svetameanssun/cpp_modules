@@ -75,20 +75,21 @@ void Bureaucrat::decrGrade(void){
 }
 
 void Bureaucrat::signForm(AForm& form) const{
-    if (Bureaucrat._grade > form._gradeSign){
-       throw form.PermissionDenied();
+   try{
+       form.beSigned(*this);
     }
-    form.beSigned(*this);
-    std::cout << getName() << " signed " << form.getName() << "\n";   
-    
+    catch (const std::exception & e){
+        std:: cerr << "bureaucrat " << this->getName() <<" couldn’t sign form " << form.getName() << ", because " << e.what();
+    }
 }
 
-void executeForm(AForm const & form) const{
-    if (Bureaucrat._grade > form._gradeExec){
-        throw (form.PermissionDenied());
+void Bureaucrat::executeForm(AForm const & form) const{
+    try{
+       form.execute(*this);
     }
-    form.execute(*this);
-    std::cout << getName() << " executed " << form.getName() << "\n";
+    catch (const std::exception & e){
+        std:: cerr << "bureaucrat " << this->getName() <<" couldn’t execute form " << form.getName() << ", because " << e.what();
+    }
 }
 
 std::ostream& operator<<(std::ostream &os, const Bureaucrat&burocrat){
