@@ -8,6 +8,7 @@ Bureaucrat::Bureaucrat(const std::string name, int grade): _name(name){
         throw GradeTooLowException();
     }
     _grade = grade;
+    std::cout << "Bureaucrat " << getName() << " constructed\n";
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other): _name(other._name){
@@ -37,23 +38,17 @@ int Bureaucrat::getGrade(void) const{
 }
 
 void Bureaucrat::incrGrade(void){
-    int grade;
-    grade = getGrade();
-    if (grade - 1 == 0){
+    if (_grade - 1 == 0){
         throw GradeTooHighException();
     }
-    grade--;
-    _grade = grade;
+    _grade--;
 }
 
 void Bureaucrat::decrGrade(void){
-    int grade;
-    grade = getGrade();
     if (grade + 1 == 151){
         throw GradeTooLowException();
     }
-    grade++;
-    _grade = grade;
+    _grade++;
 }
 
 void Bureaucrat::signForm(Form& form){
