@@ -39,11 +39,13 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade): _name(name){
 
 Bureaucrat::Bureaucrat(const Bureaucrat & other){
     _grade = other._grade;
+    std::cout << "Bureaucrat copy contructor called!\n";
 }
 
-Bureaucrat &Bureaucrat::operator=(const Bureaucrat&other){
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other){
     if (this != &other){
         _grade = other._grade;
+        std::cout << "Bureaucrat " << getName() << " constructed\n";
     }
     return (*this);
 }
@@ -60,13 +62,13 @@ int Bureaucrat::getGrade(void) const{
     return(_grade);
 }
 
-void Bureaucrat::incrGrade(){
+void Bureaucrat::incrGrade(void){
     if (_grade - 1 == 0)
         throw GradeTooHighException();
     _grade--;
 }
 
-void Bureaucrat::decrGrade(){
+void Bureaucrat::decrGrade(void){
     if (_grade + 1 == 151)
         throw GradeTooLowException();
     _grade++;
