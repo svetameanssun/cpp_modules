@@ -17,8 +17,11 @@ const char *AForm::GradeTooLowException::what()const throw(){
      return ("Form cannot have such a low grade!\n");
 }
 
-const char* AForm::PermissionDenied::what()const throw(){
-    return ("The grade is too low for this action!\n");
+const char* AForm::PermissionDeniedToSign::what()const throw(){
+    return ("Cannot be signed!\n");
+}
+const char* AForm::PermissionDeniedToExec::what()const throw(){
+    return ("Cannot be executed!\n");
 }
 
 
