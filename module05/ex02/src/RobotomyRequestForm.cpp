@@ -1,4 +1,6 @@
 #include "../include/RobotomyRequestForm.hpp"
+#include "../include/Bureaucrat.hpp"
+#include "../include/AForm.hpp"
 
 int RobotomyRequestForm::_serialNum = 0;
 
