@@ -38,7 +38,6 @@ void RobotomyRequestForm::beSigned(const Bureaucrat &buro){
         throw PermissionDenied();
     }
     this->setSignature(true);
-    std::cout << "bureaucrat " << buro.getName() <<" signed form " << this->getName() << "\n";
 }
 
 int RobotomyRequestForm::getSerialNum(void) const{
