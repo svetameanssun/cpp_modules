@@ -8,12 +8,12 @@
 
 class ShrubberyCreationForm : public AForm {
   public:
-    ShrubberyCreationForm(cosnt std::string &target);
+    ShrubberyCreationForm(const std::string &target);
     ShrubberyCreationForm(const ShrubberyCreationForm& other);//this is not inherited from base class
     ShrubberyCreationForm&operator=(const ShrubberyCreationForm& other); //this is not inherited from base class
     ~ShrubberyCreationForm();
 
-    const std::string& getName(void) const;
+    const std::string& getTarget(void) const;
 
     void beSigned(Bureaucrat const  &buro);
     void execute(Bureaucrat const & executor) const;

@@ -18,8 +18,8 @@ class AForm {
     // -- GETTERS --
     const std::string &getName(void) const;
     bool isSigned(void) const;
-    const int getGradeSign(void) const;
-    const int getGradeExec(void) const;
+    const int &getGradeSign(void) const;
+    const int &getGradeExec(void) const;
 
     // -- FORM FUNCTIONS --
     virtual void beSigned(Bureaucrat const  &buro) = 0;
@@ -37,8 +37,11 @@ class AForm {
 
     class PermissionDenied: public std::exception {
       public:
-        const char* what const throw();
-    }
+        const char* what() const throw();
+    };
+  protected:
+    void setSignature(bool value);
+    bool getSignature() const;
   private:
     const std::string _name;
     bool _signature;

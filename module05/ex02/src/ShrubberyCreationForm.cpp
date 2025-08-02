@@ -1,6 +1,6 @@
-#include "ShrubberyCreationForm.hpp"
+#include "../include/ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(cosnt std::string &target)
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target)
     : AForm("ShrubberyCreationForm", 145, 137), _target(target){
     std::cout << "ShrubberyCreationForm constructed\n";
 }
@@ -9,13 +9,13 @@ ShrubberyCreationForm::ShrubberyCreationForm(cosnt std::string &target)
 inside it.*/
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
-    : AForm::_signature(other._signature){
+    : AForm(other), _target(other._target){
     std::cout << "ShrubberyCreationForm copy contructor called!\n";
 }
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other){
     if (this != &other){
-        _signature = other._signature;
+        setSignature(other.getSignature());
     }
     std::cout << "ShrubberyCreationForm " << getName() << " assigned\n";
     return (*this);
@@ -25,24 +25,24 @@ ShrubberyCreationForm::~ShrubberyCreationForm(){
     std::cout << "ShrubberyCreationForm "<< getName() << " deleted\n";
 }
 
-const std::string& ShrubberyCreationForm::getName(void) const{
+const std::string& ShrubberyCreationForm::getTarget(void) const{
     return (_target);
 }
 
 void ShrubberyCreationForm::beSigned(const Bureaucrat &buro){
-    if (this->_gradeSign < buro._grade){
+    if (this->getGradeSign() < buro.getGrade()){
         throw PermissionDenied();
     }
-    this->_signature = true;
+    setSignature(true);
     std::cout << "bureaucrat " << buro.getName() <<" signed form " << this->getName() << "\n";
 }
 
 void ShrubberyCreationForm::execute(const Bureaucrat & executor) const {
-    if (this->_gradeExec < buro._grade){
+    if (this->getGradeExec() < executor.getGrade()){
         throw PermissionDenied();
     }
     std::string fileName = this->getTarget() + "_shrubbery";
-    std:ofstream openedFile(fileName.c_str(), std::ofstream::out);
+    std::ofstream openedFile(fileName.c_str(), std::ofstream::out);
     if (!openedFile.is_open()){
         throw std::runtime_error("Error: could not open file");
     }
@@ -64,5 +64,5 @@ void ShrubberyCreationForm::execute(const Bureaucrat & executor) const {
         ".. .. ..................O000O........................ ........\n";
     openedFile << pineTree;
     std::cout << getName() << " executed " << form.getName() << "\n";
-    std::cout << "bureaucrat " << buro.getName() <<" executed form " << this->getName() << "\n";
+    std::cout << "bureaucrat " << executor.getName() <<" executed form " << this->getName() << "\n";
 }

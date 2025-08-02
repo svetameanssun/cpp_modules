@@ -8,16 +8,16 @@
 
 class RobotomyRequestForm : public AForm {
   public:
-    RobotomyRequestForm(cosnt std::string &target);
+    RobotomyRequestForm(const std::string &target);
    RobotomyRequestForm(const RobotomyRequestForm& other);//this is not inherited from base class
     RobotomyRequestForm&operator=(const RobotomyRequestForm& other); //this is not inherited from base class
     ~RobotomyRequestForm();
 
-    const std::string& getName(void) const;
+    const std::string& getTarget(void) const;
 
     void beSigned(Bureaucrat const  &buro);
-    void execute(Bureaucrat const & executor) const;
-    static int getSerialNum(void) const;
+    void execute(Bureaucrat const & executor);
+    int getSerialNum(void) const;
     void incrSerialNum(void);
 
   private:

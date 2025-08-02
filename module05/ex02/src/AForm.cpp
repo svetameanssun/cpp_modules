@@ -1,5 +1,5 @@
-#include "AForm.hpp"
-#include "Bureaucrat.hpp"
+#include "../include/AForm.hpp"
+#include "../include/Bureaucrat.hpp"
 
 #ifdef USE_CONSTRUCTOR_TRY_BLOCK
 
@@ -36,7 +36,8 @@ AForm::AForm(const std::string &name, int gradeSign, int gradeExec):
 }
 
 #endif
-AForm::AForm(const AForm& other) {
+AForm::AForm(const AForm& other):
+    _name(other._name), _gradeSign(other._gradeSign), _gradeExec(other._gradeExec) {
     _signature = other._signature;
 }
 
@@ -57,12 +58,20 @@ bool AForm::isSigned(void) const {
     return (_signature);
 }
 
-const int AForm::getGradeSign(void) const {
+const int &AForm::getGradeSign(void) const {
     return (_gradeSign);
 }
 
-const int AForm::getGradeExec(void) const {
+const int &AForm::getGradeExec(void) const {
     return (_gradeExec);
+}
+
+void AForm::setSignature(bool value) {
+    _signature = value;
+}
+
+bool AForm::getSignature() const {
+    return _signature;
 }
 
 std::ostream &operator<<(std::ostream &os, const AForm &formy) {

@@ -1,5 +1,5 @@
-#include "Bureaucrat.hpp"
-#include "AForm.hpp"
+#include "../include/Bureaucrat.hpp"
+#include "../include/AForm.hpp"
 
 #ifdef USE_CONSTRUCTOR_TRY_BLOCK
 
