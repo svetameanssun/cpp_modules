@@ -1,6 +1,6 @@
 #include "../include/ShrubberyCreationForm.hpp"
-#include "Bureaucrat.hpp"
-#include "AForm.hpp"
+#include "../include/Bureaucrat.hpp"
+#include "../include/AForm.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target)
     : AForm("ShrubberyCreationForm", 145, 137), _target(target){
