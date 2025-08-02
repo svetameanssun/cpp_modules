@@ -34,7 +34,6 @@ void PresidentialPardonForm::beSigned(const Bureaucrat &buro){
         throw PermissionDenied();
     }
     this->setSignature(true);
-    std::cout << "bureaucrat " << buro.getName() <<" signed form " << this->getName() << "\n";
 }
 
 void PresidentialPardonForm::execute(const Bureaucrat & executor) const {
