@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 
 class AForm;
 class Bureaucrat;
@@ -17,7 +18,7 @@ class ShrubberyCreationForm : public AForm {
     const std::string& getTarget(void) const;
 
     void beSigned(Bureaucrat const  &buro);
-    void execute(Bureaucrat const & executor) const;
+    void execute(Bureaucrat const & executor);
 
   private:
     const std::string &_target;

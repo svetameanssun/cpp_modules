@@ -17,6 +17,7 @@ class RobotomyRequestForm : public AForm {
 
     void beSigned(Bureaucrat const  &buro);
     void execute(Bureaucrat const & executor);
+    
     int getSerialNum(void) const;
     void incrSerialNum(void);
 

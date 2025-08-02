@@ -14,7 +14,7 @@ int main(void){
     RobotomyRequestForm formLelo("Lelo");
     PresidentialPardonForm formHarold("Harold");
 
-    std::cout << "<------------------------------------------------------------------------------------------------------------>" << std::endl;
+    std::cout << "<1------------------------------------------------------------------------------------------------------------>" << std::endl;
 
     std::cout << CYAN << "\t" << buroA << RESET;
     std::cout << CYAN << "\t" << buroB << RESET;
@@ -22,14 +22,14 @@ int main(void){
     std::cout << CYAN << "\t" << formLelo << RESET;
     std::cout << CYAN << "\t" << formHarold << RESET;
     
-    std::cout << "<------------------------------------------------------------------------------------------------------------>" << std::endl;
+    std::cout << "<2------------------------------------------------------------------------------------------------------------>" << std::endl;
 
     buroA.signForm(formHome);
     buroB.signForm(formLelo);
     buroA.signForm(formLelo);
     buroA.signForm(formHarold);
     
-    std::cout << "<------------------------------------------------------------------------------------------------------------>" << std::endl;
+    std::cout << "<3------------------------------------------------------------------------------------------------------------>" << std::endl;
 
     buroA.executeForm(formHome);
     buroA.executeForm(formLelo);

@@ -1,6 +1,6 @@
+#include "../include/AForm.hpp"
 #include "../include/ShrubberyCreationForm.hpp"
 #include "../include/Bureaucrat.hpp"
-#include "../include/AForm.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target)
     : AForm("ShrubberyCreationForm", 145, 137), _target(target){
@@ -38,7 +38,7 @@ void ShrubberyCreationForm::beSigned(const Bureaucrat &buro){
     setSignature(true);
 }
 
-void ShrubberyCreationForm::execute(const Bureaucrat & executor) const {
+void ShrubberyCreationForm::execute(const Bureaucrat & executor) {
     if (this->getGradeExec() < executor.getGrade()){
         throw PermissionDeniedToExec();
     }
@@ -46,7 +46,8 @@ void ShrubberyCreationForm::execute(const Bureaucrat & executor) const {
         throw PermissionDeniedToExec();
     }
     std::string fileName = this->getTarget() + "_shrubbery";
-    std::ofstream openedFile(fileName.c_str(), std::ofstream::out);
+    const char *str = fileName.c_str();
+    std::ofstream openedFile(str, std::ofstream::out);
     if (!openedFile.is_open()){
         throw std::runtime_error("Error: could not open file");
     }

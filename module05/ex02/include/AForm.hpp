@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 
 class Bureaucrat; // forward declaration
 
@@ -22,7 +23,7 @@ class AForm {
 
     // -- FORM FUNCTIONS --
     virtual void beSigned(Bureaucrat const  &buro) = 0;
-    virtual void execute(Bureaucrat const & executor) const = 0;
+    virtual void execute(Bureaucrat const &executor) = 0;
 
     // -- EXCEPTION CLASSES --
    class GradeTooLowException : public std::exception {
@@ -40,7 +41,7 @@ class AForm {
       virtual const char* what() const throw();
   };
 
-  class PermissionDeniedToExecute : public GradeTooLowException {
+  class PermissionDeniedToExec : public GradeTooLowException {
     public:
       virtual const char* what() const throw();
   };

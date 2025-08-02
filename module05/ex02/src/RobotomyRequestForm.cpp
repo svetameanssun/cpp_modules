@@ -1,6 +1,6 @@
+#include "../include/AForm.hpp"
 #include "../include/RobotomyRequestForm.hpp"
 #include "../include/Bureaucrat.hpp"
-#include "../include/AForm.hpp"
 
 int RobotomyRequestForm::_serialNum = 0;
 
@@ -37,7 +37,7 @@ const std::string& RobotomyRequestForm::getTarget(void) const{
 
 void RobotomyRequestForm::beSigned(const Bureaucrat &buro){
     if (this->getGradeSign() < buro.getGrade()){
-        throw PermissionDenied();
+        throw PermissionDeniedToSign();
     }
     this->setSignature(true);
 }
@@ -52,7 +52,7 @@ void RobotomyRequestForm::incrSerialNum(void){
 
 void RobotomyRequestForm::execute(const Bureaucrat & executor) {
     if (this->getGradeExec() < executor.getGrade()){
-        throw PermissionDenied();
+        throw PermissionDeniedToExec();
     }
     if (this->getSerialNum() % 2 == 0){
       std::cout << this->getName() << " has been robotomized\n";

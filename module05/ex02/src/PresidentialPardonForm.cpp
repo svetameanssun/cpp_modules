@@ -1,6 +1,6 @@
+#include "../include/AForm.hpp"
 #include "../include/PresidentialPardonForm.hpp"
 #include "../include/Bureaucrat.hpp"
-#include "../include/AForm.hpp"
 
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string &target)
@@ -33,14 +33,14 @@ const std::string& PresidentialPardonForm::getTarget(void) const{
 
 void PresidentialPardonForm::beSigned(const Bureaucrat &buro){
     if (this->getGradeSign() < buro.getGrade()){
-        throw PermissionDenied();
+        throw PermissionDeniedToSign();
     }
     this->setSignature(true);
 }
 
-void PresidentialPardonForm::execute(const Bureaucrat & executor) const {
+void PresidentialPardonForm::execute(const Bureaucrat & executor) {
     if (this->getGradeExec() < executor.getGrade()){
-        throw PermissionDenied();
+        throw PermissionDeniedToExec();
     }
   std::cout << this->getTarget() << " has been pardoned by Zaphod Beeblebrox\n";
 }
