@@ -34,7 +34,6 @@ void ShrubberyCreationForm::beSigned(const Bureaucrat &buro){
         throw PermissionDenied();
     }
     setSignature(true);
-    std::cout << "bureaucrat " << buro.getName() <<" signed form " << this->getName() << "\n";
 }
 
 void ShrubberyCreationForm::execute(const Bureaucrat & executor) const {
