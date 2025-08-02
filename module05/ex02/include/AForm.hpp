@@ -34,7 +34,11 @@ class AForm {
         const char* what() const throw();
     };
 
-    class PermissionDenied: public std::exception {
+    class PermissionDeniedTosign: public GradeTooLowException {
+      public:
+        const char* what() const throw();
+    };
+    class PermissionDeniedToExecute: public GradeTooLowException {
       public:
         const char* what() const throw();
     };
