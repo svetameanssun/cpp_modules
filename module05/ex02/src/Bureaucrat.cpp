@@ -78,6 +78,7 @@ void Bureaucrat::decrGrade(void){
 void Bureaucrat::signForm(AForm& form) const{
    try{
        form.beSigned(*this);
+       std::cout << "bureaucrat " << this->getName() <<" signed form " << form.getName() << "\n";
     }
     catch (const std::exception & e){
         std:: cerr << "bureaucrat " << this->getName() <<" couldn’t sign form " << form.getName() << ", because " << e.what();
