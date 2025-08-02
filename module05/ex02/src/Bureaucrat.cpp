@@ -39,11 +39,13 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade): _name(name){
 
 Bureaucrat::Bureaucrat(const Bureaucrat & other){
     _grade = other._grade;
+    std::cout << "Bureaucrat copy contructor called!\n";
 }
 
-Bureaucrat &Bureaucrat::operator=(const Bureaucrat&other){
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other){
     if (this != &other){
         _grade = other._grade;
+        std::cout << "Bureaucrat " << getName() << " constructed\n";
     }
     return (*this);
 }
@@ -60,33 +62,34 @@ int Bureaucrat::getGrade(void) const{
     return(_grade);
 }
 
-void Bureaucrat::incrGrade(){
+void Bureaucrat::incrGrade(void){
     if (_grade - 1 == 0)
         throw GradeTooHighException();
     _grade--;
 }
 
-void Bureaucrat::decrGrade(){
+void Bureaucrat::decrGrade(void){
     if (_grade + 1 == 151)
         throw GradeTooLowException();
     _grade++;
 }
 
 void Bureaucrat::signForm(AForm& form) const{
-    if (Bureaucrat._grade > form._gradeSign){
-       throw form.PermissionDenied();
+   try{
+       form.beSigned(*this);
     }
-    form.beSigned(*this);
-    std::cout << getName() << " signed " << form.getName() << "\n";   
-    
+    catch (const std::exception & e){
+        std:: cerr << "bureaucrat " << this->getName() <<" couldn’t sign form " << form.getName() << ", because " << e.what();
+    }
 }
 
-void executeForm(AForm const & form) const{
-    if (Bureaucrat._grade > form._gradeExec){
-        throw (form.PermissionDenied());
+void Bureaucrat::executeForm(AForm const & form) const{
+    try{
+       form.execute(*this);
     }
-    form.execute(*this);
-    std::cout << getName() << " executed " << form.getName() << "\n";
+    catch (const std::exception & e){
+        std:: cerr << "bureaucrat " << this->getName() <<" couldn’t execute form " << form.getName() << ", because " << e.what();
+    }
 }
 
 std::ostream& operator<<(std::ostream &os, const Bureaucrat&burocrat){

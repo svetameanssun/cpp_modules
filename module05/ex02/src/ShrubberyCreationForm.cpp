@@ -17,52 +17,52 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
     if (this != &other){
         _signature = other._signature;
     }
-    return (*this);
     std::cout << "ShrubberyCreationForm " << getName() << " assigned\n";
+    return (*this);
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm(){
     std::cout << "ShrubberyCreationForm "<< getName() << " deleted\n";
 }
 
-
 const std::string& ShrubberyCreationForm::getName(void) const{
     return (_target);
 }
 
-void ShrubberyCreationForm::beSigned(Bureaucrat const  &buro){
-    try{
-        signForm(*this);
-        std::cout << "bureaucrat " << buro.getName() <<" signed form " << this->getName() << "\n";
+void ShrubberyCreationForm::beSigned(const Bureaucrat &buro){
+    if (this->_gradeSign < buro._grade){
+        throw PermissionDenied();
     }
-    catch (const std::exception & e){
-        std:: cerr << "bureaucrat " << buro.getName() <<" couldn’t sign form " << this->getName() << ", because " << e.what();
-    }
-
+    this->_signature = true;
+    std::cout << "bureaucrat " << buro.getName() <<" signed form " << this->getName() << "\n";
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
-{ 
+void ShrubberyCreationForm::execute(const Bureaucrat & executor) const {
+    if (this->_gradeExec < buro._grade){
+        throw PermissionDenied();
+    }
     std::string fileName = this->getTarget() + "_shrubbery";
-    std:ofstream openFile(fileName.c_str(), std::ofstream::out);
-    if (!openFile.is_open())
+    std:ofstream openedFile(fileName.c_str(), std::ofstream::out);
+    if (!openedFile.is_open()){
         throw std::runtime_error("Error: could not open file");
-
+    }
     std::string pineTree = "          .     .  .      +     .      .          .\n"
-"     .       .      .     #       .           .\n"
-"        .      .         ###            .      .      .\n"
-"      .      .   \"#:. .:##\"##:. .:#\"  .      .\n"
-"          .      . \"####\"###\"####\"  .\n"
-"       .     \"#:.    .:#\"###\"#:.    .:#\"  .        .       .\n"
-"  .             \"#########\"#########\"        .        .\n"
-"        .    \"#:.  \"####\"###\"####\"  .:#\"   .       .\n"
-"     .     .  \"#######\"\"##\"##\"\"#######\"                  .\n"
-"                .\"##\"#####\"#####\"##\"           .      .\n"
-"    .   \"#:. ...  .:##\"###\"###\"##:.  ... .:#\"     .\n"
-"      .     \"#######\"##\"#####\"##\"#######\"      .     .\n"
-"    .    .     \"#####\"\"#######\"\"#####\"    .      .\n"
-"            .     \"      000      \"    .     .\n"
-"       .         .   .   000     .        .       .\n"
-".. .. ..................O000O........................ ........\n";
-
+        "     .       .      .     #       .           .\n"
+        "        .      .         ###            .      .      .\n"
+        "      .      .   \"#:. .:##\"##:. .:#\"  .      .\n"
+        "          .      . \"####\"###\"####\"  .\n"
+        "       .     \"#:.    .:#\"###\"#:.    .:#\"  .        .       .\n"
+        "  .             \"#########\"#########\"        .        .\n"
+        "        .    \"#:.  \"####\"###\"####\"  .:#\"   .       .\n"
+        "     .     .  \"#######\"\"##\"##\"\"#######\"                  .\n"
+        "                .\"##\"#####\"#####\"##\"           .      .\n"
+        "    .   \"#:. ...  .:##\"###\"###\"##:.  ... .:#\"     .\n"
+        "      .     \"#######\"##\"#####\"##\"#######\"      .     .\n"
+        "    .    .     \"#####\"\"#######\"\"#####\"    .      .\n"
+        "            .     \"      000      \"    .     .\n"
+        "       .         .   .   000     .        .       .\n"
+        ".. .. ..................O000O........................ ........\n";
+    openedFile << pineTree;
+    std::cout << getName() << " executed " << form.getName() << "\n";
+    std::cout << "bureaucrat " << buro.getName() <<" executed form " << this->getName() << "\n";
 }
