@@ -33,17 +33,17 @@ const std::string& ShrubberyCreationForm::getTarget(void) const{
 
 void ShrubberyCreationForm::beSigned(const Bureaucrat &buro){
     if (this->getGradeSign() < buro.getGrade()){
-        throw PermissionDenied();
+        throw PermissionDeniedToSign();
     }
     setSignature(true);
 }
 
 void ShrubberyCreationForm::execute(const Bureaucrat & executor) const {
     if (this->getGradeExec() < executor.getGrade()){
-        throw PermissionDenied();
+        throw PermissionDeniedToExec();
     }
     if (!this->isSigned()){
-        throw PermissionDenied();
+        throw PermissionDeniedToExec();
     }
     std::string fileName = this->getTarget() + "_shrubbery";
     std::ofstream openedFile(fileName.c_str(), std::ofstream::out);
