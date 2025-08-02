@@ -1,4 +1,6 @@
 #include "../include/PresidentialPardonForm.hpp"
+#include "../include/Bureaucrat.hpp"
+#include "../include/AForm.hpp"
 
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string &target)
