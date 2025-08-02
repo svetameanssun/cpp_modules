@@ -6,7 +6,7 @@
 #    By: stitovsk <stitovsk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/22 21:22:45 by stitovsk          #+#    #+#              #
-#    Updated: 2025/07/28 16:15:27 by stitovsk         ###   ########.fr        #
+#    Updated: 2025/08/02 13:40:24 by stitovsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,13 +48,10 @@ fclean: clean
 
 re: fclean all
 
-TRYBLOCK: CXXFLAGS += $(TRYBLOCK_FLAGS)
 TRYBLOCK:
 	@echo "Cleaning log..."
 	@$(RM) log.txt
-	@$(MAKE) re CXXFLAGS="$(CXXFLAGS)"
-	@echo "Compiled with USE_CONSTRUCTOR_TRY_BLOCK"
-TRYBLOCK: re
+	@$(MAKE) re CXXFLAGS="$(CXXFLAGS) $(TRYBLOCK_FLAGS)"
 	@echo "Compiled with USE_CONSTRUCTOR_TRY_BLOCK"
 
 .PHONY: all clean fclean re TRYBLOCK
