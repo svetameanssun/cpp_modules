@@ -1,4 +1,4 @@
-#include "Bureaucrat.hpp"
+#include "../include/Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat(): _name("Name"), _grade(150) {
     std::cout << "Bureaucrat " << getName() << " constructed by default\n";
