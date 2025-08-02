@@ -25,23 +25,25 @@ class AForm {
     virtual void execute(Bureaucrat const & executor) const = 0;
 
     // -- EXCEPTION CLASSES --
-    class GradeTooLowException : public std::exception {
-      public:
-        const char* what() const throw();
-    };
-    class GradeTooHighException: public std::exception {
-      public:
-        const char* what() const throw();
-    };
+   class GradeTooLowException : public std::exception {
+    public:
+      virtual const char* what() const throw();
+  };
 
-    class PermissionDeniedTosign: public GradeTooLowException {
-      public:
-        const char* what() const throw();
-    };
-    class PermissionDeniedToExec: public GradeTooLowException {
-      public:
-        const char* what() const throw();
-    };
+  class GradeTooHighException : public std::exception {
+    public:
+      virtual const char* what() const throw();
+  };
+
+  class PermissionDeniedToSign : public GradeTooLowException {
+    public:
+      virtual const char* what() const throw();
+  };
+
+  class PermissionDeniedToExecute : public GradeTooLowException {
+    public:
+      virtual const char* what() const throw();
+  };
   protected:
     void setSignature(bool value);
     bool getSignature() const;
