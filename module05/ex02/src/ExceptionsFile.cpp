@@ -2,23 +2,26 @@
 #include "../include/AForm.hpp"
 
 const char *Bureaucrat::GradeTooHighException::what()const throw(){
-    return ("Burocrat cannot have such a high grade!\n");
+    return ("grade is too high\n");
 }
 
 const char *Bureaucrat::GradeTooLowException::what()const throw(){
-    return ("Burocrat cannot have such a low grade!\n");
+    return ("grade is too low\n");
 }
 
 const char *AForm::GradeTooHighException::what()const throw(){
-     return ("Form cannot have such a high grade!\n");
+     return ("required grade is too high\n");
 }
 
 const char *AForm::GradeTooLowException::what()const throw(){
-     return ("Form cannot have such a low grade!\n");
+     return ("required grade is too low\n");
 }
 
-const char* AForm::PermissionDenied::what()const throw(){
-    return ("The grade is too low for this action!\n");
+const char* AForm::PermissionDeniedToSign::what()const throw(){
+    return ("bureaucrat's grade is too low to sign\n");
+}
+const char* AForm::PermissionDeniedToExec::what()const throw(){
+    return ("bureaucrat's grade is too low to execute\n");
 }
 
 

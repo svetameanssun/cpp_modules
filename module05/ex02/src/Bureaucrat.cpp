@@ -1,4 +1,5 @@
 #include "../include/Bureaucrat.hpp"
+#include "../include/AForm.hpp"
 
 Bureaucrat::Bureaucrat(): _name("Name"), _grade(150) {
     std::cout << "Bureaucrat " << getName() << " constructed by default\n";
@@ -77,6 +78,7 @@ void Bureaucrat::decrGrade(void){
 void Bureaucrat::signForm(AForm& form) const{
    try{
        form.beSigned(*this);
+       std::cout << "bureaucrat " << this->getName() <<" signed form " << form.getName() << "\n";
     }
     catch (const std::exception & e){
         std:: cerr << "bureaucrat " << this->getName() <<" couldn’t sign form " << form.getName() << ", because " << e.what();

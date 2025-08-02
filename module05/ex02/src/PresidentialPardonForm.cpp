@@ -1,4 +1,6 @@
 #include "../include/PresidentialPardonForm.hpp"
+#include "../include/Bureaucrat.hpp"
+#include "../include/AForm.hpp"
 
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string &target)
@@ -34,7 +36,6 @@ void PresidentialPardonForm::beSigned(const Bureaucrat &buro){
         throw PermissionDenied();
     }
     this->setSignature(true);
-    std::cout << "bureaucrat " << buro.getName() <<" signed form " << this->getName() << "\n";
 }
 
 void PresidentialPardonForm::execute(const Bureaucrat & executor) const {

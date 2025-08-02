@@ -1,5 +1,9 @@
 #include "../include/Bureaucrat.hpp"
 #include "../include/AForm.hpp"
+#include "../include/PresidentialPardonForm.hpp"
+#include "../include/RobotomyRequestForm.hpp"
+#include "../include/ShrubberyCreationForm.hpp"
+#include "../include/color.hpp"
 
 #ifdef USE_CONSTRUCTOR_TRY_BLOCK
 
@@ -27,11 +31,11 @@ int main(void){
     
     std::cout << "<------------------------------------------------------------------------------------------------------------>" << std::endl;
 
-    b1.executeForm(formHome);
-    b1.executeForm(formLelo);
-    b1.executeForm(formLelo);
-    b2.executeForm(formHarold);
-    b1.executeForm(formHarold);
+    buroA.executeForm(formHome);
+    buroA.executeForm(formLelo);
+    buroA.executeForm(formLelo);
+    buroB.executeForm(formHarold);
+    buroA.executeForm(formHarold);
     
     std::cout << "<------------------------------------------------------------------------------------------------------------>" << std::endl;
   return (0);
@@ -63,11 +67,11 @@ int main(void){
     
     std::cout << "<------------------------------------------------------------------------------------------------------------>" << std::endl;
 
-    b1.executeForm(formHome);
-    b1.executeForm(formLelo);
-    b1.executeForm(formLelo);
-    b2.executeForm(formHarold);
-    b1.executeForm(formHarold);
+    buroA.executeForm(formHome);
+    buroA.executeForm(formLelo);
+    buroA.executeForm(formLelo);
+    buroB.executeForm(formHarold);
+    buroA.executeForm(formHarold);
     
     std::cout << "<------------------------------------------------------------------------------------------------------------>" << std::endl;
   }

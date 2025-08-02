@@ -4,7 +4,8 @@
 #ifdef USE_CONSTRUCTOR_TRY_BLOCK
 
 void logError(const std::string & message){
-    std::
+    std::ofstream log("log.txt", std::ios::app);
+    log << message << std::endl;
 }
 
 AForm::AForm(const std::string &name, int gradeSign, int gradeExec)
@@ -18,7 +19,7 @@ AForm::AForm(const std::string &name, int gradeSign, int gradeExec)
     std::cout << "AForm " << getName() << " constructed\n";
 }
 catch (const std::exception &e) {
-    logError("Error in Bureaucrat: " + std::string(e.what()));
+    logError("Error in AForm: " + std::string(e.what()));
     throw;
 }
 
@@ -85,3 +86,4 @@ std::ostream &operator<<(std::ostream &os, const AForm &formy) {
     }
     return (os);
 }
+

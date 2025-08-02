@@ -1,4 +1,6 @@
 #include "../include/ShrubberyCreationForm.hpp"
+#include "../include/Bureaucrat.hpp"
+#include "../include/AForm.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target)
     : AForm("ShrubberyCreationForm", 145, 137), _target(target){
@@ -31,15 +33,17 @@ const std::string& ShrubberyCreationForm::getTarget(void) const{
 
 void ShrubberyCreationForm::beSigned(const Bureaucrat &buro){
     if (this->getGradeSign() < buro.getGrade()){
-        throw PermissionDenied();
+        throw PermissionDeniedToSign();
     }
     setSignature(true);
-    std::cout << "bureaucrat " << buro.getName() <<" signed form " << this->getName() << "\n";
 }
 
 void ShrubberyCreationForm::execute(const Bureaucrat & executor) const {
     if (this->getGradeExec() < executor.getGrade()){
-        throw PermissionDenied();
+        throw PermissionDeniedToExec();
+    }
+    if (!this->isSigned()){
+        throw PermissionDeniedToExec();
     }
     std::string fileName = this->getTarget() + "_shrubbery";
     std::ofstream openedFile(fileName.c_str(), std::ofstream::out);
@@ -63,6 +67,5 @@ void ShrubberyCreationForm::execute(const Bureaucrat & executor) const {
         "       .         .   .   000     .        .       .\n"
         ".. .. ..................O000O........................ ........\n";
     openedFile << pineTree;
-    std::cout << getName() << " executed " << form.getName() << "\n";
     std::cout << "bureaucrat " << executor.getName() <<" executed form " << this->getName() << "\n";
 }
