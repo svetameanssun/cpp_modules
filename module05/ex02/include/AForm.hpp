@@ -38,7 +38,7 @@ class AForm {
       public:
         const char* what() const throw();
     };
-    class PermissionDeniedToExecute: public GradeTooLowException {
+    class PermissionDeniedToExec: public GradeTooLowException {
       public:
         const char* what() const throw();
     };
