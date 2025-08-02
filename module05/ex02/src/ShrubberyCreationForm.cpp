@@ -41,6 +41,9 @@ void ShrubberyCreationForm::execute(const Bureaucrat & executor) const {
     if (this->getGradeExec() < executor.getGrade()){
         throw PermissionDenied();
     }
+    if (!this->isSigned()){
+        throw PermissionDenied();
+    }
     std::string fileName = this->getTarget() + "_shrubbery";
     std::ofstream openedFile(fileName.c_str(), std::ofstream::out);
     if (!openedFile.is_open()){
@@ -63,6 +66,5 @@ void ShrubberyCreationForm::execute(const Bureaucrat & executor) const {
         "       .         .   .   000     .        .       .\n"
         ".. .. ..................O000O........................ ........\n";
     openedFile << pineTree;
-    std::cout << getName() << " executed " << form.getName() << "\n";
     std::cout << "bureaucrat " << executor.getName() <<" executed form " << this->getName() << "\n";
 }
