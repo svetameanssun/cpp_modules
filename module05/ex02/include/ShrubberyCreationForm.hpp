@@ -3,8 +3,9 @@
 
 #include <iostream>
 #include <string>
-#include "Bureaucrat.hpp"
-#include "AForm.hpp"
+
+class AForm;
+class Bureaucrat;
 
 class ShrubberyCreationForm : public AForm {
   public:
