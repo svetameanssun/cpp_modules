@@ -44,5 +44,6 @@ class Bureaucrat {
 };
 
 std::ostream& operator<<(std::ostream &os, const Bureaucrat& buro);
+void logError(const std::string & message);
 
 #endif

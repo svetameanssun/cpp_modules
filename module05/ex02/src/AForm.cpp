@@ -3,19 +3,15 @@
 
 #ifdef USE_CONSTRUCTOR_TRY_BLOCK
 
-void logError(const std::string & message){
-    std::ofstream log("log.txt", std::ios::app);
-    log << message << std::endl;
-}
-
 AForm::AForm(const std::string &name, int gradeSign, int gradeExec)
-    try: _name(name), _gradeSign(gradeSign), _gradeExec(gradeExec), _signature(false){
+    try: _name(name), _gradeSign(gradeSign), _gradeExec(gradeExec){
     if (gradeSign < 1 || gradeExec < 1){
         throw GradeTooHighException();
     }
     if (gradeSign > 150 || gradeExec > 150){
         throw GradeTooLowException();
     }
+    _signature = false;
     std::cout << "AForm " << getName() << " constructed\n";
 }
 catch (const std::exception &e) {

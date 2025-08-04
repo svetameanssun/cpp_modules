@@ -27,7 +27,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm(){
     std::cout << "ShrubberyCreationForm "<< getName() << " deleted\n";
 }
 
-const std::string& ShrubberyCreationForm::getTarget(void) const{
+const std::string ShrubberyCreationForm::getTarget(void) const{
     return (_target);
 }
 
@@ -42,12 +42,13 @@ void ShrubberyCreationForm::execute(const Bureaucrat & executor) {
     if (this->getGradeExec() < executor.getGrade()){
         throw PermissionDeniedToExec();
     }
+    
     if (!this->isSigned()){
         throw PermissionDeniedToExec();
     }
-    std::string fileName = this->getTarget() + "_shrubbery";
-    const char *str = fileName.c_str();
-    std::ofstream openedFile(str, std::ofstream::out);
+    std::string nameStr = this->getTarget();
+    std::string fileName =  nameStr + "_shrubbery";
+    std::ofstream openedFile(fileName.c_str(), std::ofstream::out);
     if (!openedFile.is_open()){
         throw std::runtime_error("Error: could not open file");
     }
@@ -68,5 +69,8 @@ void ShrubberyCreationForm::execute(const Bureaucrat & executor) {
         "       .         .   .   000     .        .       .\n"
         ".. .. ..................O000O........................ ........\n";
     openedFile << pineTree;
+    openedFile.close();
     std::cout << "bureaucrat " << executor.getName() <<" executed form " << this->getName() << "\n";
 }
+
+

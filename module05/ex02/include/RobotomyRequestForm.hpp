@@ -13,7 +13,7 @@ class RobotomyRequestForm : public AForm {
     RobotomyRequestForm&operator=(const RobotomyRequestForm& other); //this is not inherited from base class
     ~RobotomyRequestForm();
 
-    const std::string& getTarget(void) const;
+    const std::string &getTarget(void) const;
 
     void beSigned(Bureaucrat const  &buro);
     void execute(Bureaucrat const & executor);

@@ -15,13 +15,12 @@ class ShrubberyCreationForm : public AForm {
     ShrubberyCreationForm&operator=(const ShrubberyCreationForm& other); //this is not inherited from base class
     ~ShrubberyCreationForm();
 
-    const std::string& getTarget(void) const;
+    const std::string getTarget(void) const;
 
     void beSigned(Bureaucrat const  &buro);
     void execute(Bureaucrat const & executor);
-
   private:
-    const std::string &_target;
+    const std::string _target;
 };
 
 #endif
