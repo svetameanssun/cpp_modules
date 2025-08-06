@@ -6,7 +6,7 @@
 #    By: stitovsk <stitovsk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/22 21:22:45 by stitovsk          #+#    #+#              #
-#    Updated: 2025/08/06 18:56:51 by stitovsk         ###   ########.fr        #
+#    Updated: 2025/08/06 23:11:38 by stitovsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCFILES = AForm.cpp \
 	PresidentialPardonForm.cpp \
 	RobotomyRequestForm.cpp \
 	ShrubberyCreationForm.cpp \
+	Intern.cpp \
 	main.cpp
 
 SRC = $(addprefix $(SRCDIR), $(SRCFILES))
