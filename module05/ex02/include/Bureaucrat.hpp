@@ -38,12 +38,14 @@ class Bureaucrat {
         const char *what() const throw();
     };
 
+    /*void logError(const std::string & message);*/
+
   private:
     const std::string _name;
     int _grade;
 };
 
 std::ostream& operator<<(std::ostream &os, const Bureaucrat& buro);
-void logError(const std::string & message);
+
 
 #endif

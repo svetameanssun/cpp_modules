@@ -6,7 +6,7 @@
 #    By: stitovsk <stitovsk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/22 21:22:45 by stitovsk          #+#    #+#              #
-#    Updated: 2025/08/03 23:43:25 by stitovsk         ###   ########.fr        #
+#    Updated: 2025/08/06 18:56:51 by stitovsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ RM = rm -f
 #SRC = $(shell find . -name "*.cpp") I might have used this, but I think it is against the norm
 SRCDIR = src/
 OBJDIR = obj/
+SHRUBERYF = _shrubbery
 SRCFILES = AForm.cpp \
 	Bureaucrat.cpp \
 	ExceptionsFile.cpp \
@@ -29,8 +30,6 @@ SRCFILES = AForm.cpp \
 SRC = $(addprefix $(SRCDIR), $(SRCFILES))
 OBJ = $(addprefix $(OBJDIR), $(SRCFILES:.cpp=.o))
 DEP = $(OBJ:.o=.d)
-
-TRYBLOCK_FLAGS = -DUSE_CONSTRUCTOR_TRY_BLOCK
 
 all: $(TARGET)
 
@@ -48,13 +47,7 @@ clean:
 
 fclean: clean
 	$(RM) $(TARGET) $(DEP)
-
+	$(RM) *$(SHRUBERYF)
 re: fclean all
 
-TRYBLOCK:
-	@echo "Cleaning log..."
-	@$(RM) log.txt
-	@$(MAKE) re CXXFLAGS="$(CXXFLAGS) $(TRYBLOCK_FLAGS)"
-	@echo "Compiled with USE_CONSTRUCTOR_TRY_BLOCK"
-
-.PHONY: all clean fclean re TRYBLOCK
+.PHONY: all clean fclean re

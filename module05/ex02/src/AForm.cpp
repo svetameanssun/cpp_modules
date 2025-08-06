@@ -1,28 +1,10 @@
 #include "../include/AForm.hpp"
 #include "../include/Bureaucrat.hpp"
 
-#ifdef USE_CONSTRUCTOR_TRY_BLOCK
-
-AForm::AForm(const std::string &name, int gradeSign, int gradeExec)
-    try: _name(name), _gradeSign(gradeSign), _gradeExec(gradeExec){
-    if (gradeSign < 1 || gradeExec < 1){
-        throw GradeTooHighException();
-    }
-    if (gradeSign > 150 || gradeExec > 150){
-        throw GradeTooLowException();
-    }
-    _signature = false;
-    std::cout << "AForm " << getName() << " constructed\n";
-}
-catch (const std::exception &e) {
-    logError("Error in AForm: " + std::string(e.what()));
-    throw;
-}
-
-#else
 
 AForm::AForm(const std::string &name, int gradeSign, int gradeExec):
     _name(name), _gradeSign(gradeSign), _gradeExec(gradeExec) {
+    try {
     if (gradeSign < 1 || gradeExec < 1){
         throw GradeTooHighException();
     }
@@ -30,9 +12,12 @@ AForm::AForm(const std::string &name, int gradeSign, int gradeExec):
         throw GradeTooLowException();
     }
     _signature = false;
+    }
+    catch (std::exception &e){
+        std::cerr << "Couldn't create AForm " << getName() << ", because " << e.what() << "\n";
+    }
 }
 
-#endif
 AForm::AForm(const AForm& other):
     _name(other._name), _gradeSign(other._gradeSign), _gradeExec(other._gradeExec) {
     _signature = other._signature;

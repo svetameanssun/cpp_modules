@@ -4,7 +4,7 @@
 
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string &target)
-    : AForm("ShrubberyCreationForm", 25, 5), _target(target){
+    : AForm("PresidentialPardonForm", 25, 5), _target(target){
     std::cout << "PresidentialPardonForm constructed\n";
 }
 /*PresidentialPardonForm: Required grades: sign 25, exec 5
