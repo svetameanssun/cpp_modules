@@ -1,10 +1,3 @@
-#include "../include/Bureaucrat.hpp"
-#include "../include/AForm.hpp"
-#include "../include/PresidentialPardonForm.hpp"
-#include "../include/RobotomyRequestForm.hpp"
-#include "../include/ShrubberyCreationForm.hpp"
-#include "../include/color.hpp"
-
 #include <iostream>
 #include "../include/Intern.hpp"
 #include "../include/AForm.hpp"
