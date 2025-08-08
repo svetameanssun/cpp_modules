@@ -1,7 +1,6 @@
 #include "../include/AForm.hpp"
 #include "../include/Bureaucrat.hpp"
 
-
 AForm::AForm(const std::string &name, int gradeSign, int gradeExec):
     _name(name), _gradeSign(gradeSign), _gradeExec(gradeExec) {
     try {
