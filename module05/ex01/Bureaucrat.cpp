@@ -45,7 +45,7 @@ void Bureaucrat::incrGrade(void){
 }
 
 void Bureaucrat::decrGrade(void){
-    if (grade + 1 == 151){
+    if (_grade + 1 == 151){
         throw GradeTooLowException();
     }
     _grade++;
