@@ -4,10 +4,10 @@
 class LiteralDetector{
   public:
     enum Type {CHAR, INT, FLOAT, DOUBLE, UNKNOWN};
-    static bool isChar(char *str);
-    static bool isInt(char *str);
-    static bool isFloat(char *str);
-    static bool isDouble(char *str);
+    static bool isChar(std::string str);
+    static bool isInt(std::string str);
+    static bool isFloat(std::string str);
+    static bool isDouble(std::string str);
   private:
     LiteralDetector(){};
     ~LiteralDetector(){};    
