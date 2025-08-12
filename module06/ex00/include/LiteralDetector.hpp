@@ -3,8 +3,11 @@
 
 #include <iostream>
 #include <string>
-#include <limits>
-//numeric_limits<int>::max
+#include <limits> //std::numeric_limits<int>::max
+#include <cstdlib> //atoi, atof, strtol, strtod, strtof
+#include <cctype> // isprint, isdigit
+#include <cmath> // isnan, isinf, fabs
+
 
 class LiteralDetector{
   public:
@@ -17,28 +20,5 @@ class LiteralDetector{
     LiteralDetector(){};
     ~LiteralDetector(){};    
 };
-
-bool LiteralDetector::isChar(std::string str){
-  if (str.length() == 1 && !std::isdigit(str.at(0))){
-    return true;
-  }
-  if (str.length() == 3 && str.at(0) == '\''
-      && str.at(2) == '\'' && !std::isdigit(str.at(1))){
-    return true;
-  }
-  return false;
-}
-
-bool LiteralDetector::isInt(std::string str){
-  
-}
-
-bool LiteralDetector::isFloat(std::string str){
-  
-}
-
-bool LiteralDetector::isDouble (std::string str){
-  
-}
 
 #endif
