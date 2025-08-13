@@ -1,13 +1,17 @@
 #ifndef LITERALDETECTOR_HPP
 #define LITERALDETECTOR_HPP
 
-#include <iostream>
-#include <string>
-#include <limits> //std::numeric_limits<int>::max
-#include <cstdlib> //atoi, atof, strtol, strtod, strtof
-#include <cctype> // isprint, isdigit
-#include <cmath> // isnan, isinf, fabs
-
+# include <iostream>
+# include <string>
+# include <limits> //std::numeric_limits<int>::max
+# include <cstdlib> //atoi, atof, strtol, strtod, strtof
+# include <cctype> // isprint, isdigit
+# include <cmath> // isnan, isinf, fabs
+# include <cerrno>
+# include <math.h>
+# include <cmath>
+# include <climits>
+# include <iomanip>
 
 class LiteralDetector{
   public:
