@@ -6,6 +6,7 @@
 
 class ScalarConverter{
   public:
+    typedef struct 
     static void convert(const std::string &literal);
   private:
     ScalarConverter(){};
