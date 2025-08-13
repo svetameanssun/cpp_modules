@@ -1,4 +1,4 @@
-#include "LiteralDetector.hpp"
+#include "../include/LiteralDetector.hpp"
 
 bool LiteralDetector::isChar(std::string str){
   if (str.length() == 1 && !std::isdigit(str.at(0))){
@@ -12,26 +12,13 @@ bool LiteralDetector::isChar(std::string str){
 }
 
 bool LiteralDetector::isInt(std::string str){
-    int minIntLen = 11;
-    int maxIntLen = 10;
     int index = 0;
-    int endPoint;
+    int strLen = str.length();
     long int myInt;
-    if ((int)str.length() == minIntLen && str.at(index) == '-'){
+    if (str.at(index) == '-' || str.at(index) == '+'){
         index++;
     }
-    else{
-        if ((int)str.length() > maxIntLen){
-            return (false);
-        }
-    }
-    if (index == 1){
-        endPoint = minIntLen;
-    }
-    else{
-        endPoint = maxIntLen;
-    }
-    while (index < endPoint){
+    while (index < strLen){
         if (!isdigit(str[index])){
             return false;
         }
@@ -48,25 +35,71 @@ bool LiteralDetector::isFloat(std::string str){
     int countDots = 0;
     int dotPos = 0;
     int strLen = str.length();
-    if (str.at(str.length() - 1) != f){
-      return (false);
-    }
-    char dot = '.';
-    int countDots = std::count(str.begin(), str.end(), dot);
-    if (countDots != 1){
+    long double inputNbr;
+    
+    if (str.at(strLen - 1) != 'f' && str.at(strLen - 1) != 'F'){
+        std::cout << "first\n";
         return (false);
     }
-    dotPos = str.find(dot, 0);
-    if (dotPos == std::string::npos)
-    {
-      return (false);
+    int i = 0;
+    if (str.at(i) == '-'|| str.at(i) == '+'){
+        i++;
     }
-    
+
+    for (; i < strLen - 1; ++i){
+        if (str.at(i) == '.'){
+            countDots++;
+            dotPos = i;
+        }
+        if (str.at(i) != '.' && !isdigit(str.at(i))){
+            std::cout << "second\n";
+            return (false);
+        }
+    }
+
+    if (countDots != 1 || dotPos == 0){
+        std::cout << "third\n";
+        return (false);
+    }
+    inputNbr = std::strtold(str.c_str(), NULL);
+    if (inputNbr > std::numeric_limits<float>::max() || inputNbr < std::numeric_limits<float>::min()){
+        std::cout << "forth\n";
+        return (false);
+    }
     return (true);
 }
 
 bool LiteralDetector::isDouble (std::string str){
-  
+    int countDots = 0;
+    int dotPos = 0;
+    int strLen = str.length();
+    long double inputNbr;
+    
+    int i = 0;
+    if (str.at(i) == '-'|| str.at(i) == '+'){
+        i++;
+    }
+
+    for (; i < strLen; ++i){
+        if (str.at(i) == '.'){
+            countDots++;
+            dotPos = i;
+        }
+        if (str.at(i) != '.' && !isdigit(str.at(i))){
+            std::cout << "second\n";
+            return (false);
+        }
+    }
+
+    if (countDots != 1 || dotPos == 0){
+        std::cout << "third\n";
+        return (false);
+    }
+    inputNbr = std::strtold(str.c_str(), NULL);
+    if (inputNbr > std::numeric_limits<double>::max() || inputNbr < std::numeric_limits<double>::min()){
+        return (false);
+    }
+    return (true);
 }
 
 
