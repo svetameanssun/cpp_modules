@@ -45,24 +45,24 @@ bool LiteralDetector::isInt(std::string str){
 }
 
 bool LiteralDetector::isFloat(std::string str){
-    int dotFlag = 0;
+    int countDots = 0;
+    int dotPos = 0;
     int strLen = str.length();
-    for (int i = 0; i < strLen; i++){
-        if (str.at(i) == '.'){
-            dotFlag++;
-        }
+    if (str.at(str.length() - 1) != f){
+      return (false);
     }
-    if (dotFlag != 1){
+    char dot = '.';
+    int countDots = std::count(str.begin(), str.end(), dot);
+    if (countDots != 1){
         return (false);
     }
-    i = 0;
-    
-    
-    
+    dotPos = str.find(dot, 0);
+    if (dotPos == std::string::npos)
+    {
+      return (false);
+    }
     
     return (true);
-    
-  
 }
 
 bool LiteralDetector::isDouble (std::string str){
