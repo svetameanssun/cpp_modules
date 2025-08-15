@@ -18,4 +18,6 @@ class ScalarConverter{
     ~ScalarConverter(){};
 };
 
+std::ostream& operator<<(std::ostream& os, const ScalarConverter& conv);
+
 #endif

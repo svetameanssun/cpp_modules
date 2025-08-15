@@ -90,3 +90,10 @@ void ScalarConverter::convert(const std::string &literal){
   }
 
 }
+
+
+std::ostream& operator<<(std::ostream& os, const ScalarConverter& conv) {
+    os << ;
+    
+    return os;
+}
