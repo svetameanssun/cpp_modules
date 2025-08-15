@@ -38,7 +38,6 @@ bool LiteralDetector::isFloat(std::string str){
     long double inputNbr;
     
     if (str.at(strLen - 1) != 'f' && str.at(strLen - 1) != 'F'){
-        std::cout << "first\n";
         return (false);
     }
     int i = 0;
@@ -52,18 +51,15 @@ bool LiteralDetector::isFloat(std::string str){
             dotPos = i;
         }
         if (str.at(i) != '.' && !isdigit(str.at(i))){
-            std::cout << "second\n";
             return (false);
         }
     }
 
     if (countDots != 1 || dotPos == 0){
-        std::cout << "third\n";
         return (false);
     }
     inputNbr = std::strtold(str.c_str(), NULL);
     if (inputNbr > std::numeric_limits<float>::max() || inputNbr < std::numeric_limits<float>::min()){
-        std::cout << "forth\n";
         return (false);
     }
     return (true);
@@ -86,13 +82,11 @@ bool LiteralDetector::isDouble (std::string str){
             dotPos = i;
         }
         if (str.at(i) != '.' && !isdigit(str.at(i))){
-            std::cout << "second\n";
             return (false);
         }
     }
 
     if (countDots != 1 || dotPos == 0){
-        std::cout << "third\n";
         return (false);
     }
     inputNbr = std::strtold(str.c_str(), NULL);

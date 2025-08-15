@@ -1,7 +1,11 @@
 #include "../include/LiteralDetector.hpp"
+#include "../include/ScalarConverter.hpp"
 
-int main(){
-	std::cout << LiteralDetector::isDouble("0000010000.0") <<  std::endl ;
+int main(int argc, char**argv){
+	if (argc !=2){
+		return 1;
+	}
 
-	std::cout << 00001 + 003;
+	ScalarConverter::convert(argv[1]);
+	return (0);
 }

@@ -6,12 +6,12 @@
 
 class ScalarConverter{
   public:
-    typedef struct ConvertResult{
+    typedef struct convertResult{
       char c;
       int i;
       float f;
       double d;
-    };
+    } convRes;
     static void convert(const std::string &literal);
   private:
     ScalarConverter(){};

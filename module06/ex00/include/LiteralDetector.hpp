@@ -12,6 +12,7 @@
 # include <cmath>
 # include <climits>
 # include <iomanip>
+# include <bits/stdc++.h>
 
 class LiteralDetector{
   public:
