@@ -9,6 +9,7 @@ class ScalarConverter{
     typedef struct convertResult{
       char c;
       int i;
+      bool intFlag; // true if convertible to int, false is non-convertible to int
       float f;
       double d;
     } convRes;
@@ -18,6 +19,6 @@ class ScalarConverter{
     ~ScalarConverter(){};
 };
 
-std::ostream& operator<<(std::ostream& os, const ScalarConverter& conv);
+std::ostream& operator<<(std::ostream& os, const struct convertResult& result);
 
 #endif
