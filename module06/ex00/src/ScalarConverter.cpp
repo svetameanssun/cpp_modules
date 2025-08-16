@@ -92,8 +92,18 @@ void ScalarConverter::convert(const std::string &literal){
 }
 
 
-std::ostream& operator<<(std::ostream& os, const ScalarConverter& conv) {
-    os << ;
+std::ostream& operator<<(std::ostream& os, const struct convertResult& result){
+    os << "char: ";
+    if (result.c == 0){
+      os << "Non displayable\n";
+    }
+    else if (result.c == 1){
+      os << "impossible\n";
+    }
+    else{
+      os << result.c << "\n";
+    }
+    // CONDITION IF INT IS IMPOSSIBLE
     
     return os;
 }
