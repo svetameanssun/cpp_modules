@@ -32,10 +32,15 @@ bool LiteralDetector::isInt(std::string str){
 }
 
 bool LiteralDetector::isFloat(std::string str){
+
     int countDots = 0;
     int dotPos = 0;
     int strLen = str.length();
     long double inputNbr;
+
+    if (str == "nanf" || str == "inff" || str == "+inff" || str == "-inff"){
+      return true;
+    }
     
     if (str.at(strLen - 1) != 'f' && str.at(strLen - 1) != 'F'){
         return (false);
@@ -70,8 +75,12 @@ bool LiteralDetector::isDouble (std::string str){
     int dotPos = 0;
     int strLen = str.length();
     long double inputNbr;
-    
+  
     int i = 0;
+    
+    if (str == "nan" || str == "inf" || str == "+inf" || str == "-inf"){
+      return true;
+    }    
     if (str.at(i) == '-'|| str.at(i) == '+'){
         i++;
     }
