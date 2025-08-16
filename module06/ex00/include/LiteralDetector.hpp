@@ -26,6 +26,13 @@ class LiteralDetector{
     ~LiteralDetector(){};    
 };
 
+void strToLow(std::string &str){
+  int ind = 0;
+  for(; ind < str.length(); ++ind){
+    if (
+  }
+}
+
 
 
 #endif
