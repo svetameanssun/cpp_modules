@@ -26,12 +26,8 @@ class LiteralDetector{
     ~LiteralDetector(){};    
 };
 
-void strToLow(std::string &str){
-  int ind = 0;
-  for(; ind < str.length(); ++ind){
-    if (
-  }
-}
+//I have to do it, in case of NAN, INF
+void strToLow(std::string &str);
 
 
 

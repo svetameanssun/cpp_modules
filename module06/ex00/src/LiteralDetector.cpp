@@ -1,5 +1,14 @@
 #include "../include/LiteralDetector.hpp"
 
+void strToLow(std::string &str){
+  int ind = 0;
+  for(; ind < (int)str.length(); ++ind){
+    if (isupper(str[ind])){
+        str.at(ind) = tolower(str.at(ind));
+    }
+  }
+}
+
 bool LiteralDetector::isChar(std::string str){
   if (str.length() == 1 && !std::isdigit(str.at(0))){
     return true;
@@ -37,7 +46,8 @@ bool LiteralDetector::isFloat(std::string str){
     int dotPos = 0;
     int strLen = str.length();
     long double inputNbr;
-
+    
+    strToLow(str);
     if (str == "nanf" || str == "inff" || str == "+inff" || str == "-inff"){
       return true;
     }
@@ -75,7 +85,8 @@ bool LiteralDetector::isDouble (std::string str){
     int dotPos = 0;
     int strLen = str.length();
     long double inputNbr;
-  
+    
+    strToLow(str);
     int i = 0;
     
     if (str == "nan" || str == "inf" || str == "+inf" || str == "-inf"){

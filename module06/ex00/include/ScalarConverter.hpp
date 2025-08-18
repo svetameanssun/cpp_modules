@@ -9,9 +9,12 @@ class ScalarConverter{
     typedef struct convertResult{
       char c;
       int i;
-      bool intFlag; // true if convertible to int, false is non-convertible to int
       float f;
       double d;
+      bool intFlag; // true if convertible to int, false is non-convertible to int
+      int charFlag; // 1 = printable, 0  = non-printable, -1 = impossible 
+      //convertResult()
+      //  : c(0), i(0), intFlag(false), f(0.0f), d(0.0) {}
     } convRes;
     static void convert(const std::string &literal);
   private:
