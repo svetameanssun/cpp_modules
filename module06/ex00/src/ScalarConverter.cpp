@@ -8,7 +8,8 @@
  */
 
 std::ostream& operator<<(std::ostream& os, const struct ScalarConverter::convertResult& result){
-    os << "char: ";
+  // CHAR --> NON-PRINTABLE / IMPOSSIBLE / PRINTABLE /
+  os << "char: ";
     if (result.charFlag == 0){
       os << "Non displayable\n";
     }
@@ -19,7 +20,7 @@ std::ostream& operator<<(std::ostream& os, const struct ScalarConverter::convert
       os << result.c << "\n";
     }
 
-    // CONDITION IF INT IS IMPOSSIBLE
+    // INT --> CONDITION IF INT IS IMPOSSIBLE
     os << "int: ";
     if (result.intFlag == true){
       os << result.i << "\n";
@@ -27,11 +28,22 @@ std::ostream& operator<<(std::ostream& os, const struct ScalarConverter::convert
     else{
       os << "Impossible\n";
     }
+    
+    // FLOAT --> CONDITION inff, nanf, etc 
     os << "float: ";
-    os << result.f << "f";
-    os << "\n";
+    if (result.floatFlag != NULL)
+      os << result.floatFlag << os << "\n";
+    else
+      os << result.f << "f" << "\n";
+    
 
+    // DOUBLE -->  CONDITION inf, nan, etc 
     os << "double: ";
+    if (result.doubleFlag != NULL)
+      os << result.doubleFlag << os << "\n";
+    else
+      os << result.f << "\n";
+    
     os << result.d << "\n";
     return os;
 }
@@ -40,13 +52,8 @@ void ScalarConverter::convert(const std::string &literal){
   ScalarConverter::convRes result;
   std::string str;
   
-  if (LiteralDetector::isChar(literal)){
-    // STR TO CHAR
-    if (literal.length() == 3)
-      result.c = literal[1];
-    else{
-      result.c = literal[0];
-    }
+  if (LiteralDetector::isChar(literal, result)){
+    
     //CHAR TO INT
     result.i = static_cast<int>(result.c);
 
@@ -57,13 +64,9 @@ void ScalarConverter::convert(const std::string &literal){
     result.d = static_cast<double>(result.f);
     std::cout << "It is CHAR!\n";
   }
-  else if (LiteralDetector::isInt(literal)){
-      // STR TO INT
-      result.i = atoi(literal.c_str());
-      std::cout << result.i << "\n";
-      result.intFlag = true;
-    
-      // INT TO CHAR
+  else if (LiteralDetector::isInt(literal, result)){
+
+      // INT TO CHAR with conditions
       if (result.i >= 33 && result.i <= 126){
         result.c = static_cast<char>(result.i); // normal
         result.charFlag = 1;
@@ -86,12 +89,7 @@ void ScalarConverter::convert(const std::string &literal){
     
   }
   else if (LiteralDetector::isFloat(literal)){
-    //STR TO FLOAT
-    str = literal;
-    str.erase(literal.length() - 1, 1);
-    result.f = std::atof(str.c_str()); // I have to print 'f' after this one!
-
-
+    
     //FLOAT TO INT
     // check the size???
     if (result.f > (long)std::numeric_limits<int>::max() || result.f < (long)std::numeric_limits<int>::min()){
@@ -121,12 +119,7 @@ void ScalarConverter::convert(const std::string &literal){
       std::cout << "It is Float!\n";
   }
   else if (LiteralDetector::isDouble(literal)){
-    // STR TO DOUBLE
-    str = literal;
-    std::stringstream ss(str);
-    result.d  = 0.0;
-    ss >> result.d;
-
+    
     // DOUBLE TO INT
     // check the size???
     if (result.d > (long)std::numeric_limits<int>::max() || result.d < (long)std::numeric_limits<int>::min()){
