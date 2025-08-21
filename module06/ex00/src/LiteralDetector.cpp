@@ -1,6 +1,17 @@
 #include "../include/LiteralDetector.hpp"
 #include "../include/ScalarConverter.hpp"
-// CONVERT ALL STRING UPPER CASE TO LOWER CASE 
+
+LiteralDetector::LiteralDetector() {}
+LiteralDetector::LiteralDetector(const LiteralDetector & other){
+  (void)other;
+}
+LiteralDetector& LiteralDetector::operator=(const LiteralDetector &other){
+  (void)other;
+  return (*this);
+}
+LiteralDetector::~LiteralDetector(){}
+
+// CONVERT ALL UPPER CASE CHARS IN STR TO LOWER CASE 
 void strToLow(std::string &str){
   int ind = 0;
   for(; ind < (int)str.length(); ++ind){
@@ -56,10 +67,15 @@ bool LiteralDetector::isFloat(std::string str, ScalarConverter::convRes &result)
     int strLen = str.length();
     long double inputNbr;
     
-    //result.floatFlag = NULL; 
     strToLow(str);
     if (str == "nanf" || str == "inff" || str == "+inff" || str == "-inff"){
-      result.floatFlag = str;
+      if (str == "nanf")
+        result.f = NAN;
+      if (str == "+inff" || str == "inff")
+        result.f = INFINITY;
+      if (str == "-inff")
+        result.f = -INFINITY;
+      result.specialFloat = true;
       return true;
     }
     
@@ -106,8 +122,14 @@ bool LiteralDetector::isDouble (std::string str, ScalarConverter::convRes &resul
     int i = 0;
     
     if (str == "nan" || str == "inf" || str == "+inf" || str == "-inf"){
-      result.doubleFlag = str;
-      return true;
+      if (str == "nan")
+        result.d = NAN;
+      if (str == "+inf" || str == "inf")
+        result.d = INFINITY;
+      if (str == "-inf")
+        result.d = -INFINITY;
+
+      result.specialDouble = true; 
     }    
     if (str.at(i) == '-'|| str.at(i) == '+'){
         i++;
