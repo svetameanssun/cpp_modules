@@ -6,6 +6,10 @@
   static_cast <dest_type> (source);
 
  */
+ScalarConverter::ScalarConverter(){};
+ScalarConverter::ScalarConverter(const ScalarConverter &other){};
+ScalarConverter & ScalarConverter::operator=(const ScalarConverter &other){};
+ScalarConverter::~ScalarConverter();
 
 std::ostream& operator<<(std::ostream& os, const struct ScalarConverter::convertResult& result){
   // CHAR --> NON-PRINTABLE / IMPOSSIBLE / PRINTABLE /
