@@ -26,8 +26,8 @@ class ScalarConverter{
       //           -inff = -INFINITY
       //           -inf = -INFINITY
       //           nanf = nan = NAN
-      std::string floatFlag; //DO I NEED THIS FLAG??
-      std::string doubleFlag; //DO I NEED THIS FLAG??
+      bool specialFloat; // true if input == nan, inf , -inf
+      bool speialDouble; // true if unput == nan, inf , -inf
       //convertResult()
       //  : c(0), i(0), intFlag(false), f(0.0f), d(0.0) {}
     } convRes;
