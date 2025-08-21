@@ -11,8 +11,15 @@ class ScalarConverter{
       int i;
       float f;
       double d;
+
       bool intFlag; // true if convertible to int, false is non-convertible to int
       int charFlag; // 1 = printable, 0  = non-printable, -1 = impossible
+      //CHANGE THE LOGIC!
+      //USE MACROS inff = INFINITY
+      //           inf  = INFINITY
+      //           -inff = -INFINITY
+      //           -inf = -INFINITY
+      //           nanf = nan = NAN
       std::string floatFlag; // if !NULL, print flag in the output
       std::string doubleFlag; // if !NULL, print flag in the output
       //convertResult()

@@ -1,5 +1,5 @@
 #include "../include/LiteralDetector.hpp"
-
+#include "../include/ScalarConverter.hpp"
 // CONVERT ALL STRING UPPER CASE TO LOWER CASE 
 void strToLow(std::string &str){
   int ind = 0;
@@ -13,12 +13,12 @@ void strToLow(std::string &str){
 // ----- IS CHAR -----
 bool LiteralDetector::isChar(std::string str,  ScalarConverter::convRes &result){
   if (str.length() == 1 && !std::isdigit(str.at(0))){
-    result.c = literal[0];
+    result.c = str[0];
     return true;
   }
   if (str.length() == 3 && str.at(0) == '\''
       && str.at(2) == '\'' && !std::isdigit(str.at(1))){
-    result.c = literal[1];
+    result.c = str[1];
     return true;
   }
   return false;
@@ -43,7 +43,7 @@ bool LiteralDetector::isInt(std::string str, ScalarConverter::convRes &result){
         return (false);
     }
    // STR TO INT
-    result.i = atoi(literal.c_str());
+    result.i = atoi(str.c_str());
     result.intFlag = true;
     return true;
 }
@@ -56,7 +56,7 @@ bool LiteralDetector::isFloat(std::string str, ScalarConverter::convRes &result)
     int strLen = str.length();
     long double inputNbr;
     
-    result.floatFlag = NULL; 
+    //result.floatFlag = NULL; 
     strToLow(str);
     if (str == "nanf" || str == "inff" || str == "+inff" || str == "-inff"){
       result.floatFlag = str;
@@ -89,7 +89,7 @@ bool LiteralDetector::isFloat(std::string str, ScalarConverter::convRes &result)
         return (false);
     }
      // STR TO FLOAT
-    str.erase(literal.length() - 1, 1);
+    str.erase(str.length() - 1, 1);
     result.f = std::atof(str.c_str()); // I have to print 'f' after this one!
     return (true);
 }
@@ -101,7 +101,7 @@ bool LiteralDetector::isDouble (std::string str, ScalarConverter::convRes &resul
     int strLen = str.length();
     long double inputNbr;
 
-    result.doubleFlag = NULL;
+    //result.doubleFlag = NULL;
     strToLow(str);
     int i = 0;
     

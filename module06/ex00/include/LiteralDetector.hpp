@@ -13,10 +13,10 @@
 # include <climits>
 # include <iomanip>
 # include <bits/stdc++.h>
+#include "../include/ScalarConverter.hpp"
 
 class LiteralDetector{
   public:
-    enum Type {CHAR, INT, FLOAT, DOUBLE, UNKNOWN};
     static bool isChar(std::string str, ScalarConverter::convRes &result);
     static bool isInt(std::string str, ScalarConverter::convRes &result);
     static bool isFloat(std::string str, ScalarConverter::convRes &result);
