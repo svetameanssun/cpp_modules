@@ -6,7 +6,13 @@
 
 class ScalarConverter{
   public:
-    typedef struct convertResult{
+    static void convert(const std::string &literal);
+  private:
+    ScalarConverter();
+    ScalarConverter(const ScalarConverter &other);
+    ScalarConverter &operator=(const ScalarConverter&other);
+    ~ScalarConverter();
+  typedef struct convertResult{
       char c;
       int i;
       float f;
@@ -20,15 +26,11 @@ class ScalarConverter{
       //           -inff = -INFINITY
       //           -inf = -INFINITY
       //           nanf = nan = NAN
-      std::string floatFlag; // if !NULL, print flag in the output
-      std::string doubleFlag; // if !NULL, print flag in the output
+      std::string floatFlag; 
+      std::string doubleFlag;
       //convertResult()
       //  : c(0), i(0), intFlag(false), f(0.0f), d(0.0) {}
     } convRes;
-    static void convert(const std::string &literal);
-  private:
-    ScalarConverter(){};
-    ~ScalarConverter(){};
 };
 
 std::ostream& operator<<(std::ostream& os, const struct convertResult& result);
