@@ -22,13 +22,13 @@ class LiteralDetector{
     static bool isFloat(std::string str, ScalarConverter::convRes &result);
     static bool isDouble(std::string str, ScalarConverter::convRes &result);
   private:
-    LiteralDetector(){};
-    ~LiteralDetector(){};    
+    LiteralDetector();
+    LiteralDetector(const LiteralDetector & other);
+    LiteralDetector& operator=(const LiteralDetector &other);
+    ~LiteralDetector();    
 };
 
 //I have to do it, in case of NAN, INF
 void strToLow(std::string &str);
-
-
 
 #endif
