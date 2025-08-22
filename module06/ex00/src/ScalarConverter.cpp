@@ -6,6 +6,15 @@
   static_cast <dest_type> (source);
 
  */
+ScalarConverter::ScalarConverter() {}
+ScalarConverter::ScalarConverter(const ScalarConverter &other){
+  (void)other;
+}
+ScalarConverter & ScalarConverter::operator=(const ScalarConverter &other){
+  (void)other;
+  return *this;
+}
+ScalarConverter::~ScalarConverter() {}
 
 std::ostream& operator<<(std::ostream& os, const struct ScalarConverter::convertResult& result){
   // CHAR --> NON-PRINTABLE / IMPOSSIBLE / PRINTABLE /
@@ -28,22 +37,12 @@ std::ostream& operator<<(std::ostream& os, const struct ScalarConverter::convert
     else{
       os << "Impossible\n";
     }
-    
     // FLOAT --> CONDITION inff, nanf, etc 
     os << "float: ";
-    if (result.floatFlag != NULL)
-      os << result.floatFlag << os << "\n";
-    else
-      os << result.f << "f" << "\n";
+    os << result.f << "f" << "\n";
     
-
     // DOUBLE -->  CONDITION inf, nan, etc 
     os << "double: ";
-    if (result.doubleFlag != NULL)
-      os << result.doubleFlag << os << "\n";
-    else
-      os << result.f << "\n";
-    
     os << result.d << "\n";
     return os;
 }
@@ -91,7 +90,6 @@ void ScalarConverter::convert(const std::string &literal){
   else if (LiteralDetector::isFloat(literal)){
     
     //FLOAT TO INT
-    // check the size???
     if (result.f > (long)std::numeric_limits<int>::max() || result.f < (long)std::numeric_limits<int>::min()){
       result.intFlag = false;
       result.i = 0;
@@ -121,7 +119,6 @@ void ScalarConverter::convert(const std::string &literal){
   else if (LiteralDetector::isDouble(literal)){
     
     // DOUBLE TO INT
-    // check the size???
     if (result.d > (long)std::numeric_limits<int>::max() || result.d < (long)std::numeric_limits<int>::min()){
       result.intFlag = false;
       result.i = 0;
