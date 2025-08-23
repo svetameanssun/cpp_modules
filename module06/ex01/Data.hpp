@@ -2,7 +2,10 @@
 #define DATA_HPP
 
 typedef struct DataStructure{
-      uintptr_t intpntr;
+      std::string myFullName;
+      std::string myNickName;
+      int myAge;
+      std::string myDark secret;
     } Data;
 
 #endif
