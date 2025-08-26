@@ -5,7 +5,7 @@ typedef struct DataStructure{
       std::string myFullName;
       std::string myNickName;
       int myAge;
-      std::string myDark secret;
+      std::string myDarkest secret;
     } Data;
 
 #endif
