@@ -21,15 +21,53 @@ void strToLow(std::string &str){
   }
 }
 
+int charStatus(int myInt){
+
+      if (myInt >= 33 && myInt <= 126){
+       // normal
+        return 1;
+      }
+      else if((myInt >= 0 && myInt < 33) || myInt == 127)
+      {
+        // Non displayable
+        return 0;
+      } 
+      else{
+        return -1;
+      }
+}
+
+bool intStatus(float myFloat){
+      if (myFloat > (long)std::numeric_limits<int>::max() || myFloat < (long)std::numeric_limits<int>::min()){
+      return false;
+    }
+    else{
+      return true;
+    }
+}
+bool intStatus(double myDouble){
+  if (myDouble > (long)std::numeric_limits<int>::max() || myDouble < (long)std::numeric_limits<int>::min()){
+      return  false;
+    }
+    else{
+      return true;
+    }
+}
+
 // ----- IS CHAR -----
 bool LiteralDetector::isChar(std::string str,  ScalarConverter::convRes &result){
+  
   if (str.length() == 1 && !std::isdigit(str.at(0))){
     result.c = str[0];
+    result.charFlag = 1;
+    result.intFlag = true;
     return true;
   }
   if (str.length() == 3 && str.at(0) == '\''
       && str.at(2) == '\'' && !std::isdigit(str.at(1))){
     result.c = str[1];
+    result.charFlag = 1;
+    result.intFlag = true;
     return true;
   }
   return false;
@@ -40,6 +78,7 @@ bool LiteralDetector::isInt(std::string str, ScalarConverter::convRes &result){
     int index = 0;
     int strLen = str.length();
     long int myInt;
+
     if (str.at(index) == '-' || str.at(index) == '+'){
         index++;
     }
@@ -63,7 +102,6 @@ bool LiteralDetector::isInt(std::string str, ScalarConverter::convRes &result){
 bool LiteralDetector::isFloat(std::string str, ScalarConverter::convRes &result){
 
     int countDots = 0;
-    int dotPos = 0;
     int strLen = str.length();
     long double inputNbr;
     
@@ -78,31 +116,32 @@ bool LiteralDetector::isFloat(std::string str, ScalarConverter::convRes &result)
       result.specialFloat = true;
       return true;
     }
-    
     if (str.at(strLen - 1) != 'f' && str.at(strLen - 1) != 'F'){
         return (false);
     }
+    
     int i = 0;
     if (str.at(i) == '-'|| str.at(i) == '+'){
         i++;
     }
-
     for (; i < strLen - 1; ++i){
         if (str.at(i) == '.'){
             countDots++;
-            dotPos = i;
         }
         if (str.at(i) != '.' && !isdigit(str.at(i))){
-            return (false);
+          
+          return (false);
         }
     }
-
-    if (countDots != 1 || dotPos == 0){
+    if ((str.at(strLen - 1) == 'f' || str.at(strLen - 1) == 'F') && countDots == 0){
+        return (false);
+    }
+    if (countDots > 1 || str.at(0) == '.' || str.at(strLen -1) == '.'){
         return (false);
     }
     inputNbr = std::strtold(str.c_str(), NULL);
     if (inputNbr > std::numeric_limits<float>::max() || inputNbr < std::numeric_limits<float>::min()){
-        return (false);
+      return (false);
     }
      // STR TO FLOAT
     str.erase(str.length() - 1, 1);
@@ -113,11 +152,8 @@ bool LiteralDetector::isFloat(std::string str, ScalarConverter::convRes &result)
 // ----- IS DOUBLE -----
 bool LiteralDetector::isDouble (std::string str, ScalarConverter::convRes &result){
     int countDots = 0;
-    int dotPos = 0;
     int strLen = str.length();
-    long double inputNbr;
 
-    //result.doubleFlag = NULL;
     strToLow(str);
     int i = 0;
     
@@ -128,8 +164,8 @@ bool LiteralDetector::isDouble (std::string str, ScalarConverter::convRes &resul
         result.d = INFINITY;
       if (str == "-inf")
         result.d = -INFINITY;
-
-      result.specialDouble = true; 
+      result.specialDouble = true;
+      return true;
     }    
     if (str.at(i) == '-'|| str.at(i) == '+'){
         i++;
@@ -138,17 +174,12 @@ bool LiteralDetector::isDouble (std::string str, ScalarConverter::convRes &resul
     for (; i < strLen; ++i){
         if (str.at(i) == '.'){
             countDots++;
-            dotPos = i;
         }
         if (str.at(i) != '.' && !isdigit(str.at(i))){
-            return (false);
+          return (false);
         }
     }
-    if (countDots != 1 || dotPos == 0){
-        return (false);
-    }
-    inputNbr = std::strtold(str.c_str(), NULL);
-    if (inputNbr > std::numeric_limits<double>::max() || inputNbr < std::numeric_limits<double>::min()){
+    if (countDots > 1 || str.at(0) == '.'|| str.at(strLen -1) == '.'){
         return (false);
     }
     // STR TO DOUBLE

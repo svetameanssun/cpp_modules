@@ -15,12 +15,7 @@ class ScalarConverter{
 
       bool intFlag; // true if convertible to int, false is non-convertible to int
       int charFlag; // 1 = printable, 0  = non-printable, -1 = impossible
-      //CHANGE THE LOGIC!
-      //USE MACROS inff = INFINITY
-      //           inf  = INFINITY
-      //           -inff = -INFINITY
-      //           -inf = -INFINITY
-      //           nanf = nan = NAN
+      
       bool specialFloat; // true if input == nan, inf , -inf
       bool specialDouble; // true if unput == nan, inf , -inf
       //convertResult()

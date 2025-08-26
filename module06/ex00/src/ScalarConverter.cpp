@@ -1,5 +1,6 @@
 #include "../include/ScalarConverter.hpp"
 #include "../include/LiteralDetector.hpp"
+#include "../include/ExceptWrongInp.hpp"
 
 /*
   Syntax of static_cast
@@ -18,7 +19,7 @@ ScalarConverter::~ScalarConverter() {}
 
 std::ostream& operator<<(std::ostream& os, const struct ScalarConverter::convertResult& result){
   // CHAR --> NON-PRINTABLE / IMPOSSIBLE / PRINTABLE /
-  os << "char: ";
+    os << "char: ";
     if (result.charFlag == 0){
       os << "Non displayable\n";
     }
@@ -34,17 +35,20 @@ std::ostream& operator<<(std::ostream& os, const struct ScalarConverter::convert
     if (result.intFlag == true){
       os << result.i << "\n";
     }
-    else{
+    else {
       os << "Impossible\n";
     }
-    // FLOAT --> CONDITION inff, nanf, etc 
+    // FLOAT --> CONDITION inff, nanf, etc
     os << "float: ";
-    os << result.f << "f" << "\n";
+    os << std::fixed << std::setprecision(1) <<result.f;
+    os << "f";
+    os<< "\n";
     
-    // DOUBLE -->  CONDITION inf, nan, etc 
+    // DOUBLE -->  CONDITION
     os << "double: ";
-    os << result.d << "\n";
-    return os;
+    os<< std::fixed<< std::setprecision(1) <<result.d;
+    os<< "\n";
+    return (os);
 }
 
 void ScalarConverter::convert(const std::string &literal){
@@ -55,6 +59,8 @@ void ScalarConverter::convert(const std::string &literal){
     
     //CHAR TO INT
     result.i = static_cast<int>(result.c);
+    result.intFlag = true;
+    std::cout << "MY INT: " << result.i << "\n";
 
     // INT TO FLOAT
     result.f = static_cast<float>(result.i);
@@ -66,86 +72,70 @@ void ScalarConverter::convert(const std::string &literal){
   else if (LiteralDetector::isInt(literal, result)){
 
       // INT TO CHAR with conditions
-      if (result.i >= 33 && result.i <= 126){
-        result.c = static_cast<char>(result.i); // normal
-        result.charFlag = 1;
-      }
-      else if(result.i < 33 || result.i == 127)
-      {
-        result.c = static_cast<char>(result.i); // Non displayable
-        result.charFlag = 0;
+      result.charFlag = charStatus(result.i);
+      if (result.i >= 0 && result.i <= 127){
+        result.c = static_cast<char>(result.i);
       } 
       else{
-        result.c = 0;
-        result.charFlag = -1;
+        result.c = 0; 
       }
-      // INT TO FLOAT
-        result.f = static_cast<float>(result.i);
-
       // FLOAT TO DOUBLE
-        result.d = static_cast<double>(result.f);
+      result.d = static_cast<double>(result.i);
       std::cout << "It is INT!\n";
+
+      // INT TO FLOAT
+      
+      result.f = static_cast<float>(result.d);
+
     
   }
   else if (LiteralDetector::isFloat(literal, result)){
     
     //FLOAT TO INT
-    if (result.f > (long)std::numeric_limits<int>::max() || result.f < (long)std::numeric_limits<int>::min()){
+    result.intFlag = intStatus(result.f);
+    if (result.specialFloat == true)
       result.intFlag = false;
-      result.i = 0;
-    }
-    else{
-      result.intFlag = true;
-      result.i = static_cast<int>(result.f);
-    }
+    result.i = static_cast<int>(result.f);
 
     // FLOAT TO DOUBLE
     result.d = static_cast<double>(result.f);
 
     // INT TO CHAR
-      if (result.i >= 33 && result.i <= 126)
-        result.c = static_cast<char>(result.i); // normal
-      else if(result.i < 33 || result.i == 127)
-      {
-        result.c = static_cast<char>(result.i); // Non displayable
-        result.charFlag = 0;
+      result.charFlag = charStatus(result.i);
+      if (result.i >= 0 && result.i <= 127){
+        result.c = static_cast<char>(result.i);
       } 
       else{
-        result.c = 0;
-        result.charFlag = -1;
+        result.c = 0; 
       }
       std::cout << "It is Float!\n";
   }
   else if (LiteralDetector::isDouble(literal, result)){
     
     // DOUBLE TO INT
-    if (result.d > (long)std::numeric_limits<int>::max() || result.d < (long)std::numeric_limits<int>::min()){
+    result.intFlag = intStatus(result.d);
+    if (result.specialDouble == true)
       result.intFlag = false;
-      result.i = 0;
-    }
-    else{
-      result.intFlag = true;
-      result.i = static_cast<int>(result.d);
-    }
+    result.i = static_cast<int>(result.d);
+
 
     // DOUBLE TO FLOAT
     //check the size???
     result.f = static_cast<float>(result.d);
 
     // INT TO CHAR
-      if (result.i >= 33 && result.i <= 126)
-        result.c = static_cast<char>(result.i); // normal
-      else if(result.i < 33 || result.i == 127)
-      {
-        result.c = static_cast<char>(result.i); // Non displayable
-        result.charFlag = 0;
+      result.charFlag = charStatus(result.i);
+      if (result.i >= 0 && result.i <= 127){
+        result.c = static_cast<char>(result.i);
       } 
       else{
-        result.c = 0;
-        result.charFlag = -1;
+        result.c = 0; 
       }
-      std::cout << "It is DOuble!\n";
+      std::cout << "It is Double!\n";
     
+  }
+  else{
+    throw ExceptWrongInp();
   }
   //print result!!!
   std::cout << result;
