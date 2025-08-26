@@ -7,12 +7,7 @@
 class ScalarConverter{
   public:
     static void convert(const std::string &literal);
-  private:
-    ScalarConverter();
-    ScalarConverter(const ScalarConverter &other);
-    ScalarConverter &operator=(const ScalarConverter&other);
-    ~ScalarConverter();
-  typedef struct convertResult{
+    typedef struct convertResult{
       char c;
       int i;
       float f;
@@ -27,10 +22,16 @@ class ScalarConverter{
       //           -inf = -INFINITY
       //           nanf = nan = NAN
       bool specialFloat; // true if input == nan, inf , -inf
-      bool speialDouble; // true if unput == nan, inf , -inf
+      bool specialDouble; // true if unput == nan, inf , -inf
       //convertResult()
       //  : c(0), i(0), intFlag(false), f(0.0f), d(0.0) {}
     } convRes;
+  private:
+    ScalarConverter();
+    ScalarConverter(const ScalarConverter &other);
+    ScalarConverter &operator=(const ScalarConverter&other);
+    ~ScalarConverter();
+  
 };
 
 std::ostream& operator<<(std::ostream& os, const struct convertResult& result);

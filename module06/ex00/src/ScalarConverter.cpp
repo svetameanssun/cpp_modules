@@ -87,7 +87,7 @@ void ScalarConverter::convert(const std::string &literal){
       std::cout << "It is INT!\n";
     
   }
-  else if (LiteralDetector::isFloat(literal)){
+  else if (LiteralDetector::isFloat(literal, result)){
     
     //FLOAT TO INT
     if (result.f > (long)std::numeric_limits<int>::max() || result.f < (long)std::numeric_limits<int>::min()){
@@ -116,7 +116,7 @@ void ScalarConverter::convert(const std::string &literal){
       }
       std::cout << "It is Float!\n";
   }
-  else if (LiteralDetector::isDouble(literal)){
+  else if (LiteralDetector::isDouble(literal, result)){
     
     // DOUBLE TO INT
     if (result.d > (long)std::numeric_limits<int>::max() || result.d < (long)std::numeric_limits<int>::min()){
