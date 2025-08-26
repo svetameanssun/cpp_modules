@@ -30,5 +30,8 @@ class LiteralDetector{
 
 //I have to do it, in case of NAN, INF
 void strToLow(std::string &str);
+int charStatus(int myInt);
+bool intStatus(float myFloat);
+bool intStatus(double myDouble);
 
 #endif
