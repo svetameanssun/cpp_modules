@@ -1,25 +1,19 @@
-TARGET = converter
-CXXFLAGS = -Wall -Werror -Wextra -std=c++98 -MMD
+TARGET = serializer
 CXX = g++
+CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 RM = rm -f
 
-#SRC = $(shell find . -name "*.cpp") I might have used this, but I think it is against the norm
-SRCDIR = src/
-OBJDIR = obj/
-SRCFILES = Serializer.cpp
-	main.cpp
+SRC = Serializer.cpp \
+      main.cpp
 
-SRC = $(addprefix $(SRCDIR), $(SRCFILES))
-OBJ = $(addprefix $(OBJDIR), $(SRCFILES:.cpp=.o))
-DEP = $(OBJ:.o=.d)
+OBJ = $(SRC:.cpp=.o)
 
 all: $(TARGET)
 
 $(TARGET): $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(TARGET)
 
-$(OBJDIR)%.o: $(SRCDIR)%.cpp
-	@mkdir -p $(OBJDIR)
+%.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 -include $(DEP)
@@ -28,7 +22,8 @@ clean:
 	$(RM) $(OBJ)
 
 fclean: clean
-	$(RM) $(TARGET) $(DEP)
+	$(RM) $(TARGET)
+
 re: fclean all
 
 .PHONY: all clean fclean re
