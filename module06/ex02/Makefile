@@ -1,10 +1,10 @@
-TARGET = serializer
+TARGET = realtype
 CXX = g++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 RM = rm -f
 
-SRC = Serializer.cpp \
-      main.cpp
+SRC = Base.cpp \
+		main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

@@ -1,10 +1,9 @@
-TARGET = serializer
-CXX = g++
+TARGET = Array
+CXX = c++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 RM = rm -f
 
-SRC = Serializer.cpp \
-      main.cpp
+SRC = main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
