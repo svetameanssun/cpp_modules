@@ -1,17 +1,20 @@
 #include "Array.hpp"
 
 template <typename T>
-Array<T>::Array() : _array(0), _arraySize(0) {}
-
-
+Array<T>::Array()  {
+	_arraySize = 0;
+	_array = 0;
+}
 
 template <typename T>
-Array<T>::Array(unsigned int n) :_arraySize(n){
+Array<T>::Array(unsigned int n) {
+	_arraySize = n;
 	_array = new T[n]();
+
 }  // Creates an array of n elements initialized by default.
 
 template <typename T>
-Array<T>::Array(const Array &other){
+Array<T>::Array(const Array &other)  {
 	_arraySize = other._arraySize;
 	_array = new T[_arraySize]();
 	for (size_t i = 0;  i < _arraySize; ++i){
@@ -42,6 +45,7 @@ T &Array<T>::operator[](unsigned int index){
 	if (index >= _arraySize){
 		throw std::out_of_range("[ERROR] Index out of range");
 	}
+
 	return (_array[index]);
 }
 
