@@ -6,7 +6,7 @@
 /*   By: stitovsk <stitovsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 18:40:22 by stitovsk          #+#    #+#             */
-/*   Updated: 2026/02/13 20:13:05 by stitovsk         ###   ########.fr       */
+/*   Updated: 2026/02/13 20:43:45 by stitovsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,42 +45,21 @@ void Span::fillInSet(std::set <int>::iterator begin, std::set <int>::iterator en
 	
 }
 
-/*void Span::addRandNumbers(unsigned int amount) {				
-	srand(time(NULL));									
-	try {												
-		for (size_t i = 0; i < amount; i++)			
-			this->addNumber(rand());					
-	} 	catch (std::exception &e) {						
-		std::cerr << e.what() << std::endl;
-	}	
-}*/
-
-
-
 
 int Span::shortestSpan(){
 
-	if ()
-		checkElementNum(_set.size());
-		return (*_set.lower_bound(*_set.begin()) - *_set.begin());
-
-	catch(NotEnoughElementsException &e){
-		std::cout << "Exception caught: " << e.what()
-		<< " Set size = " << e.getValue() << std::endl;
+	if (_set.empty() || _set.size() == 1){
+		throw Span::NotEnoughElementsException();
 	}
-	
+		
+	return (*_set.lower_bound(*_set.begin()) - *_set.begin());
 }
 
 int Span::longestSpan(){
 
-	try {
-		checkElementNum(_set.size());
+	if (_set.empty() || _set.size() == 1){
+		throw Span::NotEnoughElementsException();
+	}
 		return (*this->_set.end() - *this->_set.begin());
-	}
-	catch(NotEnoughElemsException &e){
-		std::cout << "Exception caught: " << e.what()
-		<< " Set size = " << e.getValue() << std::endl;
-	}
-	
 }
 
