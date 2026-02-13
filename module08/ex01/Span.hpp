@@ -5,13 +5,13 @@
 #include <string>
 #include <algorithm>
 #include <set>
-//#include <>
+#include <exception>
+
 
 
 class Span{
 	public:
-		Span(): N(10){};
-		Span(unsigned int number):N(number){};
+		Span(unsigned int number);
 		Span(const Span &other);
 		Span &operator=(const Span &other);
 		~Span();
@@ -19,15 +19,24 @@ class Span{
 		void addNumber(int number);
 		int shortestSpan();
 		int longestSpan();
-		void fillInArray();
+		void fillInArray(std::set <int>::iterator begin, std::set <int>::iterator end);
+
+		class NotEnoughElementsException : public std::exception{
+			public:
+				const char *what() const throw();
+		};
+
+		class OutOfRangeException :public std::exception{
+			const char * what() const throw();
+		};
 	
 
 	private:
-		unsigned int N;
-		std::set<int> set;
-
-		
+		unsigned int N;// s[0...N-1]
+		std::set<int> _set;
+		Span();	
 };
+
 
 
 
