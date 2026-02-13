@@ -19,7 +19,8 @@ class Span{
 		void addNumber(int number);
 		int shortestSpan();
 		int longestSpan();
-		void fillInArray(std::set <int>::iterator begin, std::set <int>::iterator end);
+		void fillInSet(std::set <int>::iterator begin, std::set <int>::iterator end);
+		//void addRandNumbers(unsigned int amount);
 
 		class NotEnoughElementsException : public std::exception{
 			public:
