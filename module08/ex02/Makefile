@@ -1,4 +1,4 @@
-TARGET = array
+TARGET = easyfind
 CXX = c++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 RM = rm -f
