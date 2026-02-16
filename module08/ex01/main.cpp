@@ -3,7 +3,7 @@
 // My test function to test the Span with a big range of numbers
 
 int	main() {
-	try {
+	try {/*
 	Span sp = Span(10000);												// Create an instance of Span with a max size of 10000
 
 	std::set<int> numbers;											// Create a vector of numbers
@@ -13,19 +13,18 @@ int	main() {
 	sp.fillInSet(numbers.begin(), numbers.end());						// Add the range of numbers to the list
 	std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;	// Print the shortest span
 	std::cout << "Longest span: " << sp.longestSpan() << std::endl;		// Print the longest span
+	*/
+	Span sp = Span(5);
+	sp.addNumber(6);
+	sp.addNumber(3);
+	sp.addNumber(17);
+	sp.addNumber(9);
+	sp.addNumber(11);
+	std::cout << sp.shortestSpan() << std::endl;
+	std::cout << sp.longestSpan() << std::endl;
 	}
 	catch(std::exception &e){
 		std::cout << e.what() << std::endl;
 	}
 	return 0;
 }
-
-/*void Span::addRandNumbers(unsigned int amount) {				
-	srand(time(NULL));									
-	try {												
-		for (size_t i = 0; i < amount; i++)			
-			this->addNumber(rand());					
-	} 	catch (std::exception &e) {						
-		std::cerr << e.what() << std::endl;
-	}	
-}*/

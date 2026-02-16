@@ -8,7 +8,7 @@
 #include <exception>
 
 
-
+//std::set provides bidirectional iterators, NOT random-acceess iterators, 
 class Span{
 	public:
 		Span(unsigned int number);

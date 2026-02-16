@@ -6,7 +6,7 @@
 /*   By: stitovsk <stitovsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 18:40:22 by stitovsk          #+#    #+#             */
-/*   Updated: 2026/02/13 20:43:45 by stitovsk         ###   ########.fr       */
+/*   Updated: 2026/02/16 15:15:55 by stitovsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void Span::fillInSet(std::set <int>::iterator begin, std::set <int>::iterator en
 		throw Span::OutOfRangeException();
 	}
 	this->_set.insert(begin, end);
-	
 }
 
 
@@ -51,8 +50,18 @@ int Span::shortestSpan(){
 	if (_set.empty() || _set.size() == 1){
 		throw Span::NotEnoughElementsException();
 	}
-		
-	return (*_set.lower_bound(*_set.begin()) - *_set.begin());
+	std::set<int>::iterator it = _set.begin();
+	std::set<int>::iterator next = it;
+	++next;
+	int minSpan = *next - *it;
+
+	for (; next != _set.end(); ++it, ++next) {
+    	int diff = *next - *it;
+		if (diff < minSpan){
+			minSpan = diff;
+		}
+	}
+	return (minSpan);
 }
 
 int Span::longestSpan(){
@@ -60,6 +69,18 @@ int Span::longestSpan(){
 	if (_set.empty() || _set.size() == 1){
 		throw Span::NotEnoughElementsException();
 	}
-		return (*this->_set.end() - *this->_set.begin());
+	std::set <int>::iterator lastElem = _set.end();
+	--lastElem;
+	return (*lastElem - *this->_set.begin());
 }
+
+const char *Span::NotEnoughElementsException::what() const throw() {	// Exception for not enough numbers
+	return "Not enough numbers in the list";			// Return the error message
+}
+
+const char *Span::OutOfRangeException::what() const throw() {	// Exception for max size reached
+	return "Max size reached";							// Return the error message
+}
+	
+
 
