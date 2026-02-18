@@ -1,9 +1,9 @@
-TARGET = easyfind
+TARGET = mutant
 CXX = c++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 RM = rm -f
 
-SRC = main.cpp
+SRC = main.cpp 
 
 OBJ = $(SRC:.cpp=.o)
 
