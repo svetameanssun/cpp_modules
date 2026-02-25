@@ -24,25 +24,17 @@ void BitcoinExchange::processInputFile(const std::string &txtFile){
 
 }
 
- ParserResultPrivmsg::stringToVec(std::string str, char delim) {
-    std::vector<std::string> result;
-    std::stringstream ss(str);
-    std::string item;
-
-    while(getline(ss, item, delim)) {
-        result.push_back(item);
-    }
-    return result;
-}
 
 
 void BitcoinExchange::csvToMap(const std::string &csvFile){
 	char delim = ',';
-	std::string date;
-	std::string rate;
 	std::string line;
-	
-	if (csvFile.find(".csv") == std::sting::npos){
+	std::string item;
+	std::string after;
+	size_t pos;
+	float rate;
+
+	if (csvFile.find(".csv") == std::string::npos){
 		//temporal solution, later will be replaced with exception
 		std::cerr << "Error: wrong CSV file name format\n";
 		return;
@@ -51,14 +43,21 @@ void BitcoinExchange::csvToMap(const std::string &csvFile){
 		//temporal solution, later will be replaced with exception
 		std::cerr << "Error: wrong CSV file name format\n";
 	}
-	std::ifstream csvFileRead(csvFile); //read from file, because it we read from file, and this way get an input to this stream
-	if (!csvFileRead.is_open()){
+	std::ifstream file(csvFile); //read from file, because it we read from file, and this way get an input to this stream
+	if (!file.is_open()){
 		//temporal solution, later will be replaced with exception
 		std::cerr << "Error: could not open CSV file\n";
 	}
-
-
-
-	csvFileRead.close();
+	while(std::getline(file,line)){
+		std::stringstream ss(line);
+		while(getline(ss, item, delim)){
+			pos = line.find(',');
+			after  = line.substr(pos + 1);
+			std::stringstream floatss(after);
+			floatss >> rate;
+			this->ratesMap[item] = rate;
+		}
+	}
+	file.close();
 
 }
