@@ -18,5 +18,5 @@ class BitcoinExchange{
 		
 	private:
 		BitcoinExchange();
-		std::map<struct tm datetime, float> ratesMap; //stores data.csv
+		std::map<struct tm, float> ratesMap; //stores data.csv
 };
