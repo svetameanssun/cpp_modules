@@ -47,7 +47,6 @@ void BitcoinExchange::csvToMap(const std::string &csvFile)
 	std::string line;
 	std::string date;
 	std::string rateStr;
-	struct tm datetime;
 	float rate;
 
 	// skip header
@@ -65,14 +64,7 @@ void BitcoinExchange::csvToMap(const std::string &csvFile)
 
 		std::stringstream rateStream(rateStr);
 		rateStream >> rate;
-
-		datetime.tm_year = 2023 - atoi(date.substr(4));
-		datetime.tm_mon = atoi(date.substr(5, 2)) - 1; // Number of months since January
-  		datetime.tm_mday =  atoi(date.substr(8, 2));
-		datetime.tm_hour = 0; datetime.tm_min = 0; datetime.tm_sec = 0;
-  		datetime.tm_isdst = -1;
-  		mktime(&datetime);
-		this->ratesMap[datetime] = rate;
+		this->ratesMap[date] = rate;
 	}
 
 	file.close();
