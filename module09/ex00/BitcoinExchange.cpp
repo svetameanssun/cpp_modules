@@ -1,4 +1,7 @@
 #include "BitcoinExchange.hpp"
+//.csv data example:
+// 2010-01-27,0
+// 2015-05-11,239.11
 
 BitcoinExchange::BitcoinExchange(std::string &csvFile){
 
@@ -26,38 +29,51 @@ void BitcoinExchange::processInputFile(const std::string &txtFile){
 
 
 
-void BitcoinExchange::csvToMap(const std::string &csvFile){
-	char delim = ',';
-	std::string line;
-	std::string item;
-	std::string after;
-	size_t pos;
-	float rate;
-
-	if (csvFile.find(".csv") == std::string::npos){
-		//temporal solution, later will be replaced with exception
+void BitcoinExchange::csvToMap(const std::string &csvFile)
+{
+	if (csvFile.length() < 4 || csvFile.substr(csvFile.length() - 4) != ".csv")
+	{
 		std::cerr << "Error: wrong CSV file name format\n";
 		return;
 	}
-	if (csvFile.find(".csv") != csvFile.length() - 4){
-		//temporal solution, later will be replaced with exception
-		std::cerr << "Error: wrong CSV file name format\n";
-	}
-	std::ifstream file(csvFile); //read from file, because it we read from file, and this way get an input to this stream
-	if (!file.is_open()){
-		//temporal solution, later will be replaced with exception
-		std::cerr << "Error: could not open CSV file\n";
-	}
-	while(std::getline(file,line)){
-		std::stringstream ss(line);
-		while(getline(ss, item, delim)){
-			pos = line.find(',');
-			after  = line.substr(pos + 1);
-			std::stringstream floatss(after);
-			floatss >> rate;
-			this->ratesMap[item] = rate;
-		}
-	}
-	file.close();
 
+	std::ifstream file(csvFile.c_str());
+	if (!file.is_open())
+	{
+		std::cerr << "Error: could not open CSV file\n";
+		return;
+	}
+
+	std::string line;
+	std::string date;
+	std::string rateStr;
+	struct tm datetime;
+	float rate;
+
+	// skip header
+	std::getline(file, line);
+
+	while (std::getline(file, line))
+	{
+		std::stringstream ss(line);
+
+		if (!std::getline(ss, date, ','))
+			continue;
+
+		if (!std::getline(ss, rateStr))
+			continue;
+
+		std::stringstream rateStream(rateStr);
+		rateStream >> rate;
+
+		datetime.tm_year = 2023 - atoi(date.substr(4));
+		datetime.tm_mon = atoi(date.substr(5, 2)) - 1; // Number of months since January
+  		datetime.tm_mday =  atoi(date.substr(8, 2));
+		datetime.tm_hour = 0; datetime.tm_min = 0; datetime.tm_sec = 0;
+  		datetime.tm_isdst = -1;
+  		mktime(&datetime);
+		this->ratesMap[datetime] = rate;
+	}
+
+	file.close();
 }
