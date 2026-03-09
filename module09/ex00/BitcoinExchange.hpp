@@ -4,6 +4,7 @@
 #include <map>
 #include <sstream>
 #include <string>
+#include <ctime>
 
 class BitcoinExchange{
 	public:
@@ -17,5 +18,5 @@ class BitcoinExchange{
 		
 	private:
 		BitcoinExchange();
-		std::map<std::string, float> ratesMap; //stores data.csv
+		std::map<struct tm datetime, float> ratesMap; //stores data.csv
 };
