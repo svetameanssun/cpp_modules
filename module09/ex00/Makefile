@@ -1,9 +1,10 @@
-TARGET = mutant
+TARGET = btc
 CXX = c++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 RM = rm -f
 
-SRC = main.cpp 
+SRC = main.cpp \
+	BitcoinExchange.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
