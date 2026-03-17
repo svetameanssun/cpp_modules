@@ -22,11 +22,72 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange&other){
 BitcoinExchange::~BitcoinExchange(){
 
 }
-		
-void BitcoinExchange::processInputFile(const std::string &txtFile){
 
+/*
+
+
+
+2012-01-11 | 1				  2012-01-11 => 1 = 7.1
+
+2012-01-11 | -1               Error: not a positive number.
+2001-42-42                    Error: bad input => 2001-42-42
+2001-10-10 / 1				  Error: bad input => 2001-10-10 / 1
+2012-01-11 | 2147483648 	  Error: too large a number.
+01-11-2012                    Error: wrong date format.
+2012/01/11 | 1				  Error: wrong date format.
+
+
+*/
+void BitcoinExchange::processInputFile(const std::string &txtFile){
+	std::istream file(txtFile);
 }
 
+
+bool BitcoinExchange::isValidLineFormat(const std::string &line){
+
+	double number;
+
+	if (line.length() < 14){
+		std::cout << "Error: wrong date format.\n";
+		return (false);
+	}
+	if (line.at(4) != '-' || line.at(7) != '-'){
+		std::cout << "Error: wrong date format.\n";
+		return (false);
+	}
+	if (line.at(11) != '|'){
+		std::cout << "Error: bad input => " << line;
+		return (false);
+	}
+	size_t pos = line.find(" | ");
+	if (pos == std::string::npos)
+    {
+        std::cout << "Error: bad input => " << line << std::endl;
+        return (false);
+    }
+	std::string numberStr = line.substr(pos + 3);
+	std::stringstream ss(numberStr);
+	ss >> number;
+	if (ss.fail()){
+		std::cout << "Error: bad input => " << line;
+		return (false);
+	}
+	std::string remainder;
+    if (ss >> remainder) {
+        std::cout << "Error: bad input => " << numberStr << std::endl;
+        return false;
+    }
+	if (number < 0){
+		std::cout << "Error: not a positive number." << std::endl;
+		return (false);
+	}
+	if (number > 1000)
+	{
+    	std::cout << "Error: too large a number." << std::endl;
+		return (false);
+	}
+	return (true);
+}
 
 
 void BitcoinExchange::csvToMap(const std::string &csvFile)
@@ -68,4 +129,8 @@ void BitcoinExchange::csvToMap(const std::string &csvFile)
 	}
 
 	file.close();
+}
+std::ostream &os operator<<(std::ostream &out,BitcoinExchange &btc){
+	out << "=> " <<  = 7.1
+	return (out);
 }
