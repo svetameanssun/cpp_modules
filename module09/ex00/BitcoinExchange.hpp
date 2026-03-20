@@ -5,6 +5,7 @@
 #include <sstream>
 #include <string>
 #include <ctime>
+#include <cfloat>
 
 class BitcoinExchange{
 	public:
@@ -15,7 +16,8 @@ class BitcoinExchange{
 		
 		void processInputFile(const std::string &txtFile);
 		void csvToMap(const std::string &csvFile);
-		bool isValidLineFormat(const std::string &line); 
+		bool isValidLineFormat(const std::string &line);
+
 		
 	private:
 		BitcoinExchange();

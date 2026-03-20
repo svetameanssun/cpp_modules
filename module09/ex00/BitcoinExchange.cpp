@@ -42,6 +42,9 @@ void BitcoinExchange::processInputFile(const std::string &txtFile){
 	std::istream file(txtFile);
 }
 
+float findRateByDate(std::string date){
+	ratesMap.
+}
 
 bool BitcoinExchange::isValidLineFormat(const std::string &line){
 
@@ -77,11 +80,11 @@ bool BitcoinExchange::isValidLineFormat(const std::string &line){
         std::cout << "Error: bad input => " << numberStr << std::endl;
         return false;
     }
-	if (number < 0){
+	if (number < 0.0){
 		std::cout << "Error: not a positive number." << std::endl;
 		return (false);
 	}
-	if (number > 1000)
+	if (number > 1000.0)
 	{
     	std::cout << "Error: too large a number." << std::endl;
 		return (false);
@@ -127,7 +130,6 @@ void BitcoinExchange::csvToMap(const std::string &csvFile)
 		rateStream >> rate;
 		this->ratesMap[date] = rate;
 	}
-
 	file.close();
 }
 std::ostream &os operator<<(std::ostream &out,BitcoinExchange &btc){
