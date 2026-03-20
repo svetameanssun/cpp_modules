@@ -9,19 +9,23 @@
 
 class BitcoinExchange{
 	public:
-		BitcoinExchange(std::string &csvFile);
+		BitcoinExchange(const char *csvFile);
 		BitcoinExchange(const BitcoinExchange &other);
 		BitcoinExchange &operator=(const BitcoinExchange&other);
 		~BitcoinExchange();
-		
-		void processInputFile(const std::string &txtFile);
-		void csvToMap(const std::string &csvFile);
-		bool isValidLineFormat(const std::string &line);
 
+		void run(const char *str);
+		
 		
 	private:
 		BitcoinExchange();
-		std::map<std::string, float> ratesMap; //stores data.csv
+		std::map<std::string, float> valuesMap; //stores data.csv
+		void processInputFile(const char *txtFile);
+		void csvToMap(const char *csvFile);
+		bool isValidLineFormat(const std::string &line);
+		float findValueByDate(const std::string &date);
+		void calculateAndPrint(float value, float rate, const std::string &date);
+		bool checkDate(const std::string &date);
+		bool isLeapYear(int year);
 };
 
-std::ostream &os operator<<(std::ostream &out,BitcoinExchange &btc);
