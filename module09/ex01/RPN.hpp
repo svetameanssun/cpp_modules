@@ -12,6 +12,8 @@ class RPN {
     RPN(const RPN &other);
     RPN & operator=(const RPN &other);
     ~RPN();
+
+    void run(char **str);
   private:
     int result;
     std::string inputStr; 
