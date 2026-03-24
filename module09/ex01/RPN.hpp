@@ -14,7 +14,7 @@ class RPN {
     ~RPN();
   private:
     int result;
-    const std::string& inputStr; 
+    std::string inputStr; 
     std::stack<int> numbersStack;
 };
 
