@@ -2,8 +2,11 @@
 #define RPN_HPP
 
 #include <iostream>
+#include <sstream> 
 #include <string>
 #include <stack>
+#include <cstring>
+#include <bits/stdc++.h>
 
 class RPN {
   public:
