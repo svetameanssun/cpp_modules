@@ -23,3 +23,31 @@ RPN & RPN::operator=(const RPN &other) {
 }
 
 RPN::~RPN() {}
+
+void RPN::run(char **argv){
+    RCN rcnCalculator;
+    if (argv.size() > 1){
+        for (int i = 0; i < argv.size(); i++){
+            std::string aux = argv[i]; 
+            rcnCalculator.inputStr = rcnCalculator.inputStr + " " + aux;
+        }
+    }
+    else if (argv.size == 1){
+         rcnCalculator.inputStr = aux;
+    }
+    else{
+        std::cerr << "Error: not enough args"; 
+        return;
+    }
+    int i = 0;
+    while (i < rcnCalculator.inputStr.length()){
+        if (rcnCalculator.inputStr.at(i) == ' '){
+            continue;
+        }
+        strd::stringstream ss(rcnCalculator.inputStr);
+        int num
+        if (isdigit()
+        i++;
+    }
+    
+}
