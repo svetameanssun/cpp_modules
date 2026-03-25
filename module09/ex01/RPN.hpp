@@ -17,6 +17,7 @@ class RPN {
     ~RPN();
 
     void run(char **str);
+    bool isOperator(char c);
   private:
     int result;
     std::string inputStr; 
