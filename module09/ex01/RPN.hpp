@@ -16,7 +16,7 @@ class RPN {
     RPN & operator=(const RPN &other);
     ~RPN();
 
-    void run(char **str);
+    void run(int argc, char **str);
     bool isOperator(char c);
   private:
     int result;
