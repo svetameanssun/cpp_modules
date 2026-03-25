@@ -28,22 +28,21 @@ bool RPN::isOperator(char c){
     return (c == '+' || c == '-' || c == '*' || c == '/');
 }
 
-void RPN::run(char **argv){
+void RPN::run(int argc, char **argv){
     RCN rpnCalculator;
-    if (argv.size() > 1){
-        for (int i = 0; i < argv.size(); i++){
+    if (argc > 1){
+        for (int i = 0; i < argc; i++){
             std::string aux = argv[i]; 
             rpnCalculator.inputStr = rpnCalculator.inputStr + " " + aux;
         }
     }
-    else if (argv.size == 1){
+    else if (argc == 1){
          rpnCalculator.inputStr = aux;
     }
     else{
         std::cerr << "Error: not enough args" << std::endl; 
         return;
     }
-   
     for (int i = 0; i < rcnCalculator.inputStr.length(); i++){
         if (i == rpnCalculator.inputStr.length() - 1){
             if( numbersStack.size() == 1){
@@ -77,6 +76,10 @@ void RPN::run(char **argv){
             this->result = numbersStack.top();
             numbersStack.pop();
             if (c == '/'){
+                if (this->result == 0){
+                    std::cerr << "Error: cannot devide 0" << std::endl; 
+                    return;
+                }
                 this->result = numbersStack.top() / this->result;
             }
             if (c == '-'){
