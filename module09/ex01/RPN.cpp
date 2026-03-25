@@ -29,9 +29,8 @@ bool RPN::isOperator(char c){
 }
 
 void RPN::run(int argc, char **argv){
-    RCN rpnCalculator;
     if (argc > 1){
-        for (int i = 0; i < argc; i++){
+        for (int i = 1; i < argc; i++){
             std::string aux = argv[i]; 
             rpnCalculator.inputStr = rpnCalculator.inputStr + " " + aux;
         }
@@ -43,7 +42,7 @@ void RPN::run(int argc, char **argv){
         std::cerr << "Error: not enough args" << std::endl; 
         return;
     }
-    for (int i = 0; i < rcnCalculator.inputStr.length(); i++){
+    for (int i = 0; i < rpnCalculator.inputStr.length(); i++){
         if (i == rpnCalculator.inputStr.length() - 1){
             if( numbersStack.size() == 1){
                 std::cout << "The calculation result is " << this->result << std::endl
@@ -73,23 +72,25 @@ void RPN::run(int argc, char **argv){
                 return;
             }
         
-            this->result = numbersStack.top();
+            int rightOp = numbersStack.top();
             numbersStack.pop();
+            int leftOp = numbersStack.top();
+            char c = rpnCalculator.inputStr.at(i);
             if (c == '/'){
                 if (this->result == 0){
                     std::cerr << "Error: cannot devide 0" << std::endl; 
                     return;
                 }
-                this->result = numbersStack.top() / this->result;
+                this->result = leftOp / rightOp;
             }
             if (c == '-'){
-                this->result = numbersStack.top() - this->result;
+                this->result = leftOp - rightOp;
             }
             if (c == '+'){
-                this->result = numbersStack.top() + this->result;
+                this->result = leftOp + rightOp;
             }
             if (c == '*'){
-                this->result = numbersStack.top() * this->result;
+                this->result = leftOp * rightOp;
             }
             numbersStack.pop();
             numbersStack.push(this->result);
