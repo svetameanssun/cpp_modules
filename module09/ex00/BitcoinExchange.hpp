@@ -1,3 +1,5 @@
+#ifndef BITCOINEXCHANGE_HPP
+#define BITCOINEXCHANGE_HPP
 #include <iostream>
 #include <fstream>
 #include <algorithm>
@@ -6,6 +8,12 @@
 #include <string>
 #include <ctime>
 #include <cfloat>
+#include <stdexcept>
+
+class BitcoinException : public std::runtime_error{
+	public:
+		BitcoinException(const std::string &message) : std::runtime_error(message){}
+};
 
 class BitcoinExchange{
 	public:
@@ -22,10 +30,14 @@ class BitcoinExchange{
 		std::map<std::string, float> valuesMap; //stores data.csv
 		void processInputFile(const char *txtFile);
 		void csvToMap(const char *csvFile);
-		bool isValidLineFormat(const std::string &line);
+		void isValidLineFormat(const std::string &line);// it used to return bool
 		float findValueByDate(const std::string &date);
 		void calculateAndPrint(float value, float rate, const std::string &date);
-		bool checkDate(const std::string &date);
+		void checkDate(const std::string &date); // it used to return bool
 		bool isLeapYear(int year);
 };
+
+
+
+#endif
 
