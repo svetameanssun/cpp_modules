@@ -8,12 +8,6 @@
 #include <string>
 #include <ctime>
 #include <cfloat>
-#include <stdexcept>
-
-class BitcoinException : public std::runtime_error{
-	public:
-		BitcoinException(const std::string &message) : std::runtime_error(message){}
-};
 
 class BitcoinExchange{
 	public:
@@ -24,20 +18,17 @@ class BitcoinExchange{
 
 		void run(const char *str);
 		
-		
 	private:
 		BitcoinExchange();
 		std::map<std::string, float> valuesMap; //stores data.csv
 		void processInputFile(const char *txtFile);
 		void csvToMap(const char *csvFile);
-		void isValidLineFormat(const std::string &line);// it used to return bool
+		bool isValidLineFormat(const std::string &line);
 		float findValueByDate(const std::string &date);
 		void calculateAndPrint(float value, float rate, const std::string &date);
-		void checkDate(const std::string &date); // it used to return bool
+		bool checkDate(const std::string &date);
 		bool isLeapYear(int year);
 };
-
-
 
 #endif
 
