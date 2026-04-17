@@ -32,7 +32,8 @@
     int lowLimit = jcblSec[1];
     int jcslIndex = 3;
     int index = 1;
-    while(highLimit >= lowLimit && jcblSec[jcslIndex]){
+    //I have to refactor this, it is unclear and propably erroneo
+    /*while(highLimit >= lowLimit && jcblSec[jcslIndex]){
       if (highLimit == lowLimit){
         {
           if (!jcblSec[jcslIndex + 1]){
@@ -49,7 +50,7 @@
         resArr[index] = highLimit;
         highlimit--;
     }
-    }
+    }*/
     return (resArr);
 }
 
