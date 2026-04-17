@@ -1,60 +1,167 @@
 // Jacobsthal Sequence
 //J(n) = J(n-1) + 2 * J(n-2)
 //Jacobsthal sequence is limits, not indexes
-  int *jacobsthalSeq(int pendSize){
-    std::vect<int> jcblSec;
-    if (pendSize == 0){
-       return NULL; 
+#include <iostream>
+#include <vector>
+
+std::vector<int> jacobsthalSeq(int pendSize){
+    std::vector<int> jcbSec;
+    std::vector<int> resArr(pendSize); 
+
+    if (pendSize == 0 || pendSize == 1){
+        return (resArr); 
     }
-    jcblSec[0] = 0; 
-    if (pendSize == 1){
-      return ;
-    }
-    jcbsthlSec[1] = 1; 
+
+    jcbSec.push_back(0);
+    jcbSec.push_back(1);
+
+    resArr[0] = 1;
+
     if (pendSize == 2){
-      return;
+        return (resArr);
     }
-    int i = 2;
-    while(i < pendSize){
-      int res = jcblSec[i - 1] + 2 * jcblSec[i - 2];
+
+    int a = 2;
+    while(a <= pendSize){
+        int res = jcbSec[a - 1] + 2 * jcbSec[a - 2];
+        if (res <= pendSize){
+            jcbSec.push_back(res);
+        }
+        else{
+            break;
+        }
+        a++;
+    }
+
+    jcbSec.erase(jcbSec.begin(), jcbSec.begin() + 2);
+
+    std::cout << "Jacobsthal sequence:\n";
+    for (size_t i = 0; i < jcbSec.size(); ++i) {
+        std::cout << "[" << jcbSec[i] << "], ";
+    }
+    std::cout << std::endl;
+
+    int i = 0;
+    int j = 1;
+    int high;
+    int low;
+
+    // --- основные блоки ---
+    while(i < (int)jcbSec.size() - 1){
+        high = jcbSec[i + 1];
+        low = jcbSec[i];
+
+        while(high > low){
+            resArr[j] = high;
+            high--;
+            j++;
+        }
+        i++;
+    }
+
+    // --- ВАЖНО: последний блок (остаток) ---
+    if (!jcbSec.empty()){
+        high = pendSize - 1;
+        low = jcbSec.back();
+
+        while(high > low){
+            resArr[j] = high;
+            high--;
+            j++;
+        }
+    }
+
+    return (resArr);
+}
+
+int main(){
+    std::vector<int> indexes = jacobsthalSeq(20);
+
+    std::cout << "index sequence:\n";
+    //Ноль впереди подразумевается
+    for (size_t i = 0; i < indexes.size() - 1; ++i) {
+        std::cout << "[" << indexes[i] << "], ";
+    }
+    std::cout << std::endl;
+}
+/*#include <iostream>
+#include <vector>
+
+  std::vector<int> jacobsthalSeq(int pendSize){
+    std::vector<int> jcbSec;
+    std::vector<int> resArr(pendSize); 
+    if (pendSize == 0 || pendSize == 1){
+       return (resArr); 
+    }
+    jcbSec.push_back(0);
+    jcbSec.push_back(1);
+    resArr[0] = 1;
+    if (pendSize == 2){
+      return (resArr);
+    }
+    int a = 2;
+    while(a <= pendSize){
+      int res = jcbSec[a - 1] + 2 * jcbSec[a - 2];
       if (res <= pendSize){
-        jcblSec[i] = res; // to make sure the limits do not excede pending chain size.
+        jcbSec.push_back(res); // to make sure the limits do not excede pending chain size.
       }
       else{
         break;
       }
+      a++;
+    }
+    jcbSec.erase(jcbSec.begin(), jcbSec.begin() + 2);// removed 0 and a repeited 1, o sea, first two elements.
+    std::cout << "Jacobsthal sequence: \n: ";
+      for (int i = 0; i < jcbSec.size(); ++i) {
+      std::cout << "[" << jcbSec[i] << "], ";
+    }
+    std::cout << std::endl;
+    int i = 0;
+    int j = 1;
+    int high;
+    int low;
+    
+    while(i < jcbSec.size() - 1){
+      if (jcbSec[i + 1]){
+        high = jcbSec[i + 1];
+        low = jcbSec[i];
+      }
+      else {
+        high = pendSize - 1;
+        low = jcbSec[i];
+      }
+      std::cout << "high: " <<high << std::endl;
+      std::cout << "low: " << low << std::endl;
+      while(high > low){
+        resArr[j] = high;
+        high--;
+        j++;
+      }
       i++;
     }
-    jcblSec.erase(0, 2);// removed 0 and a repeited 1, o sea, first two elements.
-    int resArr[pendSize];
-    resArr[0] = 1;
-    int highLimit = jcblSec[2];
-    int lowLimit = jcblSec[1];
-    int jcslIndex = 3;
-    int index = 1;
-    //I have to refactor this, it is unclear and propably erroneo
-    /*while(highLimit >= lowLimit && jcblSec[jcslIndex]){
-      if (highLimit == lowLimit){
-        {
-          if (!jcblSec[jcslIndex + 1]){
-              int temp = pendSize - 1;
-              resArr[index] = temp--;
-          }
-          else
-          highLimit = jcblSec[jcblIndex + 1]
-          lowLimit = jcblSec[jcblIndex];
-          jcblIndex++;
-        }
-      }
-      else}
-        resArr[index] = highLimit;
-        highlimit--;
-    }
-    }*/
     return (resArr);
 }
 
+int main(){
+  std::vector <char> vect(12);
+  std::cout << "pending chain: "
+  for (int i = 0; i < 12; ++i) {
+    vect[i] = 'a' + (i % 26);
+    std:cout << "[" < v[i] < "], ";
+  }
+  std::cout << std::endl;
 
+  std::vector <int> indexes = jacobsthalSeq(30);
+  std::cout << "index sequence to use to insert pending chain\n: ";
+  for (int i = 0; i < indexes.size(); ++i) {
+    std::cout << "[" << indexes[i] << "], ";
+  }
+  std::cout << std::endl;
+}*/
+
+
+
+/**
 template <typedef T>
 void fordJohnson(T &seq){
   T & mainChain;
@@ -77,10 +184,7 @@ void fordJohnson(T &seq){
       mainChain.push_back(seq.at(i + 1));
     }
     else if (seq.at(i) > seq.at(i + 1)){
-      pendChain.push_back(seq.at(i + 1));
-      mainChain.push_back(seq.at(i));
-    }
-  }
+      pendChain.push_back(seat index 1: " << v[1] <<
   if (!even){
     pendChain.push_back(seq.at(seqSize));
   }
@@ -89,7 +193,7 @@ void fordJohnson(T &seq){
     fordJohnson(mainChain);
   }
   
-}
+}*/
 
 
 
