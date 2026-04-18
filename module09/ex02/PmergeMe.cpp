@@ -4,6 +4,32 @@
 #include <iostream>
 #include <vector>
 
+
+typedef struct PairStruct{
+    int big;
+    int small;
+} PairS;
+
+
+template <typedef T>
+int binarySearchBounded(T<int>& arr, int value, int bound){
+    int left = 0;
+    int right = arr.size();
+    while(left < right){
+        int mid = (left + right)/ 2;
+        if (value >  arr[mid]){
+            left = mid + 1;
+        }
+        else{
+            right = mid;
+            if (value < bound){
+                right = bound;
+            }
+        }
+    }
+    return left;
+}
+
 std::vector<int> jacobsthalSeq(int pendSize){
     std::vector<int> jcbSec;
     std::vector<int> resArr(pendSize); 
@@ -84,116 +110,61 @@ int main(){
     }
     std::cout << std::endl;
 }
-/*#include <iostream>
-#include <vector>
 
-  std::vector<int> jacobsthalSeq(int pendSize){
-    std::vector<int> jcbSec;
-    std::vector<int> resArr(pendSize); 
-    if (pendSize == 0 || pendSize == 1){
-       return (resArr); 
-    }
-    jcbSec.push_back(0);
-    jcbSec.push_back(1);
-    resArr[0] = 1;
-    if (pendSize == 2){
-      return (resArr);
-    }
-    int a = 2;
-    while(a <= pendSize){
-      int res = jcbSec[a - 1] + 2 * jcbSec[a - 2];
-      if (res <= pendSize){
-        jcbSec.push_back(res); // to make sure the limits do not excede pending chain size.
-      }
-      else{
-        break;
-      }
-      a++;
-    }
-    jcbSec.erase(jcbSec.begin(), jcbSec.begin() + 2);// removed 0 and a repeited 1, o sea, first two elements.
-    std::cout << "Jacobsthal sequence: \n: ";
-      for (int i = 0; i < jcbSec.size(); ++i) {
-      std::cout << "[" << jcbSec[i] << "], ";
-    }
-    std::cout << std::endl;
-    int i = 0;
-    int j = 1;
-    int high;
-    int low;
-    
-    while(i < jcbSec.size() - 1){
-      if (jcbSec[i + 1]){
-        high = jcbSec[i + 1];
-        low = jcbSec[i];
-      }
-      else {
-        high = pendSize - 1;
-        low = jcbSec[i];
-      }
-      std::cout << "high: " <<high << std::endl;
-      std::cout << "low: " << low << std::endl;
-      while(high > low){
-        resArr[j] = high;
-        high--;
-        j++;
-      }
-      i++;
-    }
-    return (resArr);
-}
-
-int main(){
-  std::vector <char> vect(12);
-  std::cout << "pending chain: "
-  for (int i = 0; i < 12; ++i) {
-    vect[i] = 'a' + (i % 26);
-    std:cout << "[" < v[i] < "], ";
-  }
-  std::cout << std::endl;
-
-  std::vector <int> indexes = jacobsthalSeq(30);
-  std::cout << "index sequence to use to insert pending chain\n: ";
-  for (int i = 0; i < indexes.size(); ++i) {
-    std::cout << "[" << indexes[i] << "], ";
-  }
-  std::cout << std::endl;
-}*/
-
-
-
-/**
 template <typedef T>
-void fordJohnson(T &seq){
-  T & mainChain;
-  T & pendChain;
-  bool even = 1;
+void fordJohnson(T <int>&seq){
+    T <PairS> pairChain;
+    int straggler;
+    bool hasStraggler = false;
+    
+    
+// T mainChain;
+  //T pendChain;
   size_t seqSize = seq.size();
   if (seqSize == 1){
-      return;
+      return ;
   }
   if (seqSize%2 != 0){
-    seqSize--;
-    even = 0;
+      seqSize--;
+      straggler = seq.at(seqSize);
+      hasStraggler = true;
   }
   for(int i = 0; i < seqSize - 1; i+=2){
     if (seq.at(i) == seq.at(i + 1){
-      throw (Exception &repeated);
+        throw (Exception &repeated);
     }
     else if (seq.at(i) < seq.at(i + 1)){
-      pendChain.push_back(seq.at(i));
-      mainChain.push_back(seq.at(i + 1));
+        pairChain[i].small = seq.at(i);
+        pairChain[i].big = seq.at(i + 1);
+        //pendChain.push_back(seq.at(i));
+        //mainChain.push_back(seq.at(i + 1));
     }
     else if (seq.at(i) > seq.at(i + 1)){
-      pendChain.push_back(seat index 1: " << v[1] <<
-  if (!even){
-    pendChain.push_back(seq.at(seqSize));
+        pairChain[i].small = seq.at(i + 1);
+        pairChain[i].big = seq.at(i);
+        //pendChain.push_back(seq.at(i + 1));
+        //mainChain.push_back(seq.at(i));
   }
-  
-  if (seqSize >= 2){
-    fordJohnson(mainChain);
+    std::vector<int> mainChain;
+    for (size_t i = 0; i < pairChain.size(); i++)
+        mainChain.push_back(pairs[i].big);
+
+    if (seqSize >= 2){
+        fordJohnson(mainChain);
   }
+      std::vector<int> jcbSec = jacobsthalSeq(int pairChain.size());
+      for(int index : jcbSec){
+          int value = pairChain[index].small;
+          int boundValue = pairChain[index].big;
+
+          int boundInd std::find(mainChain.begin(), mainChain.end(), boundValue) - mainChain.begin();
+          int pos = binarySearchBounded(mainChain, value, boundInd);
+            mainChain.insert(naibChain.begin() + pos, value);
+          }
   
-}*/
+}
+
+}
 
 
 
