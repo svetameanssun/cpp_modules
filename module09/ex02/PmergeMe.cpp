@@ -3,39 +3,35 @@
 //Jacobsthal sequence is limits, not indexes
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 
-typedef struct PairStruct{
+typedef struct PairStruct {
     int big;
     int small;
 } PairS;
 
 
-template <typedef T>
-int binarySearchBounded(T<int>& arr, int value, int bound){
+int binarySearchBounded(std::vector <int>& arr, int value, int bound) {
     int left = 0;
-    int right = arr.size();
-    while(left < right){
-        int mid = (left + right)/ 2;
-        if (value >  arr[mid]){
+    int right = bound;
+    while(left < right) {
+        int mid = (left + right) / 2;
+        if(arr[mid] < value) {
             left = mid + 1;
-        }
-        else{
+        } else {
             right = mid;
-            if (value < bound){
-                right = bound;
-            }
         }
     }
     return left;
 }
 
-std::vector<int> jacobsthalSeq(int pendSize){
+std::vector<int> jacobsthalSeq(int pendSize) {
     std::vector<int> jcbSec;
-    std::vector<int> resArr(pendSize); 
+    std::vector<int> resArr(pendSize);
 
-    if (pendSize == 0 || pendSize == 1){
-        return (resArr); 
+    if(pendSize == 0 || pendSize == 1) {
+        return (resArr);
     }
 
     jcbSec.push_back(0);
@@ -43,26 +39,27 @@ std::vector<int> jacobsthalSeq(int pendSize){
 
     resArr[0] = 1;
 
-    if (pendSize == 2){
+    if(pendSize == 2) {
         return (resArr);
     }
 
     int a = 2;
-    while(a <= pendSize){
+    while(a <= pendSize) {
         int res = jcbSec[a - 1] + 2 * jcbSec[a - 2];
-        if (res <= pendSize){
+        if(res <= pendSize) {
             jcbSec.push_back(res);
-        }
-        else{
+        } else {
             break;
         }
         a++;
     }
-
+    //удаляем первые 2  элемента
+    //jcbSec.erase(jcbSec.begin(), jcbSec.begin() + 2);
+    //удаляем второй элемент (повторяющийся 1)
     jcbSec.erase(jcbSec.begin(), jcbSec.begin() + 2);
 
     std::cout << "Jacobsthal sequence:\n";
-    for (size_t i = 0; i < jcbSec.size(); ++i) {
+    for(size_t i = 0; i < jcbSec.size(); ++i) {
         std::cout << "[" << jcbSec[i] << "], ";
     }
     std::cout << std::endl;
@@ -73,11 +70,11 @@ std::vector<int> jacobsthalSeq(int pendSize){
     int low;
 
     // --- основные блоки ---
-    while(i < (int)jcbSec.size() - 1){
+    while(i < (int)jcbSec.size() - 1) {
         high = jcbSec[i + 1];
         low = jcbSec[i];
 
-        while(high > low){
+        while(high > low) {
             resArr[j] = high;
             high--;
             j++;
@@ -86,11 +83,11 @@ std::vector<int> jacobsthalSeq(int pendSize){
     }
 
     // --- ВАЖНО: последний блок (остаток) ---
-    if (!jcbSec.empty()){
+    if(!jcbSec.empty()) {
         high = pendSize - 1;
         low = jcbSec.back();
 
-        while(high > low){
+        while(high > low) {
             resArr[j] = high;
             high--;
             j++;
@@ -100,69 +97,107 @@ std::vector<int> jacobsthalSeq(int pendSize){
     return (resArr);
 }
 
-int main(){
-    std::vector<int> indexes = jacobsthalSeq(20);
+
+
+template <typename T>
+void fordJohnson(T &seq) {
+    std::vector <PairS> pairChain;
+    int straggler;
+    bool hasStraggler = false;
+    // T mainChain;
+    //T pendChain;
+    size_t seqSize = seq.size();
+    if(seqSize <= 1) {
+        return;
+    }
+    if(seqSize % 2 != 0) {
+        seqSize--;
+        straggler = seq.at(seqSize);
+        hasStraggler = true;
+    }
+    for(size_t i = 0; i < seqSize; i += 2) {
+        if(seq.at(i) == seq.at(i + 1)) {
+            return ;
+            //throw  myException("duplicate values");
+        }
+        if(seq.at(i) < seq.at(i + 1)) {
+            pairChain.push_back({seq.at(i + 1), seq.at(i)});
+            //pairChain[i].small = seq.at(i);
+            //pairChain[i].big = seq.at(i + 1);
+            //pendChain.push_back(seq.at(i));
+            //mainChain.push_back(seq.at(i + 1));
+        } else if(seq.at(i) > seq.at(i + 1)) {
+            pairChain.push_back({seq.at(i), seq.at(i + 1)});
+            //pairChain[i].small = seq.at(i + 1);
+            //pairChain[i].big = seq.at(i);
+            //pendChain.push_back(seq.at(i + 1));
+            //mainChain.push_back(seq.at(i));
+        }
+    }
+
+    std::vector<int> mainChain;
+    for(size_t i = 0; i < pairChain.size(); i++)
+        mainChain.push_back(pairChain[i].big);
+
+    fordJohnson(mainChain);
+
+    std::vector<int> jcbSec = jacobsthalSeq(pairChain.size());
+    /*for(int k : jcbSec) {
+        int value = pairChain[k].small;
+        int boundValue = pairChain[k].big;
+
+        int boundInd = std::find(mainChain.begin(), mainChain.end(), boundValue) - mainChain.begin();
+        int pos = binarySearchBounded(mainChain, value, boundInd);
+        mainChain.insert(mainChain.begin() + pos, value);
+    }*/
+    // --- STEP 5: insert pending (small) ---
+    // there is SOMETHING WRONG with this insertion,
+    // I lack 1st and last element of the array!
+    for(size_t k = 0; k < jcbSec.size(); k++) {
+        int index = jcbSec[k];
+
+        if(index >= (int)pairChain.size())
+            continue;
+
+        int value = pairChain[index].small;
+        int boundValue = pairChain[index].big;
+
+        int boundInd = std::find(mainChain.begin(), mainChain.end(), boundValue)
+                       - mainChain.begin();
+
+        int pos = binarySearchBounded(mainChain, value, boundInd);
+
+        mainChain.insert(mainChain.begin() + pos, value);
+    }
+
+    // --- STEP 6: insert straggler ---
+    if (hasStraggler)
+    {
+        int pos = binarySearchBounded(mainChain, straggler, mainChain.size());
+        mainChain.insert(mainChain.begin() + pos, straggler);
+    }
+        // --- STEP 7: copy back result ---
+    seq.clear();
+    for (size_t i = 0; i < mainChain.size(); i++)
+        seq.push_back(mainChain[i]);
+
+}
+
+
+
+int main() {
+
+    std::vector<int> vec = {'a', 115 , 119, 98, 99, 'z', 113, 110, 104, 102};
+    fordJohnson(vec);
+    //std::vector<int> indexes = jacobsthalSeq(20);
 
     std::cout << "index sequence:\n";
     //Ноль впереди подразумевается
-    for (size_t i = 0; i < indexes.size() - 1; ++i) {
-        std::cout << "[" << indexes[i] << "], ";
+    for(size_t i = 0; i < vec.size() - 1; ++i) {
+        std::cout << "[" << vec[i] << "], ";
     }
     std::cout << std::endl;
-}
 
-template <typedef T>
-void fordJohnson(T <int>&seq){
-    T <PairS> pairChain;
-    int straggler;
-    bool hasStraggler = false;
-    
-    
-// T mainChain;
-  //T pendChain;
-  size_t seqSize = seq.size();
-  if (seqSize == 1){
-      return ;
-  }
-  if (seqSize%2 != 0){
-      seqSize--;
-      straggler = seq.at(seqSize);
-      hasStraggler = true;
-  }
-  for(int i = 0; i < seqSize - 1; i+=2){
-    if (seq.at(i) == seq.at(i + 1){
-        throw (Exception &repeated);
-    }
-    else if (seq.at(i) < seq.at(i + 1)){
-        pairChain[i].small = seq.at(i);
-        pairChain[i].big = seq.at(i + 1);
-        //pendChain.push_back(seq.at(i));
-        //mainChain.push_back(seq.at(i + 1));
-    }
-    else if (seq.at(i) > seq.at(i + 1)){
-        pairChain[i].small = seq.at(i + 1);
-        pairChain[i].big = seq.at(i);
-        //pendChain.push_back(seq.at(i + 1));
-        //mainChain.push_back(seq.at(i));
-  }
-    std::vector<int> mainChain;
-    for (size_t i = 0; i < pairChain.size(); i++)
-        mainChain.push_back(pairs[i].big);
-
-    if (seqSize >= 2){
-        fordJohnson(mainChain);
-  }
-      std::vector<int> jcbSec = jacobsthalSeq(int pairChain.size());
-      for(int index : jcbSec){
-          int value = pairChain[index].small;
-          int boundValue = pairChain[index].big;
-
-          int boundInd std::find(mainChain.begin(), mainChain.end(), boundValue) - mainChain.begin();
-          int pos = binarySearchBounded(mainChain, value, boundInd);
-            mainChain.insert(naibChain.begin() + pos, value);
-          }
-  
-}
 
 }
 
