@@ -189,11 +189,9 @@ int main() {
 
     std::vector<int> vec = {'a', 115 , 119, 98, 99, 'z', 113, 110, 104, 102};
     fordJohnson(vec);
-    //std::vector<int> indexes = jacobsthalSeq(20);
-
+    
     std::cout << "index sequence:\n";
-    //Ноль впереди подразумевается
-    for(size_t i = 0; i < vec.size() - 1; ++i) {
+    for(size_t i = 0; i < vec.size(); ++i) {
         std::cout << "[" << vec[i] << "], ";
     }
     std::cout << std::endl;
