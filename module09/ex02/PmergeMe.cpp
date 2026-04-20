@@ -106,7 +106,7 @@ void fordJohnson(T &seq) {
     // T mainChain;
     //T pendChain;
     size_t seqSize = seq.size();
-    if(seqSize < 1) {
+    if(seqSize <= 1) {
         return;
     }
     if(seqSize % 2 != 0) {
@@ -131,7 +131,7 @@ void fordJohnson(T &seq) {
 
     std::vector<int> mainChain;
     //Added this condition
-    if (!pairChain.empty(){
+    if (!pairChain.empty()){
         for(size_t i = 0; i < pairChain.size(); i++)
             mainChain.push_back(pairChain[i].big);
     }
