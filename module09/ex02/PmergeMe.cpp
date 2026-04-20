@@ -26,18 +26,17 @@ int binarySearchBounded(std::vector <int>& arr, int value, int bound) {
     return left;
 }
 
-std::vector<int> jacobsthalSeq(int pendSize) {
+std::vector<int> jacobsthalSeq(size_t pendSize) {
     std::vector<int> jcbSec;
     std::vector<int> resArr(pendSize);
-
+    resArr[0] = 1;
     if(pendSize == 0 || pendSize == 1) {
         return (resArr);
     }
 
     jcbSec.push_back(0);
     jcbSec.push_back(1);
-
-    resArr[0] = 1;
+   
 
     if(pendSize == 2) {
         return (resArr);
@@ -97,7 +96,6 @@ std::vector<int> jacobsthalSeq(int pendSize) {
 }
 
 
-
 template <typename T>
 void fordJohnson(T &seq) {
     std::vector <PairS> pairChain;
@@ -106,15 +104,18 @@ void fordJohnson(T &seq) {
     // T mainChain;
     //T pendChain;
     size_t seqSize = seq.size();
-    if(seqSize <= 1) {
+    if(seqSize < 1) {
         return;
     }
     if(seqSize % 2 != 0) {
-        seqSize--;
+        //Added this condition
+        if (seqSize == 1){
+            hasStraggler = false;
+        }
         straggler = seq.at(seqSize);
         hasStraggler = true;
     }
-    for(size_t i = 0; i < seqSize; i += 2) {
+    for(size_t i = 0; i < seqSize - 1; i += 2) {
         if(seq.at(i) == seq.at(i + 1)) {
             return ;
             //throw  myException("duplicate values");
@@ -127,18 +128,30 @@ void fordJohnson(T &seq) {
     }
 
     std::vector<int> mainChain;
-    for(size_t i = 0; i < pairChain.size(); i++)
-        mainChain.push_back(pairChain[i].big);
+    //Added this condition
+    if (!pairChain.empty(){
+        for(size_t i = 0; i < pairChain.size(); i++)
+            mainChain.push_back(pairChain[i].big);
+    }
+    
+    //Added this condition
+    if (seqSize > 1 )  {
+        fordJohnson(mainChain);
+    }
+    else{
+        mainChain.push_back(seq[0]);
+    }
+    std::vector<int> insrtSec = jacobsthalSeq(pairChain.size());
+    std::cout << "insertSec size: " << insrtSec.size() << "\n";
 
-    fordJohnson(mainChain);
-
-    std::vector<int> jcbSec = jacobsthalSeq(pairChain.size());
+    
     // --- STEP 5: insert pending (small) ---
     // there is SOMETHING WRONG with this insertion,
     // I lack 1st and last element of the array!
-    for(size_t k = 0; k < jcbSec.size(); k++) {
-        int index = jcbSec[k];
+    for(size_t k = 0; k < insrtSec.size(); k++) {
+        int index = insrtSec[k];
 
+        // makes sence with insrtSec.size() == 1;
         if(index >= (int)pairChain.size())
             continue;
 
