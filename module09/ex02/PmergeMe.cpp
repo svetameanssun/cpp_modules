@@ -93,7 +93,6 @@ std::vector<int> jacobsthalSeq(int pendSize) {
             j++;
         }
     }
-
     return (resArr);
 }
 
@@ -122,16 +121,8 @@ void fordJohnson(T &seq) {
         }
         if(seq.at(i) < seq.at(i + 1)) {
             pairChain.push_back({seq.at(i + 1), seq.at(i)});
-            //pairChain[i].small = seq.at(i);
-            //pairChain[i].big = seq.at(i + 1);
-            //pendChain.push_back(seq.at(i));
-            //mainChain.push_back(seq.at(i + 1));
         } else if(seq.at(i) > seq.at(i + 1)) {
             pairChain.push_back({seq.at(i), seq.at(i + 1)});
-            //pairChain[i].small = seq.at(i + 1);
-            //pairChain[i].big = seq.at(i);
-            //pendChain.push_back(seq.at(i + 1));
-            //mainChain.push_back(seq.at(i));
         }
     }
 
@@ -142,14 +133,6 @@ void fordJohnson(T &seq) {
     fordJohnson(mainChain);
 
     std::vector<int> jcbSec = jacobsthalSeq(pairChain.size());
-    /*for(int k : jcbSec) {
-        int value = pairChain[k].small;
-        int boundValue = pairChain[k].big;
-
-        int boundInd = std::find(mainChain.begin(), mainChain.end(), boundValue) - mainChain.begin();
-        int pos = binarySearchBounded(mainChain, value, boundInd);
-        mainChain.insert(mainChain.begin() + pos, value);
-    }*/
     // --- STEP 5: insert pending (small) ---
     // there is SOMETHING WRONG with this insertion,
     // I lack 1st and last element of the array!
