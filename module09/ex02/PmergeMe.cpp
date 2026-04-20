@@ -112,7 +112,7 @@ void fordJohnson(T &seq) {
         if (seqSize == 1){
             hasStraggler = false;
         }
-        straggler = seq.at(seqSize);
+        straggler = seq.at(seqSize -1);
         hasStraggler = true;
     }
     for(size_t i = 0; i < seqSize - 1; i += 2) {
