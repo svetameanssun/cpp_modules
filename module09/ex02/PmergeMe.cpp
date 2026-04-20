@@ -29,13 +29,17 @@ int binarySearchBounded(std::vector <int>& arr, int value, int bound) {
 std::vector<int> jacobsthalSeq(size_t pendSize) {
     std::vector<int> jcbSec;
     std::vector<int> resArr(pendSize);
-    resArr[0] = 1;
-    if(pendSize == 0 || pendSize == 1) {
-        return (resArr);
-    }
 
+    if (pendSize == 0){
+        return resArr;
+    }
+    resArr[0] = 0;
+    if (pendSize == 1){
+        return resArr;
+    }
     jcbSec.push_back(0);
     jcbSec.push_back(1);
+    resArr[1] = 1;
    
 
     if(pendSize == 2) {
@@ -53,8 +57,6 @@ std::vector<int> jacobsthalSeq(size_t pendSize) {
         a++;
     }
     //удаляем первые 2  элемента
-    //jcbSec.erase(jcbSec.begin(), jcbSec.begin() + 2);
-    //удаляем второй элемент (повторяющийся 1)
     jcbSec.erase(jcbSec.begin(), jcbSec.begin() + 2);
 
     std::cout << "Jacobsthal sequence:\n";
@@ -64,7 +66,7 @@ std::vector<int> jacobsthalSeq(size_t pendSize) {
     std::cout << std::endl;
 
     int i = 0;
-    int j = 1;
+    int j = 2;
     int high;
     int low;
 
@@ -151,12 +153,15 @@ void fordJohnson(T &seq) {
     for(size_t k = 0; k < insrtSec.size(); k++) {
         int index = insrtSec[k];
 
-        // makes sence with insrtSec.size() == 1;
         if(index >= (int)pairChain.size())
             continue;
 
         int value = pairChain[index].small;
         int boundValue = pairChain[index].big;
+        if (index == 0) {
+            mainChain.insert(mainChain.begin(), value);
+            continue;
+        }
 
         int boundInd = std::find(mainChain.begin(), mainChain.end(), boundValue)
                        - mainChain.begin();
