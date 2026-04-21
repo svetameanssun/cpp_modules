@@ -30,17 +30,17 @@ std::vector<int> jacobsthalSeq(size_t pendSize) {
     std::vector<int> jcbSec;
     std::vector<int> resArr(pendSize);
 
-    if (pendSize == 0){
+    if(pendSize == 0) {
         return resArr;
     }
     resArr[0] = 0;
-    if (pendSize == 1){
+    if(pendSize == 1) {
         return resArr;
     }
     jcbSec.push_back(0);
     jcbSec.push_back(1);
-    resArr[1] = 1;
-   
+    resArr[0] = 1;
+
 
     if(pendSize == 2) {
         return (resArr);
@@ -66,17 +66,23 @@ std::vector<int> jacobsthalSeq(size_t pendSize) {
     std::cout << std::endl;
 
     int i = 0;
-    int j = 2;
+    int j = 1;
     int high;
     int low;
 
     // --- основные блоки ---
+        std::cout << "First while:" << "\n";
+    
     while(i < (int)jcbSec.size() - 1) {
         high = jcbSec[i + 1];
+        std::cout << "high = " << high << "\n";
+
         low = jcbSec[i];
+        std::cout << "low = " << high << "\n";
 
         while(high > low) {
             resArr[j] = high;
+            std::cout << "resArr[j] = " << resArr[j] << "\n";
             high--;
             j++;
         }
@@ -86,6 +92,7 @@ std::vector<int> jacobsthalSeq(size_t pendSize) {
     // --- ВАЖНО: последний блок (остаток) ---
     if(!jcbSec.empty()) {
         high = pendSize - 1;
+        std::cout << "high = pendSize - 1;" << high <<'\n';
         low = jcbSec.back();
 
         while(high > low) {
@@ -94,6 +101,13 @@ std::vector<int> jacobsthalSeq(size_t pendSize) {
             j++;
         }
     }
+
+    std::cout << std::endl;
+    std::cout << "Insertion order:\n";
+    for(size_t i = 0; i < resArr.size(); ++i) {
+        std::cout << "[" << resArr[i] << "], ";
+    }
+    std::cout << std::endl;
     return (resArr);
 }
 
@@ -120,10 +134,10 @@ void fordJohnson(T &seq) {
     }
     if(seqSize % 2 != 0) {
         //Added this condition
-        if (seqSize == 1){
+        /*if (seqSize == 1){
             hasStraggler = false;
-        }
-        straggler = seq.at(seqSize -1);
+        }*/
+        straggler = seq.at(seqSize - 1);
         hasStraggler = true;
     }
     for(size_t i = 0; i < seqSize - 1; i += 2) {
@@ -138,44 +152,42 @@ void fordJohnson(T &seq) {
         }
     }
 
-<<<<<<< HEAD
+    //Added this condition
+    //if (!pairChain.empty()){
     for(size_t i = 0; i < pairChain.size(); i++)
         mainChain.push_back(pairChain[i].big);
-=======
-    std::vector<int> mainChain;
-    //Added this condition
-    if (!pairChain.empty()){
-        for(size_t i = 0; i < pairChain.size(); i++)
-            mainChain.push_back(pairChain[i].big);
-    }
-    
-    //Added this condition
-    if (seqSize > 1 )  {
-        fordJohnson(mainChain);
-    }
-    else{
-        mainChain.push_back(seq[0]);
-    }
-    std::vector<int> insrtSec = jacobsthalSeq(pairChain.size());
-    std::cout << "insertSec size: " << insrtSec.size() << "\n";
->>>>>>> fa32706a4ed81e43a38b0ca12939fb92f1dec81b
+    //}
 
-    
+    //Added this condition
+    //if (seqSize > 1 )  {
+    fordJohnson(mainChain);
+    //}
+    /*else{
+        mainChain.push_back(seq[0]);
+    }*/
+    std::vector<int> insrtSec = jacobsthalSeq(pairChain.size());
+    std::cout << "pairChain size: " << pairChain.size() << "\n";
+
+
     // --- STEP 5: insert pending (small) ---
     // there is SOMETHING WRONG with this insertion,
     // I lack 1st and last element of the array!
-    for(size_t k = 0; k < insrtSec.size(); k++) {
+    mainChain.insert(mainChain.begin(), pairChain[0].small);
+    std::cout << "pairChain[4].big = " << pairChain[4].small << "\n";
+    
+    for(size_t k = 0; k < insrtSec.size() - 1; k++) {
         int index = insrtSec[k];
 
-        /*if(index >= (int)pairChain.size())
-            continue;*/
-
+        if(index >= (int)pairChain.size())
+            continue;
+        std::cout << "pairChain[" << index << "].small = " << pairChain[index].small << "\n";
         int value = pairChain[index].small;
+        std::cout << "pairChain[" << index << "].big = " << pairChain[index].big << "\n";
         int boundValue = pairChain[index].big;
-        if (index == 0) {
+        /*if(index == 0) {
             mainChain.insert(mainChain.begin(), value);
             continue;
-        }
+        }*/
 
         int boundInd = std::find(mainChain.begin(), mainChain.end(), boundValue)
                        - mainChain.begin();
@@ -186,14 +198,13 @@ void fordJohnson(T &seq) {
     }
 
     // --- STEP 6: insert straggler ---
-    if (hasStraggler)
-    {
+    if(hasStraggler) {
         int pos = binarySearchBounded(mainChain, straggler, mainChain.size());
         mainChain.insert(mainChain.begin() + pos, straggler);
     }
-        // --- STEP 7: copy back result ---
+    // --- STEP 7: copy back result ---
     seq.clear();
-    for (size_t i = 0; i < mainChain.size(); i++)
+    for(size_t i = 0; i < mainChain.size(); i++)
         seq.push_back(mainChain[i]);
 
 }
@@ -202,10 +213,10 @@ void fordJohnson(T &seq) {
 
 int main() {
 
-    std::vector<int> vec = {'a', 115 , 119, 98, 99, 'z', 113, 110, 104, 102};
+    std::vector<int> vec = {'a', 115, 119, 98, 99, 'z', 113, 110, 104, 102};
     fordJohnson(vec);
-    
-    std::cout << "index sequence:\n";
+
+    std::cout << "result:\n";
     for(size_t i = 0; i < vec.size(); ++i) {
         std::cout << "[" << vec[i] << "], ";
     }
