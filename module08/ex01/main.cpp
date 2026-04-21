@@ -1,3 +1,4 @@
+#include <string>
 #include "Span.hpp"
 
 // My test function to test the Span with a big range of numbers
@@ -14,12 +15,16 @@ int	main() {
 	std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;	// Print the shortest span
 	std::cout << "Longest span: " << sp.longestSpan() << std::endl;		// Print the longest span
 	*/
-	Span sp = Span(5);
+	Span sp = Span(6);
 	sp.addNumber(6);
 	sp.addNumber(3);
 	sp.addNumber(17);
 	sp.addNumber(9);
 	sp.addNumber(11);
+	sp.addNumber(11);
+
+	sp.printSet();
+
 	std::cout << sp.shortestSpan() << std::endl;
 	std::cout << sp.longestSpan() << std::endl;
 	}

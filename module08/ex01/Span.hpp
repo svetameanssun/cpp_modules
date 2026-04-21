@@ -2,9 +2,8 @@
 #define SPAN_HPP
 
 #include <iostream>
-#include <string>
-#include <algorithm>
 #include <set>
+#include <algorithm>
 #include <exception>
 
 
@@ -30,15 +29,15 @@ class Span{
 		class OutOfRangeException :public std::exception{
 			const char * what() const throw();
 		};
+
+		const std::set <int> getSet();
+		void printSet();
 	
 
 	private:
 		unsigned int N;// s[0...N-1]
 		std::set<int> _set;
-		Span();	
 };
-
-
 
 
 #endif

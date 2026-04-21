@@ -6,14 +6,11 @@
 /*   By: stitovsk <stitovsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 18:40:22 by stitovsk          #+#    #+#             */
-/*   Updated: 2026/02/16 15:15:55 by stitovsk         ###   ########.fr       */
+/*   Updated: 2026/03/31 17:12:51 by stitovsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "Span.hpp"
-
-Span::Span():N(10), _set(){}
 
 Span::Span(unsigned int number): N(number), _set(){}
 
@@ -28,6 +25,21 @@ Span &Span::operator=(const Span &other){
 }
 
 Span::~Span(){}
+
+
+const std::set <int> Span::getSet(){
+	return (this->_set);
+}
+
+void Span::printSet(){
+	std::set <int> aux = getSet();
+	std::set <int>::iterator it = aux.begin();
+	std::cout << "My set --------------\n";
+	for(;  it != aux.end(); it++){
+		std::cout << *it << "\n";
+	}
+	std::cout << "----------------\n";
+}
 
 void Span::addNumber(int number){
 	
