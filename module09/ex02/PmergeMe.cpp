@@ -54,8 +54,6 @@ std::vector<int> jacobsthalSeq(int pendSize) {
         a++;
     }
     //удаляем первые 2  элемента
-    //jcbSec.erase(jcbSec.begin(), jcbSec.begin() + 2);
-    //удаляем второй элемент (повторяющийся 1)
     jcbSec.erase(jcbSec.begin(), jcbSec.begin() + 2);
 
     std::cout << "Jacobsthal sequence:\n";
@@ -102,12 +100,21 @@ std::vector<int> jacobsthalSeq(int pendSize) {
 template <typename T>
 void fordJohnson(T &seq) {
     std::vector <PairS> pairChain;
+    std::vector<int> mainChain;
     int straggler;
     bool hasStraggler = false;
     // T mainChain;
     //T pendChain;
     size_t seqSize = seq.size();
+    /*if(seqSize == 0) {
+        return;
+    }
+    if(seqSize == 1) {
+        mainChain.push_back(seq[0]);
+        return;
+    }*/
     if(seqSize <= 1) {
+        //mainChain.push_back(seq[0]);
         return;
     }
     if(seqSize % 2 != 0) {
@@ -135,7 +142,6 @@ void fordJohnson(T &seq) {
         }
     }
 
-    std::vector<int> mainChain;
     for(size_t i = 0; i < pairChain.size(); i++)
         mainChain.push_back(pairChain[i].big);
 
@@ -156,8 +162,8 @@ void fordJohnson(T &seq) {
     for(size_t k = 0; k < jcbSec.size(); k++) {
         int index = jcbSec[k];
 
-        if(index >= (int)pairChain.size())
-            continue;
+        /*if(index >= (int)pairChain.size())
+            continue;*/
 
         int value = pairChain[index].small;
         int boundValue = pairChain[index].big;
@@ -197,7 +203,6 @@ int main() {
         std::cout << "[" << vec[i] << "], ";
     }
     std::cout << std::endl;
-
 
 }
 
