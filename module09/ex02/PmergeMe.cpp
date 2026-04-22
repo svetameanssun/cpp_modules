@@ -101,11 +101,17 @@ std::vector<int> jacobsthalSeq(size_t pendSize) {
             j++;
         }
     }
+    //
 
-    std::cout << std::endl;
-    std::cout << "Insertion order:\n";
     for(size_t i = 0; i < resArr.size(); ++i) {
-        std::cout << "[" << resArr[i] << "], ";
+        resArr[i]--;";
+    }
+    std::cout << std::endl;
+    return (resArr);
+    std::cout << std::endl;
+    //std::cout << "Insertion order:\n";
+    for(size_t i = 0; i < resArr.size(); ++i) {
+        std::cout << "[" << resArr[i]; << "], ";
     }
     std::cout << std::endl;
     return (resArr);
