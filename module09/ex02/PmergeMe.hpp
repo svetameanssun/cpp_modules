@@ -11,9 +11,9 @@
 class PmergeMe {
  public:
   PmergeMe();
-  PmergeMe(const PmergeMe& other){};
-  PmergeMe& operator=(const PmergeMe& other){return (*this = other);};
-  ~PmergeMe(){};
+  PmergeMe(const PmergeMe& other);
+  PmergeMe& operator=(const PmergeMe& other);
+  ~PmergeMe();
 
   int jacobsthal(int n);
   std::vector<int> buildInsertionOrder(int pend_size); //I save the insertion order the way I want
