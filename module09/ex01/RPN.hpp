@@ -1,22 +1,6 @@
 #ifndef RPN_HPP
 #define RPN_HPP
 
-#include <iostream>
-<<<<<<< HEAD
-#include <string>
-
-class RPN{
-    public:
-        RPN();
-        RPN(const std::string &str);
-        ~RPN();
-    private:
-        int result;
-
-};
-
-#endif
-=======
 #include <sstream> 
 #include <string>
 #include <stack>
@@ -40,4 +24,3 @@ class RPN {
 };
 
 #endif
->>>>>>> refs/remotes/origin/main
