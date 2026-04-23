@@ -20,7 +20,7 @@ class PmergeMe {
   std::vector<int> fordJohnson(std::vector<int> input);
   std::deque<int> fordJohnson(std::deque<int> input);
   template <typename T>
-  bool hasRepeats(T &arr, int n) const;
+  bool hasRepeats(const T &arr) const;
 
 	
 };
