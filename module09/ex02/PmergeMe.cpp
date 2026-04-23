@@ -1,6 +1,9 @@
 #include "PmergeMe.hpp"
 
 PmergeMe::PmergeMe(){}
+PmergeMe::PmergeMe(const PmergeMe& other){(void)other;}
+PmergeMe::PmergeMe& operator=(const PmergeMe& other){(void)other; return (*this);};
+PmergeMe::~PmergeMe();
 
 int PmergeMe::jacobsthal(int n) {
     if (n == 0) return 0;
