@@ -1,9 +1,21 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(){}
-PmergeMe::PmergeMe(const PmergeMe& other){(void)other;}
-PmergeMe::PmergeMe& operator=(const PmergeMe& other){(void)other; return (*this);};
-PmergeMe::~PmergeMe();
+PmergeMe::PmergeMe() {}
+PmergeMe::PmergeMe(const PmergeMe& other) { *this = other; }
+PmergeMe& PmergeMe::operator=(const PmergeMe& other) {
+    (void)other; 
+    return *this; 
+}
+PmergeMe::~PmergeMe() {}
+
+template <typename T>
+bool PmergeMe::hasDuplicates(const T&arr) {
+    std::set<int> s;
+    for (size_t i = 0; i < v.size(); ++i) {
+        if (!s.insert(v[i]).second) return true;
+    }
+    return false;
+}
 
 int PmergeMe::jacobsthal(int n) {
     if (n == 0) return 0;
@@ -192,81 +204,5 @@ std::vector<int> PmergeMe::fordJohnson(std::vector<int> input){
     return main_chain;
 }
 
-template <typename T>
-bool PmergeMe::hasRepeats(T&arr, int n) const{
-    std::unordered_set<int> seen;
-    for (int i = 0; i < n; i++) {
-        if (seen.count(arr[i]))
-            return (true);
-        else{
-            seen.insert(arr[i]);
-        }
-    }
-    return (false);
-}
 
-int main(int argc, char **argv) {
-    try{
-        if (argc == 1){
-            throw std::invalid_argument("Usage: ./program <arg>");
-        }
-    }catch(std::exception&e){
-        std::cerr<< "Error: " << e.what() << std::endl;
-        return (1);
-    }
-    
-   //std::vector<int> input = {847, 392, 105, 678, 921, 56, 734, 289, 460, 812, 193, 574, 368, 999, 241, 670, 88, 715, 502, 349, 120, 955, 437, 681, 264, 790, 53, 826, 315, 908, 472, 619, 157, 843, 290, 731, 564, 982, 410, 275, 699, 34, 851, 223, 768, 599, 142, 907, 388, 621, 77, 455, 834, 266, 913, 548, 301, 694, 125, 872, 489, 250, 763, 910, 408, 662, 175, 5990, 521, 836, 92, 744, 317, 658, 481, 903, 229, 570, 346, 814, 67, 988, 432, 709, 284, 561, 798, 140, 623, 359, 875, 218, 946, 537, 660, 104, 722, 483, 591, 306};
-    std::vector<int> vect;
-    std::deque<int> deq;
-    int num;
-    for (int i = 1; i < argc; i++){
-        num = atoi(argv[i]);
-        try{
-            if (num <= 0 ){
-                throw std::invalid_argument("Wrong input");
-            }
-        }catch (std::exception &e){
-            std::cerr << "Error: " << e.what() << std::endl;
-            return 1;
-        }
-        vect.push_back(num);
-        deq.push_back(num);
-    }
-    PmergeMe pmm;
-    try{
-        if (pmm.hasRepeats(vect, vect.size())){
-                throw std::invalid_argument("Repeated ints");
-            }
-        }catch (std::exception &e){
-            std::cerr << "Error: " << e.what() << std::endl;
-            return 1;
-        }
 
-    /*std::cout << "=== Input: ";
-    for (size_t i = 0; i < vect.size(); i++) std::cout << vect[i] << " ";
-    std::cout << "\n\n";*/
-    clock_t start = clock();
-    std::vector<int> resVect = pmm.fordJohnson(vect);
-    clock_t end = clock();
-
-    // Convert to microseconds
-    double duration = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1e6;
-
-    std::cout << "Time to process a range of " << vect.size()
-              << " elements with std::vector : "
-              << duration << " us" << std::endl;
-
-    start = clock();
-    std::deque <int> resDeq = pmm.fordJohnson(deq);
-    end = clock();
-    // Convert to microseconds
-    duration = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1e6;
-    std::cout << "Time to process a range of " << deq.size()
-              << " elements with std::deque : "
-              << duration << " us" << std::endl;
-
-    std::cout << "\n=== Final sorted result ===\n";
-    for (size_t i = 0; i < resVect.size(); i++) std::cout << resVect[i] << " ";
-    std::cout << "\n";
-    return 0;
-}
