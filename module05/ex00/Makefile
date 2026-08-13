@@ -6,7 +6,7 @@
 #    By: stitovsk <stitovsk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/22 21:22:45 by stitovsk          #+#    #+#              #
-#    Updated: 2025/07/28 16:15:07 by stitovsk         ###   ########.fr        #
+#    Updated: 2025/08/12 16:10:54 by stitovsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,7 @@ TARGET = bureaucrat
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 CXX = g++
 SRC = Bureaucrat.cpp \
-	main.cpp \
-	Exception.cpp
+	main.cpp
 
 
 OBJ = $(SRC:.cpp=.o)

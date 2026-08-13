@@ -1,4 +1,5 @@
-#include "Common.hpp"
+#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Form::Form(std::string name, int gradeForSign, int gradeForExec)
     : _name(name), _signature(false), _gradeForSign(gradeForSign), _gradeForExec(gradeForExec) {
@@ -7,6 +8,7 @@ Form::Form(std::string name, int gradeForSign, int gradeForExec)
     if (_gradeForSign > 150 || _gradeForExec > 150)
         throw GradeTooLowException();
     std::cout << _name << " created\n";
+    
 }
 
 
@@ -43,6 +45,15 @@ const int& Form::getGradeForSign(void) const {
 const int &Form::getGradeForExec(void) const {
     return (_gradeForExec);
 }
+
+const char *Form::GradeTooHighException:: what() const throw(){
+    return ("Grade is too high!\n");
+}
+
+const char *Form::GradeTooLowException:: what() const throw(){
+    return ("Grade is too low!\n");
+}
+
 
 std::ostream& operator<<(std::ostream &os, const Form &formy) {
     os << formy.getName() << ":\n"

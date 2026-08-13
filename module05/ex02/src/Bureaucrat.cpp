@@ -42,6 +42,15 @@ Bureaucrat::~Bureaucrat(){
     std::cout << "Bureaucrat " << getName() << " deleted\n";
 }
 
+const char *Bureaucrat::GradeTooHighException::what()const throw(){
+    return ("grade is too high\n");
+}
+
+const char *Bureaucrat::GradeTooLowException::what()const throw(){
+    return ("grade is too low\n");
+}
+
+
 const std::string& Bureaucrat::getName(void) const{
     return(_name);
 }

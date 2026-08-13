@@ -1,21 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stitovsk <stitovsk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/31 17:38:37 by stitovsk          #+#    #+#             */
+/*   Updated: 2026/03/31 17:43:34 by stitovsk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <string>
 #include "Span.hpp"
 
 // My test function to test the Span with a big range of numbers
 
-int	main() {
-	try {/*
-	Span sp = Span(10000);												// Create an instance of Span with a max size of 10000
+int	main(){
+	try {
 
-	std::set<int> numbers;											// Create a vector of numbers
-	for (int i = 0; i < 10000; i++)										// Loop through 10000 numbers
-		numbers.insert(i);											// Add the number to the vector
-	
-	sp.fillInSet(numbers.begin(), numbers.end());						// Add the range of numbers to the list
-	std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;	// Print the shortest span
-	std::cout << "Longest span: " << sp.longestSpan() << std::endl;		// Print the longest span
-	*/
-	Span sp = Span(6);
+	/*Span sp = Span(6);
 	sp.addNumber(6);
 	sp.addNumber(3);
 	sp.addNumber(17);
@@ -26,10 +29,23 @@ int	main() {
 	sp.printSet();
 
 	std::cout << sp.shortestSpan() << std::endl;
-	std::cout << sp.longestSpan() << std::endl;
-	}
-	catch(std::exception &e){
-		std::cout << e.what() << std::endl;
+	std::cout << sp.longestSpan() << std::endl;*/
+		
+	Span sp = Span(10000);												// Create an instance of Span with a max size of 10000
+
+	std::set<int> numbers;											// Create a vector of numbers
+	for (int i = 0; i < 10000; i++)										// Loop through 10000 numbers
+		numbers.insert(i);											// Add the number to the vector
+	
+	sp.fillInSet(numbers.begin(), numbers.end());						// Add the range of numbers to the list
+	std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;	// Print the shortest span
+	std::cout << "Longest span: " << sp.longestSpan() << std::endl;		// Print the longest span
+	
+	}catch(std::exception &e){
+	std::cout << e.what() << std::endl;
 	}
 	return 0;
 }
+
+
+

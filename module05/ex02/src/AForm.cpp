@@ -56,6 +56,22 @@ bool AForm::getSignature() const {
     return _signature;
 }
 
+const char *AForm::GradeTooHighException::what()const throw(){
+     return ("required grade is too high\n");
+}
+
+const char *AForm::GradeTooLowException::what()const throw(){
+     return ("required grade is too low\n");
+}
+
+const char* AForm::PermissionDeniedToSign::what()const throw(){
+    return ("bureaucrat's grade is too low to sign\n");
+}
+const char* AForm::PermissionDeniedToExec::what()const throw(){
+    return ("bureaucrat's grade is too low to execute\n");
+}
+
+
 std::ostream &operator<<(std::ostream &os, const AForm &formy) {
     os << formy.getName() << ":\n"
        << "grade required to sign it: " << formy.getGradeSign() << "\n"
