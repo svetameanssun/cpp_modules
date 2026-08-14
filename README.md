@@ -1,14 +1,5 @@
 # 42 C++ Modules (CPP 00 - CPP 09) ⚡
 
-[![42 School](https://img.shields.io/badge/42-Project-000000?style=for-the-badge&logo=42&logoColor=white)](https://42.fr/)
-[![Language: C++](https://img.shields.io/badge/Language-C++11--C++98-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)](https://en.wikipedia.org/wiki/C%2B%2B)
-[![Standard: C++98](https://img.shields.io/badge/Standard-C++98-blue?style=for-the-badge)](https://en.wikipedia.org/wiki/C%2B%2B98)
-[![Norminette](https://img.shields.io/badge/Style-42_Compliant-brightgreen?style=for-the-badge)]()
-
----
-
-## 📌 Overview
-
 The **C++ Modules** series at 42 School introduces Object-Oriented Programming (OOP) and modern C++ paradigms. Moving away from procedural C, this series covers key C++ concepts step-by-step: data abstraction, encapsulation, inheritance, subtype polymorphism, resource management (RAII), exception handling, templates, and the Standard Template Library (STL).
 
 All modules strictly adhere to the **C++98 standard** (compiled with `-std=c++98`), encouraging a deep understanding of memory layout, standard containers, and fundamental algorithms without modern language syntactic shortcuts.
