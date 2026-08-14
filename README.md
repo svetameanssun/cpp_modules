@@ -1,4 +1,4 @@
-# 42 C++ Modules (CPP 00 - CPP 09) ⚡
+# 42 C++ Modules (module00 - module09) ⚡
 
 The **C++ Modules** series at 42 School introduces Object-Oriented Programming (OOP) and modern C++ paradigms. Moving away from procedural C, this series covers key C++ concepts step-by-step: data abstraction, encapsulation, inheritance, subtype polymorphism, resource management (RAII), exception handling, templates, and the Standard Template Library (STL).
 
@@ -31,27 +31,27 @@ All modules strictly adhere to the **C++98 standard** (compiled with `-std=c++98
 
 | Module | Core Topic | Key Concepts Learned |
 | :--- | :--- | :--- |
-| **[module 00](#-cpp-00--namespaces-classes-member-functions-stdio)** | Basics & Syntax | Namespaces, classes, member functions, `std::cin`/`std::cout`, `const` specifiers, static members. |
-| **[module 01](#-cpp-01--memory-allocation-pointers-to-members-references-switch)** | Memory & References | Dynamic allocation (`new`/`delete`), references vs pointers, pointers to members, file streams (`fstream`). |
-| **[module 02](#-cpp-02--ad-hoc-polymorphism-operator-overloading-fixed-point)** | Operator Overloading | Fixed-point numbers, operator overloading (`+`, `-`, `=`, `<<`, etc.), Orthodox Canonical Form. |
-| **[module 03](#-cpp-03--inheritance)** | Inheritance | Class inheritance (`public`/`protected`/`private`), virtual inheritance, base/derived constructor order. |
-| **[module 04](#-cpp-04--subtype-polymorphism-abstract-classes-interfaces)** | Subtype Polymorphism | Virtual destructors, pure virtual functions, Abstract Base Classes (ABCs), Interfaces, deep copying. |
-| **[module 05](#-cpp-05--repetition-and-exceptions)** | Exceptions | Custom exceptions (`std::exception`), nested classes, `try`/`catch` blocks, strict class invariants. |
-| **[module 06](#-cpp-06--c-casts)** | Type Casting | C++ explicit casts: `static_cast`, `dynamic_cast`, `const_cast`, `reinterpret_cast`, serialization. |
-| **[module 07](#-cpp-07--templates)** | Templates | Function templates, class templates, generic data structures, iterative template functions. |
-| **[module 08](#-cpp-08--templated-containers-iterators-algorithms)** | STL Containers & Algorithms | Standard containers (`vector`, `list`, `deque`), iterators, sequence analysis algorithms (`std::find`, `std::sort`). |
-| **[module 09](#-cpp-09--stl-real-world-applications)** | Advanced STL Applications | Complex container selection, expression evaluation (RPN), Bitcoin exchange parsing, PmergeMe algorithm. |
+| **[module00](#-cpp-00--namespaces-classes-member-functions-stdio)** | Basics & Syntax | Namespaces, classes, member functions, `std::cin`/`std::cout`, `const` specifiers, static members. |
+| **[module01](#-cpp-01--memory-allocation-pointers-to-members-references-switch)** | Memory & References | Dynamic allocation (`new`/`delete`), references vs pointers, pointers to members, file streams (`fstream`). |
+| **[module02](#-cpp-02--ad-hoc-polymorphism-operator-overloading-fixed-point)** | Operator Overloading | Fixed-point numbers, operator overloading (`+`, `-`, `=`, `<<`, etc.), Orthodox Canonical Form. |
+| **[module03](#-cpp-03--inheritance)** | Inheritance | Class inheritance (`public`/`protected`/`private`), virtual inheritance, base/derived constructor order. |
+| **[module04](#-cpp-04--subtype-polymorphism-abstract-classes-interfaces)** | Subtype Polymorphism | Virtual destructors, pure virtual functions, Abstract Base Classes (ABCs), Interfaces, deep copying. |
+| **[module05](#-cpp-05--repetition-and-exceptions)** | Exceptions | Custom exceptions (`std::exception`), nested classes, `try`/`catch` blocks, strict class invariants. |
+| **[module06](#-cpp-06--c-casts)** | Type Casting | C++ explicit casts: `static_cast`, `dynamic_cast`, `const_cast`, `reinterpret_cast`, serialization. |
+| **[module07](#-cpp-07--templates)** | Templates | Function templates, class templates, generic data structures, iterative template functions. |
+| **[module08](#-cpp-08--templated-containers-iterators-algorithms)** | STL Containers & Algorithms | Standard containers (`vector`, `list`, `deque`), iterators, sequence analysis algorithms (`std::find`, `std::sort`). |
+| **[module09](#-cpp-09--stl-real-world-applications)** | Advanced STL Applications | Complex container selection, expression evaluation (RPN), Bitcoin exchange parsing, PmergeMe algorithm. |
 
 ---
 
-### 🔹 CPP 00 | Namespaces, Classes, Member Functions, Stdio
+### 🔹 module00 | Namespaces, Classes, Member Functions, Stdio
 * **Focus:** Transition from C to C++, basic OOP concepts.
 * **Exercises:**
   * `Megaphone`: Basic I/O streams and string manipulations (`std::cout`, `std::string`).
   * `Pony` / `PhoneBook`: Static array of object instances, dynamic member searches, `const` correctness.
   * `Account`: Static class attributes, log generation, static member functions.
 
-### 🔹 CPP 01 | Memory Allocation, Pointers to Members, References
+### 🔹 module01 | Memory Allocation, Pointers to Members, References
 * **Focus:** Memory layout, stack vs heap allocation, dynamic lifetime management.
 * **Exercises:**
   * `Zombie`: Heap (`new`) vs Stack allocation and lifetime scope.
@@ -59,55 +59,55 @@ All modules strictly adhere to the **C++98 standard** (compiled with `-std=c++98
   * `HI THIS IS BRI`: References (`type&`) vs Pointers (`type*`).
   * `Sed is for losers`: File stream manipulation using `std::ifstream` and `std::ofstream`.
 
-### 🔹 CPP 02 | Ad-hoc Polymorphism, Operator Overloading, Fixed-Point
+### 🔹 module02 | Ad-hoc Polymorphism, Operator Overloading, Fixed-Point
 * **Focus:** Canonical class structure and custom type representations.
 * **Exercises:**
   * `Fixed`: Implementing a fixed-point number class using bitwise operations (`Orthodox Canonical Form`).
   * Operator Overloading: Overloading arithmetic (`+`, `-`, `*`, `/`), comparison (`>`, `<`, `==`), and increment/decrement (`++`, `--`) operators.
 
-### 🔹 CPP 03 | Inheritance
+### 🔹 module03 | Inheritance
 * **Focus:** Object inheritance hierarchies and initialization order.
 * **Exercises:**
   * `ClapTrap`: Base class setup with attributes, access specifiers (`protected` vs `private`).
   * `ScavTrap` / `FragTrap`: Derived classes overriding parent methods and using parent constructors.
   * `DiamondTrap`: Solving the "Diamond Problem" using `virtual` inheritance.
 
-### 🔹 CPP 04 | Subtype Polymorphism, Abstract Classes, Interfaces
+### 🔹 module04 | Subtype Polymorphism, Abstract Classes, Interfaces
 * **Focus:** Dynamic dispatch via virtual tables (vtable) and pure interfaces.
 * **Exercises:**
   * `Animal` / `Dog` / `Cat`: Virtual functions and virtual destructors to avoid memory leaks during polymorphic deletion.
   * `Brain`: Deep copying vs shallow copying in classes containing dynamic pointer members.
   * `Character` / `AMateria`: Implementing pure abstract base classes (interfaces) in C++98.
 
-### 🔹 CPP 05 | Repetition and Exceptions
+### 🔹 module05 | Repetition and Exceptions
 * **Focus:** Graceful error handling using exceptions.
 * **Exercises:**
   * `Bureaucrat`: Custom exception classes inheriting from `std::exception`.
   * `Form` / `AForm`: Exception throwing when invariants fail (e.g., grade too low/high).
   * `Intern`: Factory pattern using function pointers to construct objects dynamically.
 
-### 🔹 CPP 06 | C++ Casts
+### 🔹 module06 | C++ Casts
 * **Focus:** Type conversion mechanics in C++.
 * **Exercises:**
   * `ScalarConverter`: String parsing and explicit casting across scalar types using `static_cast`.
   * `Serializer`: Pointer address reinterpretation using `reinterpret_cast` (`uintptr_t`).
   * `Identify`: Runtime type identification (RTTI) without `typeid` using `dynamic_cast`.
 
-### 🔹 CPP 07 | Templates
+### 🔹 module07 | Templates
 * **Focus:** Generic programming in C++.
 * **Exercises:**
   * `swap`, `min`, `max`: Generic function templates.
   * `iter`: Template function executing arbitrary functions across generic array types.
   * `Array`: Generic class template managing dynamically allocated arrays with bounds checking.
 
-### 🔹 CPP 08 | Templated Containers, Iterators, Algorithms
+### 🔹 module08 | Templated Containers, Iterators, Algorithms
 * **Focus:** Using standard algorithms with STL containers.
 * **Exercises:**
   * `easyfind`: Template search function working across any STL integer container.
   * `Span`: Store numbers and calculate shortest/longest spans using range-based iterator insertion.
   * `MutantStack`: Making `std::stack` iterable by exposing underlying container iterators.
 
-### 🔹 CPP 09 | Advanced STL Applications
+### 🔹 module09 | Advanced STL Applications
 * **Focus:** Designing solutions using optimal STL containers based on algorithmic complexity.
 * **Exercises:**
   * `Bitcoin Exchange`: Parsing CSV historical price data using `std::map` for efficient lookup and upper/lower bound search.
