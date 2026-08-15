@@ -20,7 +20,7 @@ int main(int argc, char **argv) {
     }
 
     PmergeMe pmm;
-    if (pmm.hasDuplicates(v)) {
+    if (pmm.hasRepeats(v)) {
         std::cerr << "Error: duplicates found" << std::endl;
         return 1;
     }

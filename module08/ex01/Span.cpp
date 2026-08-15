@@ -6,7 +6,7 @@
 /*   By: stitovsk <stitovsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 18:40:22 by stitovsk          #+#    #+#             */
-/*   Updated: 2026/03/31 17:12:51 by stitovsk         ###   ########.fr       */
+/*   Updated: 2026/03/31 17:39:53 by stitovsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,12 @@ int Span::longestSpan(){
 	return (*lastElem - *this->_set.begin());
 }
 
-const char *Span::NotEnoughElementsException::what() const throw() {	// Exception for not enough numbers
-	return "Not enough numbers in the list";			// Return the error message
+const char *Span::NotEnoughElementsException::what() const throw() {	
+	return "Not enough numbers in the list";			
 }
 
-const char *Span::OutOfRangeException::what() const throw() {	// Exception for max size reached
-	return "Max size reached";							// Return the error message
+const char *Span::OutOfRangeException::what() const throw() {	
+	return "Max size reached";							
 }
 	
 

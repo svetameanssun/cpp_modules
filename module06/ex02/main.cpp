@@ -27,8 +27,7 @@ Base * generate(void){
     }
     return (NULL);
 }
-//It randomly instantiates A, B, or C and returns the instance as a Base pointer. Feel free
-//to use anything you like for the random choice implementation.
+
 void identify(Base* p){
     std::cout << "---------------------------------------------\n";
     std:: cout << "POINTER IDENTIFICATION\n";
@@ -49,7 +48,6 @@ void identify(Base* p){
         std::cout << "Something went wrong!\n";
     }
 }
-//It prints the actual type of the object pointed to by p: "A", "B", or "C".
 
 void identify(Base& p){
     std::cout << "---------------------------------------------\n";
@@ -77,8 +75,6 @@ void identify(Base& p){
         return;
     } catch (std::bad_cast&){}
 }
-//t prints the actual type of the object referenced by p: "A", "B", or "C". Using a pointer
-//inside this function is forbidden.
 
 int main(){
     srand(time(NULL));

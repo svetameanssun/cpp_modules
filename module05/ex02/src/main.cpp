@@ -3,7 +3,6 @@
 #include "../include/PresidentialPardonForm.hpp"
 #include "../include/RobotomyRequestForm.hpp"
 #include "../include/ShrubberyCreationForm.hpp"
-#include "../include/color.hpp"
 
 int main(void){
   try {

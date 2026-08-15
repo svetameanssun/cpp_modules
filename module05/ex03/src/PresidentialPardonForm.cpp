@@ -23,6 +23,7 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
     return (*this);
 }
 
+
 PresidentialPardonForm::~PresidentialPardonForm(){
     std::cout << "PresidentialPardonForm "<< getName() << " deleted\n";
 }

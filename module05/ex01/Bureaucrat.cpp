@@ -1,4 +1,5 @@
-#include "Common.hpp"
+#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat(const std::string name, int grade): _name(name){
     if (grade < 1){
@@ -36,6 +37,15 @@ const std::string& Bureaucrat::getName(void) const{
 int Bureaucrat::getGrade(void) const{
     return (_grade);
 }
+
+const char * Bureaucrat::GradeTooHighException:: what() const throw(){
+    return ("Grade is too high!\n");
+}
+
+const char *Bureaucrat::GradeTooLowException:: what() const throw(){
+    return ("Grade is too low!\n");
+}
+
 
 void Bureaucrat::incrGrade(void){
     if (_grade - 1 == 0){

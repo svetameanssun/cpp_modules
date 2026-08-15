@@ -38,9 +38,5 @@ class Bureaucrat {
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& burocrat);
 
-/* <name>, bureaucrat grade <grade>.*/
-/*two member functions to increment or decrement the bureaucrat’s grade.*/
-
-/*Bureaucrat::GradeTooHighException or a Bureaucrat::GradeTooLowException.*/
 
 #endif

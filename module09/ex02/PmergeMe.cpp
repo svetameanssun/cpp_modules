@@ -8,15 +8,6 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other) {
 }
 PmergeMe::~PmergeMe() {}
 
-template <typename T>
-bool PmergeMe::hasDuplicates(const T&arr) {
-    std::set<int> s;
-    for (size_t i = 0; i < v.size(); ++i) {
-        if (!s.insert(v[i]).second) return true;
-    }
-    return false;
-}
-
 int PmergeMe::jacobsthal(int n) {
     if (n == 0) return 0;
     if (n == 1) return 1;

@@ -4,6 +4,7 @@
 #include <deque>
 #include <ctime>
 #include <set>
+#include <iomanip>
 
 
 class PmergeMe {
@@ -17,7 +18,13 @@ class PmergeMe {
   std::deque<int> fordJohnson(std::deque<int> input);
 
   template <typename T>
-  bool hasRepeats(const T &arr) const;
+    bool hasRepeats(T &arr) const {
+    std::set<int> s;
+    for (size_t i = 0; i < arr.size(); ++i) {
+        if (!s.insert(arr[i]).second) return true;
+    }
+    return false;
+}
 
  private:
   int jacobsthal(int n);

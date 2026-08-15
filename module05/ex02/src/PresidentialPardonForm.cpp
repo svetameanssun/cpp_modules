@@ -12,6 +12,7 @@ Informs that <target> has been pardoned by Zaphod Beeblebrox.*/
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other)
     : AForm(other), _target(other._target) {
+
     std::cout << "PresidentialPardonForm copy contructor called!\n";
 }
 

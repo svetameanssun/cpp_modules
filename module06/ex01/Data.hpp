@@ -7,6 +7,6 @@
 typedef struct DataStructure{
       std::string myFullName;
       int myAge;
-    } Data;
+} Data;
 
 #endif

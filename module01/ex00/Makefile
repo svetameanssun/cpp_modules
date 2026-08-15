@@ -6,7 +6,7 @@
 #    By: stitovsk <stitovsk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/18 20:30:49 by stitovsk          #+#    #+#              #
-#    Updated: 2025/06/19 23:13:12 by stitovsk         ###   ########.fr        #
+#    Updated: 2025/06/23 10:57:03 by stitovsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ $(TARGET): $(OBJ)
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-#Zombie.o: Zombie.hpp
+
 
 clean:
 	rm -f $(OBJ)

@@ -6,12 +6,12 @@
 #    By: stitovsk <stitovsk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/22 21:22:45 by stitovsk          #+#    #+#              #
-#    Updated: 2025/08/06 18:56:51 by stitovsk         ###   ########.fr        #
+#    Updated: 2025/08/12 16:53:49 by stitovsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 TARGET = bureaucrat
-CXXFLAGS = -Wall -Werror -Wextra -std=c++98 -MMD
+CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 CXX = g++
 RM = rm -f
 
@@ -21,7 +21,6 @@ OBJDIR = obj/
 SHRUBERYF = _shrubbery
 SRCFILES = AForm.cpp \
 	Bureaucrat.cpp \
-	ExceptionsFile.cpp \
 	PresidentialPardonForm.cpp \
 	RobotomyRequestForm.cpp \
 	ShrubberyCreationForm.cpp \
@@ -29,7 +28,7 @@ SRCFILES = AForm.cpp \
 
 SRC = $(addprefix $(SRCDIR), $(SRCFILES))
 OBJ = $(addprefix $(OBJDIR), $(SRCFILES:.cpp=.o))
-DEP = $(OBJ:.o=.d)
+#DEP = $(OBJ:.o=.d)
 
 all: $(TARGET)
 
@@ -40,13 +39,13 @@ $(OBJDIR)%.o: $(SRCDIR)%.cpp
 	@mkdir -p $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
--include $(DEP)
+#-include $(DEP)
 
 clean:
 	$(RM) $(OBJ)
 
 fclean: clean
-	$(RM) $(TARGET) $(DEP)
+	$(RM) $(TARGET)
 	$(RM) *$(SHRUBERYF)
 re: fclean all
 
